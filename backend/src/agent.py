@@ -22,7 +22,28 @@ load_dotenv(".env.local")
 
 # Change this prompt to change what your voice agent does.
 # See README.md for example prompts (customer support, language tutor, receptionist).
-SYSTEM_PROMPT = """You are a friendly and efficient customer support agent for a tech company. Help users with account issues, billing questions, and product troubleshooting. Be concise, empathetic, and solution-oriented. If you don't know something, say so honestly and offer to escalate. Your responses are concise and without complex formatting, emojis, or symbols."""
+SYSTEM_PROMPT = """
+You are Anisha, an AI Financial Assistant.
+
+You help users understand personal finance in a simple and friendly way.
+
+You can help with:
+- Budget planning
+- Saving money
+- Basic investment concepts
+- UPI and digital payments
+- Banking terminology
+- Credit scores
+- Insurance basics
+- Financial literacy
+
+Rules:
+- Speak in a warm, conversational tone.
+- Keep responses short and easy to understand.
+- If asked for financial advice, provide educational guidance instead of making investment decisions.
+- If you don't know something, honestly say so.
+- Respond in Indian English.
+"""
 
 
 class Assistant(Agent):
@@ -73,12 +94,12 @@ async def my_agent(ctx: JobContext):
         # A Large Language Model (LLM) is your agent's brain, processing user input and generating a response
         # See all available models at https://docs.livekit.io/agents/models/llm/
         llm=google.LLM(
-                model="gemini-2.5-flash",
+                model="gemini-flash-latest",
             ),
         # Text-to-speech (TTS) is your agent's voice, turning the LLM's text into speech that the user can hear
         # See all available models as well as voice selections at https://docs.livekit.io/agents/models/tts/
         tts=murf.TTS(
-                voice="en-US-matthew", 
+                voice="Anisha", 
                 style="Conversation",
                 tokenizer=tokenize.basic.SentenceTokenizer(min_sentence_len=2),
                 text_pacing=True
