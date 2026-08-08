@@ -33,20 +33,19 @@ export interface AppConfig {
 }
 
 export const APP_CONFIG_DEFAULTS: AppConfig = {
-  companyName: 'Murf AI',
-  pageTitle: 'Voice Agent Starter',
-  pageDescription: 'A voice agent powered by Murf Falcon — the fastest TTS API',
+  companyName: 'Bharat Finance Assistant',
+  pageTitle: 'Bharat Finance Assistant',
+  pageDescription: 'Your everyday voice guide for money decisions',
 
   supportsChatInput: true,
-  supportsVideoInput: true,
-  supportsScreenShare: true,
+  supportsVideoInput: false,
+  supportsScreenShare: false,
   isPreConnectBufferEnabled: true,
 
-  logo: '/murf-logo.svg',
-  accent: '#6366F1',
-  logoDark: '/murf-logo-dark.svg',
-  accentDark: '#818cf8',
-  startButtonText: 'Start talking',
+  logo: '',
+  accent: '#16855B',
+  accentDark: '#35B77A',
+  startButtonText: 'Connect with your Assistant',
 
   // optional: audio visualization configuration
   // audioVisualizerType: 'bar',
