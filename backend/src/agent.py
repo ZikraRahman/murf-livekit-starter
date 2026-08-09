@@ -1,4 +1,6 @@
 import logging
+import re
+from typing import Any
 
 from dotenv import load_dotenv
 from livekit import rtc
@@ -8,13 +10,18 @@ from livekit.agents import (
     AgentSession,
     JobContext,
     JobProcess,
+    RunContext,
     cli,
+    function_tool,
     inference,
     tokenize,
     room_io,
 )
 from livekit.plugins import murf, silero, google, deepgram, noise_cancellation
 from livekit.plugins.turn_detector.multilingual import MultilingualModel
+
+from memory import delete_user, get_user, init_db, upsert_user
+from memory_api import start_in_background
 
 logger = logging.getLogger("agent")
 
@@ -48,7 +55,31 @@ Rules:
 
 GREETING
 
+GREETING
+
+At the beginning of every new call, first use the lookup_user tool to check
+whether you already have saved information about the caller.
+
+If no saved memory exists:
+- Give a short, warm first-time greeting.
+- Do not claim to know the caller.
+
+If saved memory exists:
+- Greet the caller by their saved name.
+- Welcome them back naturally.
+- If there is a relevant saved fact, briefly reference it.
+- Do not repeat or list all saved memories.
+- Do not use the generic first-time greeting for a returning caller.
+
+Examples:
+
+New caller:
 "Namaste! Welcome to Bharat Finance Assistant. I'm here to help you with banking, UPI, loans, savings, and financial safety. How can I help you today?"
+
+Returning caller:
+"Namaste Ramesh, welcome back! Last time we talked about government savings schemes. Would you like to continue with that?"
+
+Keep the greeting brief and conversational.
 
 
 OBJECTIVES
@@ -94,25 +125,153 @@ Never claim:
 If a user requests account-specific help, politely refuse and direct them to the official bank support.
 
 
-LANGUAGE
+LANGUAGE & SCRIPT
 
-Reply in the same language the user speaks.
+Always respond in the language the user is currently speaking.
 
-If the user mixes Hindi and English,
-reply in Hinglish.
+If the user speaks entirely in English:
+- Reply entirely in English.
+- Use Latin/English script.
+- Do not switch to Hindi unless the user switches to Hindi.
 
-If the user speaks English,
-reply in English.
+If the user speaks entirely in Hindi:
+- Reply entirely in Hindi.
+- Write Hindi in Devanagari script.
+- Never write Hindi in Roman/Latin script.
 
-If the user speaks Hindi,
-reply in Hindi.
+If the user naturally mixes Hindi and English (Hinglish):
+- Reply in the same mixed style.
+- Write Hindi words in Devanagari.
+- Write English words in Latin script.
+- Do not romanize Hindi words.
+
+If the user switches language during the conversation:
+- Immediately switch the response language to match the user's new language.
+- Do not continue using the previous language merely because it was used earlier.
+
+Examples:
+
+User: "What is UPI?"
+Assistant: Reply entirely in English.
+
+User: "यूपीआई क्या है?"
+Assistant: Reply entirely in Hindi using Devanagari.
+
+User: "UPI क्या है and how does it work?"
+Assistant: Reply in natural mixed Hindi-English, with Hindi in Devanagari and English in Latin script.
+
+MEMORY
+- Use lookup_user at the beginning of a conversation and when the caller asks what you remember.
+- If memory is found, welcome the caller back by name when available and mention at most one relevant fact.
+- Never claim to remember anything not returned by lookup_user.
+- Before save_user, ask for clear, explicit permission to save the specific safe information. Vague responses are not consent.
+- If the caller says no, do not call save_user. Never save account numbers, government IDs, OTPs, PINs, passwords, CVVs, or card details.
+- If a caller asks to forget everything, confirm deletion unless the request is already an unambiguous instruction to delete all memories.
 
 """
 
+SENSITIVE_MEMORY_PATTERN = re.compile(
+    r"\b(otp|pin|password|cvv|account\s*(number|no)?|card\s*(number|details)?|aadhaar|pan\s*(number|no)?)\b",
+    re.IGNORECASE,
+)
+# TEMPORARY_MULTILINGUAL_DIAGNOSTICS: remove after the reproduction is captured.
+DIAGNOSTIC_NUMBER_PATTERN = re.compile(r"\b\d{6,19}\b")
+
+
+def _diagnostic_text(text: str | None) -> str:
+    """Keep temporary pipeline logs useful without writing financial credentials."""
+    value = (text or "").strip()
+    if SENSITIVE_MEMORY_PATTERN.search(value) or DIAGNOSTIC_NUMBER_PATTERN.search(value):
+        return "[REDACTED: potentially sensitive content]"
+    return value
+
+
+def _install_pipeline_diagnostics(session: AgentSession) -> None:
+    """TEMPORARY_MULTILINGUAL_DIAGNOSTICS for one reproduction call."""
+
+    def on_user_input_transcribed(event: Any) -> None:
+        if event.is_final:
+            logger.info(
+                "[DEBUG-STT] final transcript=%r language=%s",
+                _diagnostic_text(event.transcript),
+                event.language,
+            )
+
+    def on_conversation_item_added(event: Any) -> None:
+        item = event.item
+        if getattr(item, "role", None) == "assistant":
+            logger.info(
+                "[DEBUG-LLM] assistant text committed after playout=%r",
+                _diagnostic_text(getattr(item, "text_content", None)),
+            )
+
+    def on_metrics_collected(event: Any) -> None:
+        metrics = event.metrics
+        metric_type = getattr(metrics, "type", "unknown")
+        if metric_type in {"stt_metrics", "llm_metrics", "tts_metrics"}:
+            logger.info("[DEBUG-%s] metrics=%s", metric_type.split("_")[0].upper(), metrics)
+
+    def on_error(event: Any) -> None:
+        logger.error(
+            "[DEBUG-%s] pipeline error: %s",
+            type(event.source).__name__.upper(),
+            event.error,
+        )
+
+    session.on("user_input_transcribed", on_user_input_transcribed)
+    session.on("conversation_item_added", on_conversation_item_added)
+    session.on("metrics_collected", on_metrics_collected)
+    session.on("error", on_error)
+
 
 class Assistant(Agent):
-    def __init__(self) -> None:
+    def __init__(self, user_id: str | None = None) -> None:
         super().__init__(instructions=SYSTEM_PROMPT)
+        self.user_id = user_id
+
+    def _require_user_id(self) -> str:
+        if not self.user_id:
+            raise ValueError("Caller identity is unavailable for this session.")
+        return self.user_id
+
+    @function_tool
+    async def lookup_user(self, context: RunContext) -> dict[str, Any]:
+        """Retrieve the current caller's saved memory without asking for an ID."""
+        user = get_user(self._require_user_id())
+        if user is None:
+            return {"found": False}
+        return {
+            "found": True,
+            "name": user["name"],
+            "language_preference": user["language_preference"],
+            "facts": user["facts"],
+        }
+
+    @function_tool
+    async def save_user(
+        self,
+        context: RunContext,
+        name: str | None = None,
+        language_preference: str | None = None,
+        facts: dict[str, str] | None = None,
+    ) -> dict[str, str]:
+        """Save only explicitly consented, non-sensitive information for this caller."""
+        values = [name or "", language_preference or "", *(facts or {}).keys(), *(facts or {}).values()]
+        if any(SENSITIVE_MEMORY_PATTERN.search(value) for value in values):
+            return {"saved": "false", "reason": "Sensitive data cannot be saved."}
+        safe_facts = {key.strip(): value.strip() for key, value in (facts or {}).items() if key.strip() and value.strip()}
+        upsert_user(
+            self._require_user_id(),
+            name=name.strip() if name else None,
+            language_preference=language_preference.strip() if language_preference else None,
+            facts=safe_facts,
+        )
+        return {"saved": "true"}
+
+    @function_tool
+    async def forget_user(self, context: RunContext) -> dict[str, str]:
+        """Delete all saved memory for the current caller after clear confirmation."""
+        return {"deleted": "true" if delete_user(self._require_user_id()) else "false"}
 
     # To add tools, use the @function_tool decorator.
     # Here's an example that adds a simple weather tool.
@@ -142,6 +301,11 @@ def prewarm(proc: JobProcess):
 server.setup_fnc = prewarm
 
 
+def caller_identity(ctx: JobContext) -> str | None:
+    participants = list(ctx.room.remote_participants.values())
+    return participants[0].identity if participants else None
+
+
 @server.rtc_session(agent_name="my-agent")
 async def my_agent(ctx: JobContext):
     # Logging setup
@@ -149,6 +313,8 @@ async def my_agent(ctx: JobContext):
     ctx.log_context_fields = {
         "room": ctx.room.name,
     }
+    init_db()
+    await ctx.connect()
 
     # Set up a voice AI pipeline using Murf Falcon, Gemini, Deepgram, and the LiveKit turn detector
     session = AgentSession(
@@ -156,12 +322,12 @@ async def my_agent(ctx: JobContext):
         # See all available models at https://docs.livekit.io/agents/models/stt/
         stt=deepgram.STT(
         model="nova-3",
-        language="hi",
+        language="multi",
         ),
         # A Large Language Model (LLM) is your agent's brain, processing user input and generating a response
         # See all available models at https://docs.livekit.io/agents/models/llm/
         llm=google.LLM(
-                model="gemini-flash-latest",
+                model="gemini-3.5-flash-lite",
             ),
         # Text-to-speech (TTS) is your agent's voice, turning the LLM's text into speech that the user can hear
         # See all available models as well as voice selections at https://docs.livekit.io/agents/models/tts/
@@ -179,6 +345,7 @@ async def my_agent(ctx: JobContext):
         # See more at https://docs.livekit.io/agents/build/audio/#preemptive-generation
         preemptive_generation=True,
     )
+    _install_pipeline_diagnostics(session)
 
     # To use a realtime model instead of a voice pipeline, use the following session setup instead.
     # (Note: This is for the OpenAI Realtime API. For other providers, see https://docs.livekit.io/agents/models/realtime/))
@@ -200,7 +367,7 @@ async def my_agent(ctx: JobContext):
 
     # Start the session, which initializes the voice pipeline and warms up the models
     await session.start(
-        agent=Assistant(),
+        agent=Assistant(caller_identity(ctx)),
         room=ctx.room,
         room_options=room_io.RoomOptions(
             audio_input=room_io.AudioInputOptions(
@@ -214,9 +381,6 @@ async def my_agent(ctx: JobContext):
         ),
     )
 
-    # Join the room and connect to the user
-    await ctx.connect()
-
-
 if __name__ == "__main__":
+    start_in_background()
     cli.run_app(server)

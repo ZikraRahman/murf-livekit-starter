@@ -11,8 +11,10 @@ import {
   MicrophoneErrorView,
 } from '@/components/app/finance-session-view';
 import { WelcomeView } from '@/components/app/welcome-view';
+import { AppHeader } from '@/components/app/app-header';
+import { SettingsView } from '@/components/app/settings-view';
 
-type ViewState = 'ready' | 'connecting' | 'active' | 'ended' | 'microphone-error';
+type ViewState = 'ready' | 'connecting' | 'active' | 'ended' | 'microphone-error' | 'settings';
 
 function isMicrophoneAccessError(error: unknown) {
   if (!(error instanceof Error)) return false;
@@ -24,6 +26,7 @@ export function ViewController({ appConfig }: { appConfig: AppConfig }) {
   const [attemptedConnection, setAttemptedConnection] = useState(false);
   const [endedByUser, setEndedByUser] = useState(false);
   const [microphoneError, setMicrophoneError] = useState(false);
+  const [showSettings, setShowSettings] = useState(false);
 
   const start = async () => {
     setMicrophoneError(false);
@@ -46,15 +49,22 @@ export function ViewController({ appConfig }: { appConfig: AppConfig }) {
     setEndedByUser(false);
     setMicrophoneError(false);
   };
+  const goHome = () => {
+    setShowSettings(false);
+    startAgain();
+  };
 
   let view: ViewState = 'ready';
-  if (microphoneError) view = 'microphone-error';
+  if (showSettings) view = 'settings';
+  else if (microphoneError) view = 'microphone-error';
   else if (session.isConnected) view = 'active';
   else if (endedByUser) view = 'ended';
   else if (attemptedConnection) view = 'connecting';
 
   return (
-    <AnimatePresence mode="wait">
+    <div className="bg-background min-h-svh">
+      <AppHeader onHome={goHome} onSettings={() => setShowSettings(true)} />
+      <AnimatePresence mode="wait">
       <motion.div
         key={view}
         initial={{ opacity: 0 }}
@@ -74,7 +84,9 @@ export function ViewController({ appConfig }: { appConfig: AppConfig }) {
         )}
         {view === 'ended' && <EndedView onStartAgain={startAgain} />}
         {view === 'microphone-error' && <MicrophoneErrorView onTryAgain={start} />}
+        {view === 'settings' && <SettingsView />}
       </motion.div>
-    </AnimatePresence>
+      </AnimatePresence>
+    </div>
   );
 }

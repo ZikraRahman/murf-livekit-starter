@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { AccessToken, type AccessTokenOptions, type VideoGrant } from 'livekit-server-sdk';
 import { RoomConfiguration } from '@livekit/protocol';
+import { MEMORY_COOKIE_NAME, signedUserCookie } from '@/lib/memory-auth';
 
 type ConnectionDetails = {
   serverUrl: string;
@@ -32,6 +33,13 @@ export async function POST(req: Request) {
 
     // Parse room config from request body (if provided).
     const body = await req.json().catch(() => ({}));
+    const requestedUserId = body?.user_id;
+    if (
+      typeof requestedUserId !== 'string' ||
+      !/^anon_[a-f0-9-]{36}$/i.test(requestedUserId)
+    ) {
+      throw new Error('A valid anonymous user ID is required');
+    }
     let roomConfig: RoomConfiguration | undefined;
     if (body?.room_config) {
       roomConfig = RoomConfiguration.fromJson(body.room_config, { ignoreUnknownFields: true });
@@ -46,7 +54,7 @@ export async function POST(req: Request) {
       
     // Generate participant token
     const participantName = 'user';
-    const participantIdentity = `voice_assistant_user_${Math.floor(Math.random() * 10_000)}`;
+    const participantIdentity = requestedUserId;
     const roomName = `voice_assistant_room_${Math.floor(Math.random() * 10_000)}`;
 
     const participantToken = await createParticipantToken(
@@ -65,7 +73,15 @@ export async function POST(req: Request) {
     const headers = new Headers({
       'Cache-Control': 'no-store',
     });
-    return NextResponse.json(data, { headers });
+    const response = NextResponse.json(data, { headers });
+    response.cookies.set(MEMORY_COOKIE_NAME, signedUserCookie(participantIdentity), {
+      httpOnly: true,
+      sameSite: 'lax',
+      secure: process.env.NODE_ENV === 'production',
+      path: '/',
+      maxAge: 60 * 60 * 24 * 365,
+    });
+    return response;
   } catch (error) {
     if (error instanceof Error) {
       console.error(error);

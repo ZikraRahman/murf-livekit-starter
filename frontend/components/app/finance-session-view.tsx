@@ -13,7 +13,6 @@ import {
   useTrackToggle,
   useVoiceAssistant,
 } from '@livekit/components-react';
-import { ThemeToggle } from '@/components/app/theme-toggle';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/shadcn/utils';
 
@@ -21,17 +20,6 @@ type FinanceSessionViewProps = {
   onEnd: () => void;
   onMicrophoneError: (error: Error) => void;
 };
-
-function BrandHeader() {
-  return (
-    <header className="border-border/80 bg-background/90 sticky top-0 z-20 flex h-[72px] items-center justify-between border-b px-5 backdrop-blur-sm md:px-8">
-      <p className="text-foreground text-sm font-semibold tracking-[-0.02em] md:text-base">
-        <span className="text-primary mr-1.5">₹</span>Bharat Finance Assistant
-      </p>
-      <ThemeToggle />
-    </header>
-  );
-}
 
 function VoiceOrb({ muted = false }: { muted?: boolean }) {
   return (
@@ -178,7 +166,6 @@ export function FinanceSessionView({ onEnd, onMicrophoneError }: FinanceSessionV
 
   return (
     <div className="bg-background min-h-svh">
-      <BrandHeader />
       <main className="mx-auto grid min-h-[calc(100svh-72px)] max-w-6xl gap-8 px-5 py-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(320px,.85fr)] lg:items-center lg:px-8">
         <section className="flex flex-col items-center justify-center text-center">
           <div className="flex h-64 items-center justify-center md:h-72">
@@ -232,7 +219,6 @@ export function FinanceSessionView({ onEnd, onMicrophoneError }: FinanceSessionV
 export function ConnectingView() {
   return (
     <div className="bg-background min-h-svh">
-      <BrandHeader />
       <main className="flex min-h-[calc(100svh-72px)] flex-col items-center justify-center px-6 text-center">
         <VoiceOrb muted />
         <h1 className="text-foreground mt-8 text-2xl font-semibold tracking-[-0.03em]">
@@ -247,7 +233,6 @@ export function ConnectingView() {
 export function EndedView({ onStartAgain }: { onStartAgain: () => void }) {
   return (
     <div className="bg-background min-h-svh">
-      <BrandHeader />
       <main className="flex min-h-[calc(100svh-72px)] flex-col items-center justify-center px-6 text-center">
         <div className="bg-primary/12 text-primary grid size-14 place-items-center rounded-full text-3xl">
           ✓
@@ -269,7 +254,6 @@ export function EndedView({ onStartAgain }: { onStartAgain: () => void }) {
 export function MicrophoneErrorView({ onTryAgain }: { onTryAgain: () => void }) {
   return (
     <div className="bg-background min-h-svh">
-      <BrandHeader />
       <main className="flex min-h-[calc(100svh-72px)] flex-col items-center justify-center px-6 text-center">
         <div className="bg-primary/12 text-primary grid size-14 place-items-center rounded-full">
           <Volume2 />
