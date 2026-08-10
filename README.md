@@ -74,6 +74,7 @@ Create `.env.local` in both `backend/` and `frontend/` (copy from `.env.example`
 | `MURF_API_KEY` | [murf.ai/api/dashboard](https://murf.ai/api/dashboard) | Yes |
 | `DEEPGRAM_API_KEY` | [deepgram.com](https://deepgram.com) | Yes |
 | `GOOGLE_API_KEY` (or `OPENAI_API_KEY`) | Depends on LLM choice | Yes |
+| `TAVILY_API_KEY` | [Tavily](https://tavily.com/) | Required for Day 5 live scheme search |
 
 ### Step 3: Install backend dependencies
 
@@ -119,6 +120,31 @@ cd frontend && pnpm dev
 Then open **http://localhost:3000** in your browser.
 
 You should now see the voice agent UI. Click **Start talking**, allow microphone access, and speak — the agent will respond with Murf Falcon TTS. Ensure your backend and (if using Option B) LiveKit server are running.
+
+---
+
+## Day 5: Government Financial Scheme Finder
+
+`find_financial_schemes` helps Bharat Finance Assistant discover Indian government financial and welfare schemes, including state-specific schemes, using **live web data through Tavily** rather than a hand-built local dataset. It searches with `gov.in` prioritisation and returns only compact results from verified official Indian government sources.
+
+The assistant reuses Day 4's existing non-sensitive caller facts when they are already saved (for example, state, age, education, employment status, or income); it does not save new financial information automatically. Discovery and eligibility are separate: an eligibility request triggers a fresh official-criteria search, then returns **appears eligible**, **appears not eligible**, **needs more information**, or **needs official verification**. It never guarantees eligibility and separates what an official source states from its preliminary comparison.
+
+Each result keeps the official source URL and title, Tavily's available publication date, and the UTC retrieval time. If the current search cannot be verified (missing API key, timeout, network/API error, ambiguous results, or no official source), the assistant gives a safe spoken fallback instead of inventing scheme information.
+
+Add this to `backend/.env.local` (never commit the real value):
+
+```bash
+TAVILY_API_KEY=your_tavily_key_here
+```
+
+To exercise the unit tests:
+
+```bash
+cd backend
+uv run pytest tests/test_financial_schemes.py
+```
+
+Then start the agent and ask, for example: “Bihar mein mere liye kaunsi schemes available hain?” The voice response is brief and follows the caller's language rules; source details remain structured tool data rather than spoken JSON.
 
 ---
 

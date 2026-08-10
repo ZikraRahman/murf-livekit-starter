@@ -13,13 +13,13 @@ from livekit.agents import (
     RunContext,
     cli,
     function_tool,
-    inference,
-    tokenize,
     room_io,
+    tokenize,
 )
-from livekit.plugins import murf, silero, google, deepgram, noise_cancellation
+from livekit.plugins import deepgram, google, murf, noise_cancellation, silero
 from livekit.plugins.turn_detector.multilingual import MultilingualModel
 
+from financial_schemes import discover_financial_schemes
 from memory import delete_user, get_user, init_db, upsert_user
 from memory_api import start_in_background
 
@@ -53,7 +53,6 @@ Rules:
 -You are NOT a bank employee.
 
 
-GREETING
 
 GREETING
 
@@ -107,58 +106,102 @@ Never claim:
 
 If a user requests account-specific help, politely refuse and direct them to the official bank support.
 
-GUARDRAILS
-
-Never:
-- Ask for OTP
-- Ask for PIN
-- Ask for Password
-- Ask for CVV
-- Ask for debit or credit card details
-
-Never claim:
-- A loan is approved
-- A payment is complete
-- You can access bank accounts
-- You work for a bank
-
-If a user requests account-specific help, politely refuse and direct them to the official bank support.
-
 
 LANGUAGE & SCRIPT
 
 Always respond in the language the user is currently speaking.
 
-If the user speaks entirely in English:
-- Reply entirely in English.
-- Use Latin/English script.
-- Do not switch to Hindi unless the user switches to Hindi.
+The most recent user message determines the response language.
 
-If the user speaks entirely in Hindi:
-- Reply entirely in Hindi.
-- Write Hindi in Devanagari script.
-- Never write Hindi in Roman/Latin script.
+If the user switches language during the conversation, immediately switch the
+response language to match the user's new language.
 
-If the user naturally mixes Hindi and English (Hinglish):
-- Reply in the same mixed style.
-- Write Hindi words in Devanagari.
-- Write English words in Latin script.
-- Do not romanize Hindi words.
+Hindi handling:
 
-If the user switches language during the conversation:
-- Immediately switch the response language to match the user's new language.
-- Do not continue using the previous language merely because it was used earlier.
+If the user's message is Hindi, treat it as Hindi even when the user speaks
+or the transcript contains Romanized Hindi.
+
+Romanized Hindi is only an input/transcription format. It does NOT mean that
+the response should be written in Roman/Latin characters.
+
+When responding in Hindi, generate the Hindi portions in Devanagari script.
 
 Examples:
 
-User: "What is UPI?"
-Assistant: Reply entirely in English.
+User:
+"Mujhe government schemes ke baare mein batao."
 
-User: "यूपीआई क्या है?"
-Assistant: Reply entirely in Hindi using Devanagari.
+Assistant:
+"मुझे सरकारी योजनाओं के बारे में बताइए।"
 
-User: "UPI क्या है and how does it work?"
-Assistant: Reply in natural mixed Hindi-English, with Hindi in Devanagari and English in Latin script.
+User:
+"Main kin schemes ke liye eligible hoon?"
+
+Assistant:
+"मैं किन योजनाओं के लिए eligible हूँ?"
+
+If the user's message is English, respond in English.
+
+If the user switches from Hindi to English, immediately respond in English.
+If the user switches from English to Hindi, immediately respond in Hindi.
+
+Do not create a separate Hinglish response category.
+
+English:
+- If the user speaks English, respond in English.
+
+Do NOT create a separate Hinglish language category.
+
+For this assistant, Romanized Hindi is treated as Hindi, even when the
+transcript uses Latin/Roman characters.
+
+Examples:
+
+User:
+"Mere liye kaunsi government schemes available hain?"
+Assistant:
+Respond in Hindi.
+
+User:
+"Main kin schemes ke liye eligible hoon?"
+Assistant:
+Respond in Hindi.
+
+User:
+"मुझे सरकारी योजनाओं के बारे में बताओ।"
+Assistant:
+Respond in Hindi.
+
+User:
+"I want to know about government schemes."
+Assistant:
+Respond in English.
+
+User:
+"Which schemes am I eligible for?"
+Assistant:
+Respond in English.
+
+Language switching examples:
+
+If the assistant is currently speaking Hindi and the user says:
+"I want to know about education schemes."
+→ Respond in English.
+
+If the assistant is currently speaking English and the user says:
+"Mujhe education schemes ke baare mein batao."
+→ Respond in Hindi.
+
+If the user switches back to English:
+"Which ones am I eligible for?"
+→ Respond in English.
+
+The previous assistant response language must never override the language of
+the latest user message.
+
+Do not infer the response language from the conversation as a whole.
+Determine it from the user's current/latest message.
+
 
 MEMORY
 - Use lookup_user at the beginning of a conversation and when the caller asks what you remember.
@@ -167,6 +210,15 @@ MEMORY
 - Before save_user, ask for clear, explicit permission to save the specific safe information. Vague responses are not consent.
 - If the caller says no, do not call save_user. Never save account numbers, government IDs, OTPs, PINs, passwords, CVVs, or card details.
 - If a caller asks to forget everything, confirm deletion unless the request is already an unambiguous instruction to delete all memories.
+
+GOVERNMENT SCHEMES
+- Use find_financial_schemes for current Indian government financial or welfare scheme discovery, including state-specific availability.
+- When the caller asks which discovered schemes they are eligible for, call find_financial_schemes with check_eligibility=true. This performs a fresh official-criteria search and compares only saved, non-sensitive facts.
+- If the tool returns needs_more_information, ask only for its missing_information fields; do not ask again for facts already returned from memory. Never automatically save the answer.
+- If it returns needs_official_verification, say the official extract was insufficient; do not infer eligibility from a scheme name or broad category.
+- Do not use that tool for general budgeting, investments, UPI, or banking explanations.
+- Before summarising results, clearly distinguish official-source information from a preliminary eligibility inference. Never promise eligibility; say official verification is required.
+- Speak only a brief summary, never raw tool data. Mention that results were retrieved today (or the source update date if supplied).
 
 """
 
@@ -181,7 +233,9 @@ DIAGNOSTIC_NUMBER_PATTERN = re.compile(r"\b\d{6,19}\b")
 def _diagnostic_text(text: str | None) -> str:
     """Keep temporary pipeline logs useful without writing financial credentials."""
     value = (text or "").strip()
-    if SENSITIVE_MEMORY_PATTERN.search(value) or DIAGNOSTIC_NUMBER_PATTERN.search(value):
+    if SENSITIVE_MEMORY_PATTERN.search(value) or DIAGNOSTIC_NUMBER_PATTERN.search(
+        value
+    ):
         return "[REDACTED: potentially sensitive content]"
     return value
 
@@ -209,7 +263,9 @@ def _install_pipeline_diagnostics(session: AgentSession) -> None:
         metrics = event.metrics
         metric_type = getattr(metrics, "type", "unknown")
         if metric_type in {"stt_metrics", "llm_metrics", "tts_metrics"}:
-            logger.info("[DEBUG-%s] metrics=%s", metric_type.split("_")[0].upper(), metrics)
+            logger.info(
+                "[DEBUG-%s] metrics=%s", metric_type.split("_")[0].upper(), metrics
+            )
 
     def on_error(event: Any) -> None:
         logger.error(
@@ -228,6 +284,7 @@ class Assistant(Agent):
     def __init__(self, user_id: str | None = None) -> None:
         super().__init__(instructions=SYSTEM_PROMPT)
         self.user_id = user_id
+        self._last_scheme_candidates: list[dict[str, str]] = []
 
     def _require_user_id(self) -> str:
         if not self.user_id:
@@ -256,14 +313,25 @@ class Assistant(Agent):
         facts: dict[str, str] | None = None,
     ) -> dict[str, str]:
         """Save only explicitly consented, non-sensitive information for this caller."""
-        values = [name or "", language_preference or "", *(facts or {}).keys(), *(facts or {}).values()]
+        values = [
+            name or "",
+            language_preference or "",
+            *(facts or {}).keys(),
+            *(facts or {}).values(),
+        ]
         if any(SENSITIVE_MEMORY_PATTERN.search(value) for value in values):
             return {"saved": "false", "reason": "Sensitive data cannot be saved."}
-        safe_facts = {key.strip(): value.strip() for key, value in (facts or {}).items() if key.strip() and value.strip()}
+        safe_facts = {
+            key.strip(): value.strip()
+            for key, value in (facts or {}).items()
+            if key.strip() and value.strip()
+        }
         upsert_user(
             self._require_user_id(),
             name=name.strip() if name else None,
-            language_preference=language_preference.strip() if language_preference else None,
+            language_preference=language_preference.strip()
+            if language_preference
+            else None,
             facts=safe_facts,
         )
         return {"saved": "true"}
@@ -272,6 +340,41 @@ class Assistant(Agent):
     async def forget_user(self, context: RunContext) -> dict[str, str]:
         """Delete all saved memory for the current caller after clear confirmation."""
         return {"deleted": "true" if delete_user(self._require_user_id()) else "false"}
+
+    @function_tool
+    async def find_financial_schemes(
+        self,
+        context: RunContext,
+        state: str | None = None,
+        user_need: str | None = None,
+        check_eligibility: bool = False,
+    ) -> dict[str, Any]:
+        """Find current Indian government financial or welfare schemes from official sources.
+
+        Use this when a caller asks which government schemes may be available to them,
+        asks about nationwide or Indian-state-specific schemes. Set `check_eligibility`
+        to true only when the caller asks whether they qualify for schemes already
+        discussed or found; it then retrieves official eligibility criteria and compares
+        them with saved, non-sensitive facts. Do not use it for generic budgeting,
+        investing, UPI, or banking questions. `state` is the Indian state the caller
+        asked about, if any; `user_need` is a short non-sensitive need or profile detail
+        that would improve the search, if given.
+        """
+        user = get_user(self.user_id) if self.user_id else None
+        facts = user.get("facts", {}) if user else {}
+        remembered_state = facts.get("state") or facts.get("State")
+        result = await discover_financial_schemes(
+            state=state or remembered_state,
+            user_need=user_need,
+            facts=facts,
+            check_eligibility=check_eligibility,
+            scheme_candidates=(
+                self._last_scheme_candidates if check_eligibility else None
+            ),
+        )
+        if not check_eligibility:
+            self._last_scheme_candidates = result.get("scheme_candidates", [])
+        return result
 
     # To add tools, use the @function_tool decorator.
     # Here's an example that adds a simple weather tool.
@@ -321,22 +424,22 @@ async def my_agent(ctx: JobContext):
         # Speech-to-text (STT) is your agent's ears, turning the user's speech into text that the LLM can understand
         # See all available models at https://docs.livekit.io/agents/models/stt/
         stt=deepgram.STT(
-        model="nova-3",
-        language="multi",
+            model="nova-3",
+            language="multi",
         ),
         # A Large Language Model (LLM) is your agent's brain, processing user input and generating a response
         # See all available models at https://docs.livekit.io/agents/models/llm/
         llm=google.LLM(
-                model="gemini-3.5-flash-lite",
-            ),
+            model="gemini-3.5-flash-lite",
+        ),
         # Text-to-speech (TTS) is your agent's voice, turning the LLM's text into speech that the user can hear
         # See all available models as well as voice selections at https://docs.livekit.io/agents/models/tts/
         tts=murf.TTS(
-                voice="Anisha", 
-                style="Conversation",
-                tokenizer=tokenize.basic.SentenceTokenizer(min_sentence_len=2),
-                text_pacing=True
-            ),
+            voice="Anisha",
+            style="Conversation",
+            tokenizer=tokenize.basic.SentenceTokenizer(min_sentence_len=2),
+            text_pacing=True,
+        ),
         # VAD and turn detection are used to determine when the user is speaking and when the agent should respond
         # See more at https://docs.livekit.io/agents/build/turns
         turn_detection=MultilingualModel(),
@@ -380,6 +483,7 @@ async def my_agent(ctx: JobContext):
             ),
         ),
     )
+
 
 if __name__ == "__main__":
     start_in_background()
