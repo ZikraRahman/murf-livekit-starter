@@ -12,7 +12,6 @@ from livekit import api
 
 load_dotenv(".env.local")
 AGENT_NAME = "outbound-agent"
-DEMO_USER_ID = "anon_00000000-0000-4000-8000-000000000006"
 
 
 async def dial(destination: str, room_name: str, user_id: str) -> None:
@@ -36,8 +35,8 @@ def main() -> None:
     parser.add_argument("--room", default=None, help="Optional LiveKit room name")
     parser.add_argument(
         "--user-id",
-        default=DEMO_USER_ID,
-        help="Existing memory user_id to use for this outbound call",
+        required=True,
+        help="Existing web-app memory user_id to use for this outbound call",
     )
     args = parser.parse_args()
     room_name = args.room or f"outbound-{uuid.uuid4().hex[:8]}"

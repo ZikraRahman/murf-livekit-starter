@@ -11,6 +11,7 @@ import importlib.util
 import json
 import logging
 import os
+import re
 import sys
 from pathlib import Path
 from types import ModuleType
@@ -68,31 +69,67 @@ Outbound Hindi/Hinglish pronunciation rule:
 - If the caller speaks fully in English, English sentences can remain fully English.
 """
 
+LANGUAGE_QUESTION = "\u0906\u092a \u0939\u093f\u0902\u0926\u0940 \u092e\u0947\u0902 \u092c\u093e\u0924 \u0915\u0930\u0947\u0902\u0917\u0940 \u092f\u093e English \u092e\u0947\u0902?"
+
 LANGUAGE_SELECTION_INSTRUCTIONS = """
-Outbound call language selection:
-- The initial greeting asks whether the caller wants Hindi or English.
-- Store the caller's choice for this call using set_call_language.
-- If the caller says Hindi, हिंदी, Hindi mein baat karo, or similar, call
-  set_call_language with "hindi" and continue in Hindi/Hinglish.
-- If the caller says English, अंग्रेज़ी, English mein baat karo, or similar,
-  call set_call_language with "english" and continue in natural English.
-- If the caller's first answer is not a clear language choice, ask once:
-  "आप हिंदी में बात करना चाहेंगे या English में?"
-- Do not repeatedly ask for language.
-- If the caller says stop at any time, use the opt_out tool.
+These outbound-call rules override conflicting inherited greeting and
+language-switching instructions.
+
+- The application has already spoken the only initial greeting: it introduced
+  Bharat Finance Assistant using the saved name and asked for Hindi or English.
+  Before an explicit choice, do not mention any scheme, eligibility, deadline,
+  reminder, or opt-out information, and do not repeat the greeting.
+- Recognize clear Hindi or English choices in English, Devanagari, or Romanized
+  Hindi and call set_call_language with the caller's words. If the first reply
+  is unclear, ask once whether the caller prefers Hindi or English.
+- After set_call_language succeeds, the next normal assistant response must
+  state the runtime saved eligible scheme, eligibility status, and reminder
+  reason before asking whether the caller wants to know more. Never replace
+  this required reminder with a generic scheme question.
+- After selection, never call set_call_language again. Continue normal
+  multi-turn conversation using the supplied memory context.
+- The explicit selected language controls the rest of the call, overriding STT
+  language metadata and later mixed or Romanized wording. Hindi responses use
+  Hindi/Hinglish in Devanagari; English responses use English.
+- If the caller says stop or otherwise opts out, use opt_out.
 """
 
-LANGUAGE_QUESTION = "आप हिंदी में बात करना चाहेंगे या English में?"
 
-GREETING = (
-    "नमस्ते, मैं Bharat Finance Assistant की automated financial assistance "
-    "assistant बोल रही हूँ। आप जिस government scheme के लिए eligible हैं, "
-    "उसकी application की deadline करीब आ रही है, इसलिए मैं आपको reminder "
-    "देने के लिए call कर रही हूँ। अगर आप ऐसे calls नहीं लेना चाहते, तो "
-    "'stop' कह सकते हैं। क्या आपके पास scheme के बारे में कोई सवाल है?"
-)
+def _normalize_explicit_language(language: str) -> str | None:
+    choice = " ".join(language.casefold().split())
+    if re.search(r"\b(hindi|hindee)\b|\u0939\u093f\u0902\u0926\u0940", choice):
+        return "hindi"
+    if re.search(
+        r"\benglish\b|\u0905\u0902\u0917\u094d\u0930\u0947\u091c[\u093c\u0940\u0940]",
+        choice,
+    ):
+        return "english"
+    return None
 
-MEMORY_FALLBACK_USER_ID = "anon_00000000-0000-4000-8000-000000000006"
+
+def normalize_call_language(language: str) -> str | None:
+    return _normalize_explicit_language(language)
+
+
+def selected_language_instruction(language: str) -> str:
+    if language == "english":
+        return """
+Language selection is complete: the caller explicitly selected English.
+For every remaining normal response in this call, speak natural English.
+This explicit selection overrides transcript language metadata, Romanized text,
+and the inherited instruction to match the latest user-message language.
+Do not ask the language question again or call set_call_language again. Keep
+processing every later user turn as a normal multi-turn conversation.
+"""
+    return """
+Language selection is complete: the caller explicitly selected Hindi.
+For every remaining normal response in this call, speak Hindi/Hinglish with
+Hindi words in Devanagari. This explicit selection overrides transcript
+language metadata, Romanized text, and the inherited instruction to match the
+latest user-message language. Do not ask the language question again or call
+set_call_language again. Keep processing every later user turn as a normal
+multi-turn conversation; language selection does not end the call.
+"""
 
 
 class OutboundAgent(Assistant):
@@ -106,23 +143,42 @@ class OutboundAgent(Assistant):
     @function_tool
     async def set_call_language(self, context: RunContext, language: str) -> str:
         """Set this outbound call's language to Hindi or English."""
-        normalized = language.strip().lower()
-        if normalized not in {"hindi", "english"}:
+        normalized = normalize_call_language(language)
+        if normalized is None:
             return "Ask once whether the caller wants Hindi or English."
-        self.call_language = normalized
-        if normalized == "english":
-            await self.update_instructions(
-                f"{self.instructions}\n\nCurrent call language: English. "
-                "Continue naturally in English. Do not use Devanagari Hindi "
-                "sentences unless the caller switches back to Hindi."
+        if self.call_language is not None:
+            return (
+                f"{self.call_language.title()} is already selected. Do not repeat "
+                "the language question or reminder; answer the caller's current "
+                "message normally in the selected language."
             )
-            return "Continue the call in English."
+        self.call_language = normalized
+        user = get_user(self._require_user_id()) or {}
+        facts = user.get("facts", {})
         await self.update_instructions(
-            f"{self.instructions}\n\nCurrent call language: Hindi. Continue in "
-            "Hindi/Hinglish. Write Hindi words in Devanagari and keep common "
-            "English service terms in Latin script where natural."
+            f"{self.instructions}\n\n{selected_language_instruction(normalized)}"
         )
-        return "हिंदी/Hinglish में बातचीत जारी रखें।"
+        return json.dumps(
+            {
+                "language": normalized,
+                "caller_memory": {
+                    "name": user.get("name"),
+                    "eligible_scheme": facts.get("eligible_scheme"),
+                    "eligibility_status": facts.get("eligibility_status"),
+                    "reminder_reason": facts.get("reminder_reason"),
+                    "exact_deadline": facts.get("exact_deadline"),
+                },
+                "suggested_reminder": build_language_selected_reminder(
+                    user, normalized
+                ),
+                "required_next_response": (
+                    "Respond normally now. First give the saved scheme reminder "
+                    "using every available caller_memory field, then ask whether "
+                    "the caller wants to know more. Do not invent an exact deadline."
+                ),
+            },
+            ensure_ascii=False,
+        )
 
     @function_tool
     async def opt_out(self, context: RunContext) -> str:
@@ -144,9 +200,7 @@ class OutboundAgent(Assistant):
             )
         else:
             salutation = f"{name} जी, " if name else ""
-            message = (
-                f"ठीक है {salutation}समझ गई। अब आपको ऐसी reminder calls नहीं आएँगी।"
-            )
+            message = f"ठीक है {salutation}समझ गई। अब आपको ऐसी reminder calls नहीं आएँगी।"
         await context.session.say(
             message,
             allow_interruptions=False,
@@ -157,12 +211,18 @@ class OutboundAgent(Assistant):
     @function_tool
     async def end_call(self, context: RunContext) -> str:
         """End the call after a polite goodbye."""
+        if self.call_language == "english":
+            await context.session.say("Thank you. Goodbye.", allow_interruptions=False)
+            await self._hangup()
+            return "Call ended."
         await context.session.say("धन्यवाद। नमस्ते।", allow_interruptions=False)
         await self._hangup()
         return "Call ended."
 
     async def _hangup(self) -> None:
-        await self.ctx.api.room.delete_room(api.DeleteRoomRequest(room=self.ctx.room.name))
+        await self.ctx.api.room.delete_room(
+            api.DeleteRoomRequest(room=self.ctx.room.name)
+        )
 
 
 server = AgentServer()
@@ -194,31 +254,45 @@ def outbound_metadata(ctx: JobContext) -> dict[str, str]:
     return {str(key): str(value) for key, value in parsed.items() if value is not None}
 
 
-def memory_user_id_from_metadata(ctx: JobContext) -> str:
-    return outbound_metadata(ctx).get("user_id") or MEMORY_FALLBACK_USER_ID
+def memory_user_id_from_metadata(ctx: JobContext) -> str | None:
+    return outbound_metadata(ctx).get("user_id")
+
+
+def build_language_selected_reminder(user: dict | None, language: str) -> str:
+    facts = (user or {}).get("facts", {})
+    scheme = facts.get("eligible_scheme")
+    eligibility = facts.get("eligibility_status")
+    if not scheme or not eligibility:
+        if language == "english":
+            return "I do not have a saved scheme reminder for you yet."
+        return "\u092e\u0947\u0930\u0947 \u092a\u093e\u0938 \u0905\u092d\u0940 \u0906\u092a\u0915\u0947 \u0932\u093f\u090f \u0915\u094b\u0908 saved scheme reminder \u0928\u0939\u0940\u0902 \u0939\u0948\u0964"
+    reminder_reason = facts.get("reminder_reason")
+    exact_deadline = facts.get("exact_deadline")
+    if language == "english":
+        reminder = reminder_reason or "I am calling to remind you about it"
+        deadline = (
+            f" The exact deadline saved for you is {exact_deadline}."
+            if exact_deadline and exact_deadline != "unavailable"
+            else ""
+        )
+        return f"You are {eligibility} for the {scheme} scheme. {reminder}.{deadline}"
+    reminder = reminder_reason or "मैं आपको इसी के बारे में reminder देने के लिए call कर रही हूँ"
+    deadline = (
+        f" आपकी saved exact deadline {exact_deadline} है।"
+        if exact_deadline and exact_deadline != "unavailable"
+        else ""
+    )
+    return f"ठीक है। आप {scheme} scheme के लिए {eligibility} हैं। {reminder}।{deadline}"
 
 
 def build_memory_greeting(user: dict | None) -> str:
-    if not user:
-        return f"{GREETING} {LANGUAGE_QUESTION}"
-    facts = user.get("facts", {})
-    name = user.get("name")
-    scheme = facts.get("eligible_scheme")
-    eligibility = facts.get("eligibility_status")
-    reminder_reason = facts.get("reminder_reason")
-    if name and scheme and eligibility:
-        reason_line = (
-            "इसकी deadline करीब आ रही है"
-            if reminder_reason
-            else "मैं आपको इसी के बारे में बताने के लिए call कर रही हूँ"
-        )
-        return (
-            f"नमस्ते {name} जी। आप {scheme} scheme के लिए {eligibility} हैं और "
-            f"{reason_line}। मैं आपको इसी के बारे में reminder देने के लिए call "
-            "कर रही हूँ। अगर आप ऐसे calls नहीं लेना चाहते, तो 'stop' कह सकते हैं। "
-            f"{LANGUAGE_QUESTION}"
-        )
-    return f"{GREETING} {LANGUAGE_QUESTION}"
+    name = (user or {}).get("name")
+    salutation = (
+        f"\u0928\u092e\u0938\u094d\u0924\u0947 {name} \u091c\u0940\u0964"
+        if name
+        else "\u0928\u092e\u0938\u094d\u0924\u0947\u0964"
+    )
+    return f"{salutation} \u092e\u0948\u0902 Bharat Finance Assistant \u0939\u0942\u0901\u0964 {LANGUAGE_QUESTION}"
 
 
 def build_memory_instruction(user: dict | None) -> str:
@@ -231,6 +305,12 @@ def build_memory_instruction(user: dict | None) -> str:
     exact_deadline = facts.get("exact_deadline")
     reminder_reason = facts.get("reminder_reason")
     opt_out = facts.get("opt_out_preference")
+    scheme_instruction = (
+        "If asked which scheme this call is about, answer using eligible_scheme "
+        "from memory."
+        if scheme and eligibility
+        else "No scheme eligibility is saved for this user. Do not claim one."
+    )
     return f"""
 Saved outbound reminder memory retrieved at runtime:
 - name: {name or "unknown"}
@@ -241,7 +321,7 @@ Saved outbound reminder memory retrieved at runtime:
 - opt_out_preference: {opt_out or "false"}
 
 Use this persisted memory naturally during the outbound call.
-If asked which scheme this call is about, answer using eligible_scheme from memory.
+{scheme_instruction}
 If asked about the exact deadline and exact_deadline is "not available", say you
 cannot confirm the exact deadline and the caller should check the official portal.
 Do not invent a date.
@@ -387,6 +467,10 @@ async def outbound_agent(ctx: JobContext) -> None:
         logger.error("LIVEKIT_SIP_OUTBOUND_TRUNK_ID is not set; cannot place calls")
         ctx.shutdown()
         return
+    if not memory_user_id:
+        logger.error("No memory user_id in dispatch metadata")
+        ctx.shutdown()
+        return
 
     init_db()
     saved_user = get_user(memory_user_id)
@@ -474,7 +558,8 @@ async def outbound_agent(ctx: JobContext) -> None:
             audio_input=room_io.AudioInputOptions(
                 noise_cancellation=lambda params: (
                     noise_cancellation.BVCTelephony()
-                    if params.participant.kind == rtc.ParticipantKind.PARTICIPANT_KIND_SIP
+                    if params.participant.kind
+                    == rtc.ParticipantKind.PARTICIPANT_KIND_SIP
                     else noise_cancellation.BVC()
                 )
             ),

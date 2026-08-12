@@ -1,5 +1,6 @@
 import logging
 import re
+from dataclasses import dataclass
 from typing import Any
 
 from dotenv import load_dotenv
@@ -20,7 +21,14 @@ from livekit.plugins import deepgram, google, murf, noise_cancellation, silero
 from livekit.plugins.turn_detector.multilingual import MultilingualModel
 
 from financial_schemes import discover_financial_schemes
-from memory import delete_user, get_user, init_db, upsert_user
+from memory import (
+    MemoryFactValue,
+    create_escalation_request,
+    delete_user,
+    get_user,
+    init_db,
+    upsert_user,
+)
 from memory_api import start_in_background
 
 logger = logging.getLogger("agent")
@@ -220,6 +228,15 @@ GOVERNMENT SCHEMES
 - Before summarising results, clearly distinguish official-source information from a preliminary eligibility inference. Never promise eligibility; say official verification is required.
 - Speak only a brief summary, never raw tool data. Mention that results were retrieved today (or the source update date if supplied).
 
+HUMAN HELP ESCALATION
+- Escalate when the caller reports possible fraud or a suspicious/unauthorized transaction, or asks you to make, change, reverse, approve, or decide a financial decision (including loan approval or eligibility) that you cannot make.
+- First explain why a human needs to help. State that you would share only: who needs help, what happened, what you checked, urgency, the caller's language, and their preferred follow-up method. Ask for clear permission and their preferred follow-up method if it is not already known.
+- When you identify an escalation case, first call prepare_escalation_consent. It only records the pending consent request; it does not create an escalation.
+- Explain the handoff and ask the caller for permission in your next spoken response. Never call create_escalation in the same turn as prepare_escalation_consent.
+- Call create_escalation only on a later turn after a direct, unambiguous yes or agreement from the caller. If they refuse or do not clearly agree, do not create a request.
+- Once the caller gives permission, call create_escalation with a concise, factual summary. Never include passwords, OTPs, PINs, account numbers, card numbers, or other credentials.
+- After a successful tool result, give the caller its reference ID and say the request is recorded for human review. Do not promise an immediate response or a particular turnaround time.
+
 """
 
 SENSITIVE_MEMORY_PATTERN = re.compile(
@@ -228,6 +245,31 @@ SENSITIVE_MEMORY_PATTERN = re.compile(
 )
 # TEMPORARY_MULTILINGUAL_DIAGNOSTICS: remove after the reproduction is captured.
 DIAGNOSTIC_NUMBER_PATTERN = re.compile(r"\b\d{6,19}\b")
+ESCALATION_SENSITIVE_VALUE_PATTERN = re.compile(
+    r"\b(?:password|otp|pin|cvv|account(?:\s*(?:number|no))?|"
+    r"card(?:\s*(?:number|details)?)?)\s*(?:is|:|#|-)?\s*\S+",
+    re.IGNORECASE,
+)
+ESCALATION_LONG_NUMBER_PATTERN = re.compile(r"\b(?:\d[ -]?){6,19}\b")
+AFFIRMATIVE_CONSENT_PATTERN = re.compile(
+    r"\b(?:yes|yeah|yep|sure|i agree|i consent|go ahead|please (?:share|proceed|"
+    r"create)|you can share|haan|han)\b|हाँ|हां|सहमत",
+    re.IGNORECASE,
+)
+NEGATIVE_CONSENT_PATTERN = re.compile(
+    r"\b(?:no|nope|do not|don't|dont|refuse|decline|not agree|stop)\b|नहीं|मत",
+    re.IGNORECASE,
+)
+
+
+@dataclass(frozen=True)
+class PendingEscalation:
+    what_happened: str
+    what_agent_checked: str
+    urgency: str
+    caller_language: str
+    preferred_follow_up: str
+    user_turn_count: int
 
 
 def _diagnostic_text(text: str | None) -> str:
@@ -238,6 +280,26 @@ def _diagnostic_text(text: str | None) -> str:
     ):
         return "[REDACTED: potentially sensitive content]"
     return value
+
+
+def _safe_escalation_text(text: str, *, limit: int = 500) -> str:
+    """Remove credentials before a human-review summary is persisted."""
+    redacted = ESCALATION_SENSITIVE_VALUE_PATTERN.sub("[REDACTED]", text.strip())
+    redacted = ESCALATION_LONG_NUMBER_PATTERN.sub("[REDACTED]", redacted)
+    return redacted[:limit] or "Not provided"
+
+
+def _user_messages(context: RunContext | None) -> list[str]:
+    """Read actual caller turns from the LiveKit session, never LLM tool arguments."""
+    if context is None:
+        return []
+    return [
+        message.text_content.strip()
+        for message in context.session.history.messages()
+        if message.role == "user"
+        and message.text_content
+        and message.text_content.strip()
+    ]
 
 
 def _install_pipeline_diagnostics(session: AgentSession) -> None:
@@ -285,6 +347,7 @@ class Assistant(Agent):
         super().__init__(instructions=SYSTEM_PROMPT)
         self.user_id = user_id
         self._last_scheme_candidates: list[dict[str, str]] = []
+        self._pending_escalation: PendingEscalation | None = None
 
     def _require_user_id(self) -> str:
         if not self.user_id:
@@ -310,29 +373,53 @@ class Assistant(Agent):
         context: RunContext,
         name: str | None = None,
         language_preference: str | None = None,
-        facts: dict[str, str] | None = None,
+        facts: dict[str, MemoryFactValue] | None = None,
     ) -> dict[str, str]:
         """Save only explicitly consented, non-sensitive information for this caller."""
+        facts_summary = {
+            key: type(value).__name__ for key, value in (facts or {}).items()
+        }
+        logger.info(
+            "[MEMORY-SAVE] received name=%r fact_keys_and_types=%s",
+            name,
+            facts_summary,
+        )
         values = [
             name or "",
             language_preference or "",
             *(facts or {}).keys(),
             *(facts or {}).values(),
         ]
-        if any(SENSITIVE_MEMORY_PATTERN.search(value) for value in values):
+        if any(SENSITIVE_MEMORY_PATTERN.search(str(value)) for value in values):
+            logger.warning(
+                "[MEMORY-SAVE] rejected sensitive input name=%r fact_keys=%s",
+                name,
+                sorted((facts or {}).keys()),
+            )
             return {"saved": "false", "reason": "Sensitive data cannot be saved."}
         safe_facts = {
-            key.strip(): value.strip()
-            for key, value in (facts or {}).items()
-            if key.strip() and value.strip()
+            key.strip(): value for key, value in (facts or {}).items() if key.strip()
         }
-        upsert_user(
-            self._require_user_id(),
-            name=name.strip() if name else None,
-            language_preference=language_preference.strip()
-            if language_preference
-            else None,
-            facts=safe_facts,
+        try:
+            upsert_user(
+                self._require_user_id(),
+                name=name.strip() if name else None,
+                language_preference=language_preference.strip()
+                if language_preference
+                else None,
+                facts=safe_facts,
+            )
+        except Exception:
+            logger.exception(
+                "[MEMORY-SAVE] upsert failed name=%r fact_keys_and_types=%s",
+                name,
+                facts_summary,
+            )
+            raise
+        logger.info(
+            "[MEMORY-SAVE] completed successfully name=%r fact_keys=%s",
+            name,
+            sorted(safe_facts),
         )
         return {"saved": "true"}
 
@@ -340,6 +427,99 @@ class Assistant(Agent):
     async def forget_user(self, context: RunContext) -> dict[str, str]:
         """Delete all saved memory for the current caller after clear confirmation."""
         return {"deleted": "true" if delete_user(self._require_user_id()) else "false"}
+
+    @function_tool
+    async def prepare_escalation_consent(
+        self,
+        context: RunContext,
+        what_happened: str,
+        what_agent_checked: str,
+        urgency: str,
+        caller_language: str,
+        preferred_follow_up: str,
+    ) -> dict[str, str]:
+        """Record a pending human-help request before asking the caller for consent.
+
+        This does not create an escalation or a reference ID. Call this for possible
+        fraud or an unsupported financial decision, then explain the handoff and ask
+        permission. Wait for a later, direct yes before calling create_escalation.
+        """
+        self._pending_escalation = PendingEscalation(
+            what_happened=_safe_escalation_text(what_happened),
+            what_agent_checked=_safe_escalation_text(what_agent_checked),
+            urgency=_safe_escalation_text(urgency, limit=40),
+            caller_language=_safe_escalation_text(caller_language, limit=60),
+            preferred_follow_up=_safe_escalation_text(preferred_follow_up, limit=120),
+            user_turn_count=len(_user_messages(context)),
+        )
+        return {
+            "prepared": "true",
+            "next_step": (
+                "Explain why human help is needed, list the limited information that "
+                "would be shared, and ask for permission. Do not call "
+                "create_escalation until a later user turn clearly says yes."
+            ),
+        }
+
+    @function_tool
+    async def create_escalation(
+        self,
+        context: RunContext,
+        permission_confirmed: bool,
+    ) -> dict[str, str]:
+        """Create a persistent human-review request only after direct caller consent.
+
+        Use only after the caller has clearly agreed to share a short, non-sensitive
+        summary with a human. Never call this tool after a refusal or unclear answer.
+        The safe summary was captured by prepare_escalation_consent; do not ask the
+        caller to repeat sensitive details or pass any summary fields here.
+        """
+        pending = self._pending_escalation
+        if pending is None:
+            return {
+                "created": "false",
+                "reason": (
+                    "No pending consent request exists. First call "
+                    "prepare_escalation_consent, explain the handoff, and wait for "
+                    "a later direct yes from the caller."
+                ),
+            }
+        user_messages = _user_messages(context)
+        latest_user_message = user_messages[-1] if user_messages else ""
+        has_new_user_turn = len(user_messages) > pending.user_turn_count
+        has_direct_consent = bool(
+            AFFIRMATIVE_CONSENT_PATTERN.search(latest_user_message)
+        ) and not NEGATIVE_CONSENT_PATTERN.search(latest_user_message)
+        if not permission_confirmed or not has_new_user_turn or not has_direct_consent:
+            if NEGATIVE_CONSENT_PATTERN.search(latest_user_message):
+                self._pending_escalation = None
+            return {
+                "created": "false",
+                "reason": (
+                    "No new, direct caller consent was verified. Do not create an "
+                    "escalation or provide a reference ID."
+                ),
+            }
+        user_id = self._require_user_id()
+        user = get_user(user_id)
+        request = create_escalation_request(
+            user_id=user_id,
+            who_needs_help=_safe_escalation_text(
+                str((user or {}).get("name") or "Current caller"), limit=120
+            ),
+            what_happened=pending.what_happened,
+            what_agent_checked=pending.what_agent_checked,
+            urgency=pending.urgency,
+            caller_language=pending.caller_language,
+            preferred_follow_up=pending.preferred_follow_up,
+        )
+        self._pending_escalation = None
+        logger.info(
+            "[ESCALATION] created reference_id=%s urgency=%s",
+            request["reference_id"],
+            request["urgency"],
+        )
+        return {"created": "true", "reference_id": request["reference_id"]}
 
     @function_tool
     async def find_financial_schemes(

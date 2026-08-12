@@ -4,11 +4,13 @@ from __future__ import annotations
 
 import json
 import sqlite3
+import uuid
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
 DATABASE_PATH = Path(__file__).resolve().parent.parent / "memory.db"
+MemoryFactValue = str | bool | int | float | None
 
 
 def _connection() -> sqlite3.Connection:
@@ -30,9 +32,25 @@ def init_db() -> None:
             )
             """
         )
+        connection.execute(
+            """
+            CREATE TABLE IF NOT EXISTS escalation_requests (
+                reference_id TEXT PRIMARY KEY,
+                user_id TEXT NOT NULL,
+                who_needs_help TEXT NOT NULL,
+                what_happened TEXT NOT NULL,
+                what_agent_checked TEXT NOT NULL,
+                urgency TEXT NOT NULL,
+                caller_language TEXT NOT NULL,
+                preferred_follow_up TEXT NOT NULL,
+                status TEXT NOT NULL DEFAULT 'open',
+                created_at TEXT NOT NULL
+            )
+            """
+        )
 
 
-def _safe_facts(value: str | None) -> dict[str, str]:
+def _safe_facts(value: str | None) -> dict[str, MemoryFactValue]:
     if not value:
         return {}
     try:
@@ -41,7 +59,11 @@ def _safe_facts(value: str | None) -> dict[str, str]:
         return {}
     if not isinstance(parsed, dict):
         return {}
-    return {str(key): str(item) for key, item in parsed.items()}
+    return {
+        str(key): item
+        for key, item in parsed.items()
+        if item is None or isinstance(item, (str, bool, int, float))
+    }
 
 
 def get_user(user_id: str) -> dict[str, Any] | None:
@@ -68,7 +90,7 @@ def upsert_user(
     *,
     name: str | None = None,
     language_preference: str | None = None,
-    facts: dict[str, str] | None = None,
+    facts: dict[str, MemoryFactValue] | None = None,
 ) -> dict[str, Any]:
     """Merge safe fields into a caller record and return the resulting memory."""
     existing = get_user(user_id) or {}
@@ -127,3 +149,83 @@ def delete_memory_fact(user_id: str, key: str) -> bool:
             (json.dumps(facts), datetime.now(timezone.utc).isoformat(), user_id),
         )
     return True
+
+
+def create_escalation_request(
+    *,
+    user_id: str,
+    who_needs_help: str,
+    what_happened: str,
+    what_agent_checked: str,
+    urgency: str,
+    caller_language: str,
+    preferred_follow_up: str,
+) -> dict[str, str]:
+    """Persist a human-review request and return its unique reference ID."""
+    init_db()
+    reference_id = (
+        f"ESC-{datetime.now(timezone.utc):%Y%m%d}-{uuid.uuid4().hex[:8].upper()}"
+    )
+    created_at = datetime.now(timezone.utc).isoformat()
+    request = {
+        "reference_id": reference_id,
+        "user_id": user_id,
+        "who_needs_help": who_needs_help,
+        "what_happened": what_happened,
+        "what_agent_checked": what_agent_checked,
+        "urgency": urgency,
+        "caller_language": caller_language,
+        "preferred_follow_up": preferred_follow_up,
+        "status": "open",
+        "created_at": created_at,
+    }
+    with _connection() as connection:
+        connection.execute(
+            """
+            INSERT INTO escalation_requests (
+                reference_id, user_id, who_needs_help, what_happened,
+                what_agent_checked, urgency, caller_language,
+                preferred_follow_up, status, created_at
+            ) VALUES (
+                :reference_id, :user_id, :who_needs_help, :what_happened,
+                :what_agent_checked, :urgency, :caller_language,
+                :preferred_follow_up, :status, :created_at
+            )
+            """,
+            request,
+        )
+    return request
+
+
+def get_escalation_request(reference_id: str) -> dict[str, str] | None:
+    """Return one persisted escalation for a human reviewer."""
+    init_db()
+    with _connection() as connection:
+        row = connection.execute(
+            """
+            SELECT reference_id, user_id, who_needs_help, what_happened,
+                   what_agent_checked, urgency, caller_language,
+                   preferred_follow_up, status, created_at
+            FROM escalation_requests WHERE reference_id = ?
+            """,
+            (reference_id,),
+        ).fetchone()
+    return dict(row) if row is not None else None
+
+
+def list_escalation_requests(status: str = "open") -> list[dict[str, str]]:
+    """Return persisted escalation requests for the human-review dashboard."""
+    init_db()
+    with _connection() as connection:
+        rows = connection.execute(
+            """
+            SELECT reference_id, who_needs_help, what_happened,
+                   what_agent_checked, urgency, caller_language,
+                   preferred_follow_up, status, created_at
+            FROM escalation_requests
+            WHERE status = ?
+            ORDER BY created_at DESC
+            """,
+            (status,),
+        ).fetchall()
+    return [dict(row) for row in rows]
