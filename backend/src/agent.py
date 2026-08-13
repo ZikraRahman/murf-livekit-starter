@@ -27,6 +27,7 @@ from memory import (
     delete_user,
     get_user,
     init_db,
+    record_call,
     upsert_user,
 )
 from memory_api import start_in_background
@@ -227,6 +228,7 @@ GOVERNMENT SCHEMES
 - Do not use that tool for general budgeting, investments, UPI, or banking explanations.
 - Before summarising results, clearly distinguish official-source information from a preliminary eligibility inference. Never promise eligibility; say official verification is required.
 - Speak only a brief summary, never raw tool data. Mention that results were retrieved today (or the source update date if supplied).
+- After you have completed a scheme-related enquiry and provided the caller with relevant scheme information, call mark_scheme_enquiry_complete exactly once. Do not call it for an incomplete enquiry, an unsuccessful search, or general banking/UPI questions.
 
 HUMAN HELP ESCALATION
 - Escalate when the caller reports possible fraud or a suspicious/unauthorized transaction, or asks you to make, change, reverse, approve, or decide a financial decision (including loan approval or eligibility) that you cannot make.
@@ -348,6 +350,7 @@ class Assistant(Agent):
         self.user_id = user_id
         self._last_scheme_candidates: list[dict[str, str]] = []
         self._pending_escalation: PendingEscalation | None = None
+        self.call_successful = False
 
     def _require_user_id(self) -> str:
         if not self.user_id:
@@ -556,6 +559,18 @@ class Assistant(Agent):
             self._last_scheme_candidates = result.get("scheme_candidates", [])
         return result
 
+    @function_tool
+    async def mark_scheme_enquiry_complete(
+        self, context: RunContext
+    ) -> dict[str, str]:
+        """Mark the call successful only after relevant scheme information was provided.
+
+        Use this once the scheme enquiry is complete. Do not use it for an
+        incomplete enquiry, unavailable information, or a non-scheme request.
+        """
+        self.call_successful = True
+        return {"call_successful": "true"}
+
     # To add tools, use the @function_tool decorator.
     # Here's an example that adds a simple weather tool.
     # You also have to add `from livekit.agents import function_tool, RunContext` to the top of this file
@@ -629,6 +644,27 @@ async def my_agent(ctx: JobContext):
         preemptive_generation=True,
     )
     _install_pipeline_diagnostics(session)
+    assistant = Assistant(caller_identity(ctx))
+    call_id = ctx.room.name
+    recorded = False
+
+    def record_completed_call(event: Any) -> None:
+        nonlocal recorded
+        if recorded:
+            return
+        recorded = True
+        outcome = "success" if assistant.call_successful else "failed"
+        try:
+            record_call(
+                call_id=call_id,
+                user_id=assistant.user_id,
+                outcome=outcome,
+            )
+        except Exception:
+            recorded = False
+            logger.exception("[ANALYTICS] failed to record completed call")
+
+    session.on("close", record_completed_call)
 
     # To use a realtime model instead of a voice pipeline, use the following session setup instead.
     # (Note: This is for the OpenAI Realtime API. For other providers, see https://docs.livekit.io/agents/models/realtime/))
@@ -650,7 +686,7 @@ async def my_agent(ctx: JobContext):
 
     # Start the session, which initializes the voice pipeline and warms up the models
     await session.start(
-        agent=Assistant(caller_identity(ctx)),
+        agent=assistant,
         room=ctx.room,
         room_options=room_io.RoomOptions(
             audio_input=room_io.AudioInputOptions(

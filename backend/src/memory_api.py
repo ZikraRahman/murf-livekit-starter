@@ -15,6 +15,7 @@ from dotenv import load_dotenv
 from memory import (
     delete_memory_fact,
     delete_user,
+    get_call_analytics,
     get_user,
     init_db,
     list_escalation_requests,
@@ -47,6 +48,12 @@ class MemoryHandler(BaseHTTPRequestHandler):
         self.wfile.write(encoded)
 
     def do_GET(self) -> None:
+        if urlparse(self.path).path == "/analytics":
+            if not self._authorized_service():
+                self._json(HTTPStatus.UNAUTHORIZED, {"error": "Unauthorized"})
+                return
+            self._json(HTTPStatus.OK, get_call_analytics())
+            return
         if urlparse(self.path).path == "/escalations":
             if not self._authorized_service():
                 self._json(HTTPStatus.UNAUTHORIZED, {"error": "Unauthorized"})

@@ -37,7 +37,7 @@ SRC_DIR = Path(__file__).resolve().parents[2]
 if str(SRC_DIR) not in sys.path:
     sys.path.insert(0, str(SRC_DIR))
 
-from memory import get_user, init_db, upsert_user  # noqa: E402
+from memory import get_user, init_db, record_call, upsert_user  # noqa: E402
 
 
 def load_day5_agent_module() -> ModuleType:
@@ -162,12 +162,30 @@ class OutboundAgent(Assistant):
             {
                 "language": normalized,
                 "caller_memory": {
-                    "name": user.get("name"),
-                    "eligible_scheme": facts.get("eligible_scheme"),
-                    "eligibility_status": facts.get("eligibility_status"),
-                    "reminder_reason": facts.get("reminder_reason"),
-                    "exact_deadline": facts.get("exact_deadline"),
-                },
+    "name": user.get("name"),
+    "eligible_scheme": (
+        facts.get("eligible_scheme")
+        or (
+            "PM-KISAN"
+            if facts.get("eligible_for_pm_kisan") is not None
+            else None
+        )
+    ),
+    "eligibility_status": (
+        facts.get("eligibility_status")
+        or (
+            "eligible"
+            if facts.get("eligible_for_pm_kisan") is True
+            else (
+                "not eligible"
+                if facts.get("eligible_for_pm_kisan") is False
+                else None
+            )
+        )
+    ),
+    "reminder_reason": facts.get("reminder_reason"),
+    "exact_deadline": facts.get("exact_deadline"),
+},
                 "suggested_reminder": build_language_selected_reminder(
                     user, normalized
                 ),
@@ -260,14 +278,29 @@ def memory_user_id_from_metadata(ctx: JobContext) -> str | None:
 
 def build_language_selected_reminder(user: dict | None, language: str) -> str:
     facts = (user or {}).get("facts", {})
+
+    # Existing browser memory format
     scheme = facts.get("eligible_scheme")
     eligibility = facts.get("eligibility_status")
+
+    # Support the existing PM-KISAN memory key
+    if facts.get("eligible_for_pm_kisan") is not None:
+        scheme = "PM-KISAN"
+        eligibility_value = facts.get("eligible_for_pm_kisan")
+
+        if isinstance(eligibility_value, bool):
+            eligibility = "eligible" if eligibility_value else "not eligible"
+        else:
+            eligibility = str(eligibility_value)
+
     if not scheme or not eligibility:
         if language == "english":
             return "I do not have a saved scheme reminder for you yet."
-        return "\u092e\u0947\u0930\u0947 \u092a\u093e\u0938 \u0905\u092d\u0940 \u0906\u092a\u0915\u0947 \u0932\u093f\u090f \u0915\u094b\u0908 saved scheme reminder \u0928\u0939\u0940\u0902 \u0939\u0948\u0964"
+        return "मेरे पास अभी आपके लिए कोई saved scheme reminder नहीं है।"
+
     reminder_reason = facts.get("reminder_reason")
     exact_deadline = facts.get("exact_deadline")
+
     if language == "english":
         reminder = reminder_reason or "I am calling to remind you about it"
         deadline = (
@@ -275,14 +308,25 @@ def build_language_selected_reminder(user: dict | None, language: str) -> str:
             if exact_deadline and exact_deadline != "unavailable"
             else ""
         )
-        return f"You are {eligibility} for the {scheme} scheme. {reminder}.{deadline}"
-    reminder = reminder_reason or "मैं आपको इसी के बारे में reminder देने के लिए call कर रही हूँ"
+        return (
+            f"You are {eligibility} for the {scheme} scheme. "
+            f"{reminder}.{deadline}"
+        )
+
+    reminder = (
+        reminder_reason
+        or "मैं आपको इसी के बारे में reminder देने के लिए call कर रही हूँ"
+    )
     deadline = (
         f" आपकी saved exact deadline {exact_deadline} है।"
         if exact_deadline and exact_deadline != "unavailable"
         else ""
     )
-    return f"ठीक है। आप {scheme} scheme के लिए {eligibility} हैं। {reminder}।{deadline}"
+
+    return (
+        f"ठीक है। आप {scheme} scheme के लिए {eligibility} हैं। "
+        f"{reminder}।{deadline}"
+    )
 
 
 def build_memory_greeting(user: dict | None) -> str:
@@ -581,6 +625,15 @@ async def outbound_agent(ctx: JobContext) -> None:
     )
     for task in pending:
         task.cancel()
+    outcome = "success" if outbound_assistant.call_successful else "failed"
+    try:
+        record_call(
+            call_id=sip_participant.sip_call_id or ctx.room.name,
+            user_id=memory_user_id,
+            outcome=outcome,
+        )
+    except Exception:
+        logger.exception("[ANALYTICS] failed to record completed outbound call")
 
 
 if __name__ == "__main__":

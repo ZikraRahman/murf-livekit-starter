@@ -48,6 +48,54 @@ def init_db() -> None:
             )
             """
         )
+        connection.execute(
+            """
+            CREATE TABLE IF NOT EXISTS call_records (
+                call_id TEXT PRIMARY KEY,
+                user_id TEXT,
+                outcome TEXT NOT NULL,
+                created_at TEXT NOT NULL
+            )
+            """
+        )
+
+
+def record_call(
+    *, call_id: str, user_id: str | None, outcome: str
+) -> bool:
+    """Record one completed call. Duplicate lifecycle events are ignored."""
+    if outcome not in {"success", "failed"}:
+        raise ValueError("Call outcome must be 'success' or 'failed'.")
+    init_db()
+    with _connection() as connection:
+        cursor = connection.execute(
+            """
+            INSERT OR IGNORE INTO call_records (call_id, user_id, outcome, created_at)
+            VALUES (?, ?, ?, ?)
+            """,
+            (call_id, user_id, outcome, datetime.now(timezone.utc).isoformat()),
+        )
+    return cursor.rowcount > 0
+
+
+def get_call_analytics() -> dict[str, int]:
+    """Return aggregate, non-sensitive call outcomes for the dashboard."""
+    init_db()
+    with _connection() as connection:
+        row = connection.execute(
+            """
+            SELECT
+                COUNT(*) AS total_calls,
+                COALESCE(SUM(outcome = 'success'), 0) AS successful_calls,
+                COALESCE(SUM(outcome = 'failed'), 0) AS failed_calls
+            FROM call_records
+            """
+        ).fetchone()
+    return {
+        "total_calls": int(row["total_calls"]),
+        "successful_calls": int(row["successful_calls"]),
+        "failed_calls": int(row["failed_calls"]),
+    }
 
 
 def _safe_facts(value: str | None) -> dict[str, MemoryFactValue]:
