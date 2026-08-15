@@ -1,0 +1,71 @@
+    23:23:08.690 DEBUG… asyncio            Using proactor: IocpProactor  
+    23:23:08.740 DEV  … livekit.agents     Watching C:\Users\AYESHA            
+                                           RAHMAN\murf-livekit-starter\backe…  
+    23:23:17.876 DEBUG… asyncio            Using proactor: IocpProactor  
+    23:23:17.928 INFO … livekit.agents     starting worker  
+                                         {"version": "1.4.5", "rtc-version": 
+"1.1.2"}
+    23:23:17.974 INFO … livekit.agents     starting inference executor  
+    23:23:18.027 INFO … livekit.agents     initializing process  
+                                         {"pid": 14856, "inference": true}
+    23:23:35.865 INFO … livekit.agents     process initialized  
+                                         {"pid": 14856, "inference": true, 
+"elapsed_time": 17.8}
+    23:23:35.885 INFO … livekit.agents     HTTP server listening on :6626  
+    23:23:36.437 INFO … livekit.agents     registered worker  
+                                         {"agent_name": "my-agent", "id": 
+"AW_85bMDDZGP7rk", "url": "wss://voice-of-bharat-u0puq6jm.livekit.cloud", 
+"region": "India West", "protocol": 17}
+    23:34:57.737 DEBUG… asyncio            Using proactor: IocpProactor  
+    23:34:57.768 INFO … livekit.agents     starting worker  
+                                         {"version": "1.4.5", "rtc-version": 
+"1.1.2"}
+    23:34:57.780 INFO … livekit.agents     starting inference executor  
+    23:34:57.831 INFO … livekit.agents     initializing process  
+                                         {"pid": 27548, "inference": true}
+    23:34:57.812 ERROR… livekit.agents     Error in _read_ipc_task  
+Traceback (most recent call last):
+  File "C:\Users\AYESHA 
+RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\util
+s\aio\duplex_unix.py", line 35, in recv_bytes
+    len_bytes = await self._reader.readexactly(4)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\AYESHA 
+RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none
+\Lib\asyncio\streams.py", line 767, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 4 expected 
+bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\AYESHA 
+RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\util
+s\log.py", line 17, in async_fn_logs
+    return await fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\AYESHA 
+RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\cli\
+watcher.py", line 136, in _read_ipc_task
+    msg = await channel.arecv_message(self._pch, proto.IPC_MESSAGES)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\AYESHA 
+RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\ipc\
+channel.py", line 47, in arecv_message
+    return _read_message(await dplx.recv_bytes(), messages)
+                         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\AYESHA 
+RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\util
+s\aio\duplex_unix.py", line 43, in recv_bytes
+    raise DuplexClosed() from e
+livekit.agents.utils.aio.duplex_unix.DuplexClosed
+
+    23:35:34.999 INFO … livekit.agents     process initialized  
+                                         {"pid": 27548, "inference": true, 
+"elapsed_time": 37.11}
+    23:35:35.164 INFO … livekit.agents     HTTP server listening on :3255  
+    23:35:35.872 INFO … livekit.agents     registered worker  
+                                         {"agent_name": "my-agent", "id": 
+"AW_HSyg28CDRmjW", "url": "wss://voice-of-bharat-u0puq6jm.livekit.cloud", 
+"region": "India West", "protocol": 17}

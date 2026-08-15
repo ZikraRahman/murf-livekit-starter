@@ -1,0 +1,45 @@
+Process agents_inference_process:
+Traceback (most recent call last):
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\windows_events.py", line 463, in finish_socket_func
+    return ov.getresult()
+           ~~~~~~~~~~~~^^
+OSError: [WinError 64] The specified network name is no longer available
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\utils\aio\duplex_unix.py", line 57, in aclose
+    await self._writer.wait_closed()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\streams.py", line 358, in wait_closed
+    await self._protocol._get_close_waiter(self)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\proactor_events.py", line 286, in _loop_reading
+    length = fut.result()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\windows_events.py", line 807, in _poll
+    value = callback(transferred, key, ov)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\windows_events.py", line 467, in finish_socket_func
+    raise ConnectionResetError(*exc.args)
+ConnectionResetError: [WinError 64] The specified network name is no longer available
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\multiprocessing\process.py", line 313, in _bootstrap
+    self.run()
+    ~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\ipc\inference_proc_lazy_main.py", line 50, in proc_main
+    client.run()
+    ~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\ipc\proc_client.py", line 70, in run
+    loop.run_until_complete(self._task)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 725, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\ipc\proc_client.py", line 145, in _monitor_task
+    await self._acch.aclose()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\utils\aio\duplex_unix.py", line 60, in aclose
+    raise DuplexClosed() from e
+livekit.agents.utils.aio.duplex_unix.DuplexClosed

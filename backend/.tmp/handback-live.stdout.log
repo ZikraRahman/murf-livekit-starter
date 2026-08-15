@@ -1,0 +1,1718 @@
+    23:37:10.009 DEBUG… asyncio            Using proactor: IocpProactor  
+    23:37:10.060 DEV  … livekit.agents     Watching C:\Users\AYESHA            
+                                           RAHMAN\murf-livekit-starter\backe…  
+    23:37:18.186 DEBUG… asyncio            Using proactor: IocpProactor  
+    23:37:18.223 INFO … livekit.agents     starting worker  
+                                         {"version": "1.4.5", "rtc-version": 
+"1.1.2"}
+    23:37:18.258 INFO … livekit.agents     starting inference executor  
+    23:37:18.301 INFO … livekit.agents     initializing process  
+                                         {"pid": 4608, "inference": true}
+    23:37:29.966 INFO … livekit.agents     process initialized  
+                                         {"pid": 4608, "inference": true, 
+"elapsed_time": 11.63}
+    23:37:29.984 INFO … livekit.agents     HTTP server listening on :3335  
+    23:37:30.401 INFO … livekit.agents     registered worker  
+                                         {"agent_name": "my-agent", "id": 
+"AW_BGyCSm3QCAz8", "url": "wss://voice-of-bharat-u0puq6jm.livekit.cloud", 
+"region": "India South", "protocol": 17}
+    23:38:08.552 INFO … livekit.agents     received job request  
+                                         {"job_id": "AJ_5V7XcN9z5Ske", 
+"dispatch_id": "AD_n6fhR5sVVqZJ", "room": "voice_assistant_room_3485", 
+"room_id": "RM_aAtzg2PYoSaN", "agent_name": "my-agent", "resuming": false, 
+"enable_recording": false}
+    23:38:08.632 DEBUG… livekit.agents     received assignment  
+                                         {"agent_name": "my-agent", "room_id": 
+"RM_aAtzg2PYoSaN", "room": "voice_assistant_room_3485", "job_id": 
+"AJ_5V7XcN9z5Ske", "dispatch_id": "AD_n6fhR5sVVqZJ", "enable_recording": false}
+    23:38:08.638 WARNI… livekit.agents     no warmed process available for     
+                                           job, waiting for one to be created  
+                                         {"job_id": "AJ_5V7XcN9z5Ske"}
+    23:38:08.649 INFO … livekit.agents     initializing job runner  
+                                         {"tid": 16568}
+    23:38:08.856 DEBUG… asyncio            Using proactor: IocpProactor  
+    23:38:08.861 INFO … livekit.agents     job runner initialized  
+                                         {"tid": 16568, "elapsed_time": 0.21}
+    23:38:10.218 DEBUG… livekit.agents     input stream attached  
+                                         {"participant": null, "source": 
+"SOURCE_UNKNOWN", "accepted_sources": ["SOURCE_MICROPHONE"], "room": 
+"voice_assistant_room_3485"}
+    23:38:10.231 DEBUG… livekit.agents     http_session(): creating a new      
+                                           httpclient ctx                      
+                                         {"room": "voice_assistant_room_3485"}
+    23:38:10.242 DEBUG… livekit.agents     using audio io: `RoomIO` ->         
+                                           `AgentSession` ->                   
+                                           `TranscriptSynchronizer` ->         
+                                           `RoomIO`                            
+                                         {"room": "voice_assistant_room_3485"}
+    23:38:10.252 DEBUG… livekit.agents     using transcript io:                
+                                           `AgentSession` ->                   
+                                           `TranscriptSynchronizer` ->         
+                                           `RoomIO`                            
+                                         {"room": "voice_assistant_room_3485"}
+    23:38:11.247 DEBUG… livekit.….deepgram Established new Deepgram STT        
+                                           WebSocket connection:               
+                                           {"headers": {"dg-project-id": 
+"35e7fd36-0ac6-46ae-9cc7-6e75546d7aff", "dg-request-id": 
+"01a00175-da07-79a3-8dc5-5cdbbc2818e0", "Date": "Fri, 14 Aug 2026 18:08:15 
+GMT"}, "room": "voice_assistant_room_3485"}
+    23:39:11.843 DEBUG… livekit.agents     input stream detached  
+                                         {"participant": 
+"anon_89a85e63-3c88-4edd-b259-beddfdc06156", "source": "SOURCE_UNKNOWN", 
+"accepted_sources": ["SOURCE_MICROPHONE"], "room": "voice_assistant_room_3485"}
+    23:39:13.892 DEBUG… livekit.agents     session closed  
+                                         {"reason": "user_initiated", "error": 
+null, "room": "voice_assistant_room_3485"}
+    23:39:13.906 DEBUG… livekit.agents     shutting down job task  
+                                         {"reason": "", "user_initiated": 
+false, "room": "voice_assistant_room_3485"}
+    23:39:13.917 DEBUG… livekit.agents     job exiting  
+                                         {"reason": "", "tid": 16568, "job_id":
+"AJ_5V7XcN9z5Ske", "room_id": "RM_aAtzg2PYoSaN"}
+    23:39:13.920 DEBUG… livekit.agents     http_session(): closing the         
+                                           httpclient ctx                      
+    23:40:23.891 INFO … livekit.agents     received job request  
+                                         {"job_id": "AJ_NqrbPZpLJDGF", 
+"dispatch_id": "AD_Bi4y2y4zrgZr", "room": "voice_assistant_room_5715", 
+"room_id": "RM_LcRN7gQr2S46", "agent_name": "my-agent", "resuming": false, 
+"enable_recording": false}
+    23:40:24.157 DEBUG… livekit.agents     received assignment  
+                                         {"agent_name": "my-agent", "room_id": 
+"RM_LcRN7gQr2S46", "room": "voice_assistant_room_5715", "job_id": 
+"AJ_NqrbPZpLJDGF", "dispatch_id": "AD_Bi4y2y4zrgZr", "enable_recording": false}
+    23:40:24.183 WARNI… livekit.agents     no warmed process available for     
+                                           job, waiting for one to be created  
+                                         {"job_id": "AJ_NqrbPZpLJDGF"}
+    23:40:24.275 INFO … livekit.agents     initializing job runner  
+                                         {"tid": 23000}
+    23:40:24.896 DEBUG… asyncio            Using proactor: IocpProactor  
+    23:40:24.906 INFO … livekit.agents     job runner initialized  
+                                         {"tid": 23000, "elapsed_time": 0.62}
+    23:40:27.725 DEBUG… livekit.agents     input stream attached  
+                                         {"participant": null, "source": 
+"SOURCE_UNKNOWN", "accepted_sources": ["SOURCE_MICROPHONE"], "room": 
+"voice_assistant_room_5715"}
+    23:40:27.834 DEBUG… livekit.agents     http_session(): creating a new      
+                                           httpclient ctx                      
+                                         {"room": "voice_assistant_room_5715"}
+    23:40:27.918 DEBUG… livekit.agents     using audio io: `RoomIO` ->         
+                                           `AgentSession` ->                   
+                                           `TranscriptSynchronizer` ->         
+                                           `RoomIO`                            
+                                         {"room": "voice_assistant_room_5715"}
+    23:40:27.946 DEBUG… livekit.agents     using transcript io:                
+                                           `AgentSession` ->                   
+                                           `TranscriptSynchronizer` ->         
+                                           `RoomIO`                            
+                                         {"room": "voice_assistant_room_5715"}
+    23:40:28.687 DEBUG… livekit.agents     start reading stream  
+                                         {"participant": 
+"anon_b2073701-049c-4e19-a724-dbef35f4e6f3", "source": "SOURCE_MICROPHONE", 
+"room": "voice_assistant_room_5715"}
+    23:40:29.755 DEBUG… livekit.….deepgram Established new Deepgram STT        
+                                           WebSocket connection:               
+                                           {"headers": {"dg-project-id": 
+"35e7fd36-0ac6-46ae-9cc7-6e75546d7aff", "dg-request-id": 
+"01a00177-f702-7b13-8b50-5cde45fad873", "Date": "Fri, 14 Aug 2026 18:10:34 
+GMT"}, "room": "voice_assistant_room_5715"}
+    23:40:30.272 DEBUG… livekit.agents     executing tool  
+                                         {"function": 
+"handoff_to_personal_finance", "arguments": "{}", "speech_id": 
+"speech_8d52a018fda8", "room": "voice_assistant_room_5715"}
+    23:40:30.298 INFO … agent              [DEBUG-LLM]                         
+                                           metrics=type='llm_metrics'          
+                                           label='livekit.plugins.google.llm…  
+                                           request_id='82d8ec7f48f0'           
+                                           timestamp=1786731030.2946208        
+                                           duration=1.4957900000008522         
+                                           ttft=1.467867600000318              
+                                           cancelled=False                     
+                                           completion_tokens=15                
+                                           prompt_tokens=3076                  
+                                           prompt_cached_tokens=0              
+                                           total_tokens=3091                   
+                                           tokens_per_second=10.028145662152…  
+                                           speech_id='speech_8d52a018fda8'     
+                                           metadata=Metadata(model_name='gem…  
+                                           model_provider='Gemini')            
+                                {"room": "voice_assistant_room_5715"}
+    23:40:30.527 DEBUG… livekit.agents     sent text to tts  
+                                         {"text": "I'll connect you with our 
+personal finance specialist who can help you build a practical budget.", 
+"remaining_audio": 0.0, "room": "voice_assistant_room_5715"}
+    23:40:30.544 INFO … livekit.…gins.murf [Murf TTS] Stream started -         
+                                           context_id=dcb5ea2debc5,            
+                                           voice=Anisha, style=Conversation,   
+                                           locale=None, min_buffer_size=3,     
+                                           max_buffer_delay_in_ms=0,           
+                                           endpoint=https://global.api.murf.…  
+                                           {"room": 
+"voice_assistant_room_5715"}
+    23:40:30.658 INFO … livekit.…gins.murf [Murf TTS] Murf TTFB (first         
+                                           sentence to first audio): 113.94    
+                                           ms                                  
+                                           {"room": 
+"voice_assistant_room_5715"}
+    23:40:30.968 DEBUG… livekit.agents     aec warmup active, disabling        
+                                           interruptions for 3.00s             
+                                         {"room": "voice_assistant_room_5715"}
+    23:40:31.343 INFO … agent              [DEBUG-TTS]                         
+                                           metrics=type='tts_metrics'          
+                                           label='livekit.plugins.murf.tts.T…  
+                                           request_id='2d1e1db30d40'           
+                                           timestamp=1786731031.3406742        
+                                           ttfb=0.3055703000027279             
+                                           duration=0.7965432000019064         
+                                           audio_duration=4.840000000000002    
+                                           cancelled=False                     
+                                           characters_count=96 streamed=True   
+                                           segment_id='dcb5ea2debc5'           
+                                           speech_id='speech_0fa0b8a33786'     
+                                           metadata=Metadata(model_name='FAL…  
+                                           model_provider='Murf')              
+                                {"room": "voice_assistant_room_5715"}
+    23:40:33.975 DEBUG… livekit.agents     aec warmup expired, re-enabling     
+                                           interruptions                       
+                                         {"room": "voice_assistant_room_5715"}
+    23:40:34.012 INFO … agent              [DEBUG-STT]                         
+                                           metrics=type='stt_metrics'          
+                                           label='livekit.plugins.deepgram.s…  
+                                           request_id='01a00177-f702-7b13-8b…  
+                                           timestamp=1786731034.0125444        
+                                           duration=0.0                        
+                                           audio_duration=2.799999999999998    
+                                           streamed=True                       
+                                           metadata=Metadata(model_name='nov…  
+                                           model_provider='Deepgram')          
+                                {"room": "voice_assistant_room_5715"}
+    23:40:35.803 INFO … agent              [DEBUG-LLM] assistant text          
+                                           committed after playout="I'll       
+                                           connect you with our personal       
+                                           finance specialist who can help     
+                                           you build a practical budget."      
+                                {"room": "voice_assistant_room_5715"}
+    23:40:35.843 DEBUG… livekit.agents     tools execution completed  
+                                         {"speech_id": "speech_8d52a018fda8", 
+"room": "voice_assistant_room_5715"}
+    23:40:36.798 DEBUG… livekit.….deepgram Established new Deepgram STT        
+                                           WebSocket connection:               
+                                           {"headers": {"dg-project-id": 
+"35e7fd36-0ac6-46ae-9cc7-6e75546d7aff", "dg-request-id": 
+"01a00178-1297-7621-b88e-bb8d82b355f7", "Date": "Fri, 14 Aug 2026 18:10:41 
+GMT"}, "room": "voice_assistant_room_5715"}
+    23:40:36.819 DEBUG… livekit.agents     sent text to tts  
+                                         {"text": "Hello!", "remaining_audio": 
+0.0, "room": "voice_assistant_room_5715"}
+    23:40:36.832 INFO … livekit.…gins.murf [Murf TTS] Stream started -         
+                                           context_id=cbdaa60c7e21,            
+                                           voice=Samar, style=Conversation,    
+                                           locale=None, min_buffer_size=3,     
+                                           max_buffer_delay_in_ms=0,           
+                                           endpoint=https://global.api.murf.…  
+                                           {"room": 
+"voice_assistant_room_5715"}
+    23:40:36.965 INFO … livekit.…gins.murf [Murf TTS] Murf TTFB (first         
+                                           sentence to first audio): 132.27    
+                                           ms                                  
+                                           {"room": 
+"voice_assistant_room_5715"}
+    23:40:37.284 INFO … agent              [DEBUG-LLM]                         
+                                           metrics=type='llm_metrics'          
+                                           label='livekit.plugins.google.llm…  
+                                           request_id='d03d01edab95'           
+                                           timestamp=1786731037.2841492        
+                                           duration=1.2905197000000044         
+                                           ttft=0.797555299999658              
+                                           cancelled=False                     
+                                           completion_tokens=269               
+                                           prompt_tokens=642                   
+                                           prompt_cached_tokens=0              
+                                           total_tokens=911                    
+                                           tokens_per_second=208.44315666006…  
+                                           speech_id='speech_96227998591f'     
+                                           metadata=Metadata(model_name='gem…  
+                                           model_provider='Gemini')            
+                                {"room": "voice_assistant_room_5715"}
+    23:40:37.584 DEBUG… livekit.agents     sent text to tts  
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, so we can 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, so we can 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, so we can 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, so we can 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, so we can 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, so we can 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, so we can 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, so we can 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, so we can 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, so we can 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, so we can 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, so we can 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, so we can 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, so we can 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, so we can 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, so we can 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, so we can 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, so we can 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, so we can 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, so we can 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, so we can 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, so we can 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, so we can 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, so we can 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, so we can 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, so we can 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, so we can 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, so we can 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, so we can 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, so we can 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, so we can 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, so we can 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, so we can 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, so we can 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, so we can 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, so we can 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, so we can 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, so we can 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, so we can 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, so we can 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, so we can 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, so we can 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, so we can 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, so we can 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, so we can 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, so we can 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, so we can 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, so we can 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, so we can 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, so we can 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, so we can 
+    23:42:20.502 DEBUG… livekit.agents     job exiting  
+                                         {"reason": "", "tid": 23000, "job_id":
+"AJ_NqrbPZpLJDGF", "room_id": "RM_LcRN7gQr2S46"}
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, so we can 
+    23:48:33.959 INFO … livekit.agents     received job request  
+                                         {"job_id": "AJ_NBeeRtXGzsqc", 
+"dispatch_id": "AD_gzjm76hs44Pz", "room": "voice_assistant_room_495", 
+"room_id": "RM_rhMWBi3sdDf8", "agent_name": "my-agent", "resuming": false, 
+"enable_recording": false}
+    23:48:34.134 DEBUG… livekit.agents     received assignment  
+                                         {"agent_name": "my-agent", "room_id": 
+"RM_rhMWBi3sdDf8", "room": "voice_assistant_room_495", "job_id": 
+"AJ_NBeeRtXGzsqc", "dispatch_id": "AD_gzjm76hs44Pz", "enable_recording": false}
+    23:48:34.287 WARNI… livekit.agents     no warmed process available for     
+                                           job, waiting for one to be created  
+                                         {"job_id": "AJ_NBeeRtXGzsqc"}
+    23:48:34.391 INFO … livekit.agents     initializing job runner  
+                                         {"tid": 30096}
+    23:48:35.952 DEBUG… asyncio            Using proactor: IocpProactor  
+    23:48:35.990 INFO … livekit.agents     job runner initialized  
+                                         {"tid": 30096, "elapsed_time": 1.55}
+    23:48:39.582 DEBUG… livekit.agents     input stream attached  
+                                         {"participant": null, "source": 
+"SOURCE_UNKNOWN", "accepted_sources": ["SOURCE_MICROPHONE"], "room": 
+"voice_assistant_room_495"}
+    23:48:39.683 DEBUG… livekit.agents     http_session(): creating a new      
+                                           httpclient ctx                      
+                                         {"room": "voice_assistant_room_495"}
+    23:48:39.925 DEBUG… livekit.agents     using audio io: `RoomIO` ->         
+                                           `AgentSession` ->                   
+                                           `TranscriptSynchronizer` ->         
+                                           `RoomIO`                            
+                                         {"room": "voice_assistant_room_495"}
+    23:48:40.150 DEBUG… livekit.agents     using transcript io:                
+                                           `AgentSession` ->                   
+                                           `TranscriptSynchronizer` ->         
+                                           `RoomIO`                            
+                                         {"room": "voice_assistant_room_495"}
+    23:48:42.400 DEBUG… livekit.agents     start reading stream  
+                                         {"participant": 
+"anon_b2073701-049c-4e19-a724-dbef35f4e6f3", "source": "SOURCE_MICROPHONE", 
+"room": "voice_assistant_room_495"}
+    23:48:42.508 INFO … livekit.agents     closing agent session due to        
+                                           participant disconnect (disable     
+                                           via                                 
+                                           `RoomInputOptions.close_on_discon…  
+                                         {"room": "voice_assistant_room_495", 
+"participant": "anon_b2073701-049c-4e19-a724-dbef35f4e6f3", "reason": 
+"CLIENT_INITIATED"}
+    23:48:42.609 DEBUG… livekit.agents     stream closed  
+                                         {"participant": 
+"anon_b2073701-049c-4e19-a724-dbef35f4e6f3", "source": "SOURCE_MICROPHONE", 
+"room": "voice_assistant_room_495"}
+    23:48:42.658 DEBUG… livekit.agents     input stream detached  
+                                         {"participant": 
+"anon_b2073701-049c-4e19-a724-dbef35f4e6f3", "source": "SOURCE_UNKNOWN", 
+"accepted_sources": ["SOURCE_MICROPHONE"], "room": "voice_assistant_room_495"}
+    23:48:43.090 DEBUG… livekit.….deepgram Established new Deepgram STT        
+                                           WebSocket connection:               
+                                           {"headers": {"dg-project-id": 
+"35e7fd36-0ac6-46ae-9cc7-6e75546d7aff", "dg-request-id": 
+"01a0017f-7e23-79f0-a543-dfaceb5aa659", "Date": "Fri, 14 Aug 2026 18:18:47 
+GMT"}, "room": "voice_assistant_room_495"}
+    23:48:44.805 DEBUG… livekit.agents     session closed  
+                                         {"reason": "participant_disconnected",
+"error": null, "room": "voice_assistant_room_495"}
+    23:49:07.957 DEBUG… livekit.agents     shutting down job task  
+                                         {"reason": "", "user_initiated": 
+false, "room": "voice_assistant_room_495"}
+    23:49:07.971 DEBUG… livekit.agents     job exiting  
+                                         {"reason": "", "tid": 30096, "job_id":
+"AJ_NBeeRtXGzsqc", "room_id": "RM_rhMWBi3sdDf8"}
+    23:49:07.975 DEBUG… livekit.agents     http_session(): closing the         
+                                           httpclient ctx                      
+    23:49:25.727 INFO … livekit.agents     received job request  
+                                         {"job_id": "AJ_qo4ZzZwvRrjZ", 
+"dispatch_id": "AD_98YyDSnfk8Cx", "room": "voice_assistant_room_3784", 
+"room_id": "RM_R7eu7gFxs2W6", "agent_name": "my-agent", "resuming": false, 
+"enable_recording": false}
+    23:49:26.016 DEBUG… livekit.agents     received assignment  
+                                         {"agent_name": "my-agent", "room_id": 
+"RM_R7eu7gFxs2W6", "room": "voice_assistant_room_3784", "job_id": 
+"AJ_qo4ZzZwvRrjZ", "dispatch_id": "AD_98YyDSnfk8Cx", "enable_recording": false}
+    23:49:26.432 WARNI… livekit.agents     no warmed process available for     
+                                           job, waiting for one to be created  
+                                         {"job_id": "AJ_qo4ZzZwvRrjZ"}
+    23:49:26.919 INFO … livekit.agents     initializing job runner  
+                                         {"tid": 16736}
+    23:49:30.062 DEBUG… asyncio            Using proactor: IocpProactor  
+    23:49:30.092 INFO … livekit.agents     job runner initialized  
+                                         {"tid": 16736, "elapsed_time": 3.13}
+    23:49:34.655 DEBUG… livekit.agents     input stream attached  
+                                         {"participant": null, "source": 
+"SOURCE_UNKNOWN", "accepted_sources": ["SOURCE_MICROPHONE"], "room": 
+"voice_assistant_room_3784"}
+    23:49:34.781 DEBUG… livekit.agents     http_session(): creating a new      
+                                           httpclient ctx                      
+                                         {"room": "voice_assistant_room_3784"}
+    23:49:35.046 DEBUG… livekit.agents     using audio io: `RoomIO` ->         
+                                           `AgentSession` ->                   
+                                           `TranscriptSynchronizer` ->         
+                                           `RoomIO`                            
+                                         {"room": "voice_assistant_room_3784"}
+    23:49:35.310 DEBUG… livekit.agents     using transcript io:                
+                                           `AgentSession` ->                   
+                                           `TranscriptSynchronizer` ->         
+                                           `RoomIO`                            
+                                         {"room": "voice_assistant_room_3784"}
+    23:49:38.435 DEBUG… livekit.agents     start reading stream  
+                                         {"participant": 
+"anon_b2073701-049c-4e19-a724-dbef35f4e6f3", "source": "SOURCE_MICROPHONE", 
+"room": "voice_assistant_room_3784"}
+    23:49:39.403 DEBUG… livekit.….deepgram Established new Deepgram STT        
+                                           WebSocket connection:               
+                                           {"headers": {"dg-project-id": 
+"35e7fd36-0ac6-46ae-9cc7-6e75546d7aff", "dg-request-id": 
+"01a00180-59e6-72a2-8b2d-c9ed30a73e66", "Date": "Fri, 14 Aug 2026 18:19:44 
+GMT"}, "room": "voice_assistant_room_3784"}
+    23:49:39.628 WARNI… livekit.…ns.silero inference is slower than realtime  
+                                           {"delay": 0.2726060000091093, 
+"room": "voice_assistant_room_3784"}
+    23:49:40.169 INFO … agent              [DEBUG-STT]                         
+                                           metrics=type='stt_metrics'          
+                                           label='livekit.plugins.deepgram.s…  
+                                           request_id=''                       
+                                           timestamp=1786731580.1680954        
+                                           duration=0.0                        
+                                           audio_duration=1.2000000000000004   
+                                           streamed=True                       
+                                           metadata=Metadata(model_name='nov…  
+                                           model_provider='Deepgram')          
+                                {"room": "voice_assistant_room_3784"}
+    23:49:40.747 WARNI… livekit.…ns.silero inference is slower than realtime  
+                                           {"delay": 0.8581674000174968, 
+"room": "voice_assistant_room_3784"}
+    23:49:45.199 INFO … agent              [DEBUG-STT]                         
+                                           metrics=type='stt_metrics'          
+                                           label='livekit.plugins.deepgram.s…  
+                                           request_id='01a00180-59e6-72a2-8b…  
+                                           timestamp=1786731585.1981027        
+                                           duration=0.0                        
+                                           audio_duration=3.5499999999999954   
+                                           streamed=True                       
+                                           metadata=Metadata(model_name='nov…  
+                                           model_provider='Deepgram')          
+                                {"room": "voice_assistant_room_3784"}
+    23:49:45.677 WARNI… livekit.…ns.silero inference is slower than realtime  
+                                           {"delay": 0.44876569999830096, 
+"room": "voice_assistant_room_3784"}
+    23:49:48.750 INFO … agent              [DEBUG-STT] final transcript='Can   
+                                           you tell me what is UPI?'           
+                                           language=en                         
+                                {"room": "voice_assistant_room_3784"}
+    23:49:49.035 DEBUG… livekit.agents     received user transcript  
+                                         {"user_transcript": "Can you tell me 
+what is UPI?", "language": "en", "transcript_delay": 0.9776990413665771, 
+"room": "voice_assistant_room_3784"}
+    23:49:49.242 WARNI… livekit.…ns.silero inference is slower than realtime  
+                                           {"delay": 1.0233389999941558, 
+"room": "voice_assistant_room_3784"}
+    23:49:51.743 WARNI… livekit.…ns.silero inference is slower than realtime  
+                                           {"delay": 3.2981406999939047, 
+"room": "voice_assistant_room_3784"}
+    23:49:52.216 WARNI… livekit.…ns.silero inference is slower than realtime  
+                                           {"delay": 3.5128751999943617, 
+"room": "voice_assistant_room_3784"}
+    23:49:52.349 INFO … agent              [DEBUG-STT]                         
+                                           metrics=type='stt_metrics'          
+                                           label='livekit.plugins.deepgram.s…  
+                                           request_id='01a00180-59e6-72a2-8b…  
+                                           timestamp=1786731592.3479214        
+                                           duration=0.0 audio_duration=2.3     
+                                           streamed=True                       
+                                           metadata=Metadata(model_name='nov…  
+                                           model_provider='Deepgram')          
+                                {"room": "voice_assistant_room_3784"}
+    23:49:53.241 WARNI… livekit.…ns.silero inference is slower than realtime  
+                                           {"delay": 4.390659799994783, "room":
+"voice_assistant_room_3784"}
+    23:49:53.891 WARNI… livekit.…ns.silero inference is slower than realtime  
+                                           {"delay": 4.650605799992334, "room":
+"voice_assistant_room_3784"}
+    23:49:56.064 ERROR… livekit.agents     Error predicting end of turn  
+                                         {"room": "voice_assistant_room_3784"}
+Traceback (most recent call last):
+  File "C:\Users\AYESHA 
+RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none
+\Lib\asyncio\tasks.py", line 507, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "C:\Users\AYESHA 
+RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\ipc\
+job_proc_lazy_main.py", line 146, in do_inference
+    inf_resp = await fut
+               ^^^^^^^^^
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\AYESHA 
+RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\voic
+e\audio_recognition.py", line 574, in _bounce_eou_task
+    end_of_turn_probability = await turn_detector.predict_end_of_turn(
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        chat_ctx
+        ^^^^^^^^
+    )
+    ^
+  File "C:\Users\AYESHA 
+RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\plugins\tur
+n_detector\multilingual.py", line 71, in predict_end_of_turn
+    return await super().predict_end_of_turn(chat_ctx, timeout=timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\AYESHA 
+RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\plugins\tur
+n_detector\base.py", line 283, in predict_end_of_turn
+    result = await asyncio.wait_for(
+             ^^^^^^^^^^^^^^^^^^^^^^^
+        self._executor.do_inference(self._inference_method(), json_data), 
+timeout=timeout
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\AYESHA 
+RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none
+\Lib\asyncio\tasks.py", line 506, in wait_for
+    async with timeouts.timeout(timeout):
+               ~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\AYESHA 
+RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none
+\Lib\asyncio\timeouts.py", line 117, in __aexit__
+    raise TimeoutError from exc_val
+TimeoutError
+
+    23:49:57.397 DEBUG… livekit.agents     using preemptive generation  
+                                         {"preemptive_lead_time": 
+8.164693832397461, "room": "voice_assistant_room_3784"}
+    23:49:57.573 WARNI… livekit.…ns.silero inference is slower than realtime  
+                                           {"delay": 6.32428330000219, "room": 
+"voice_assistant_room_3784"}
+    23:49:57.768 INFO … agent              [DEBUG-STT]                         
+                                           metrics=type='stt_metrics'          
+                                           label='livekit.plugins.deepgram.s…  
+                                           request_id='01a00180-59e6-72a2-8b…  
+                                           timestamp=1786731597.7671928        
+                                           duration=0.0                        
+                                           audio_duration=6.099999999999986    
+                                           streamed=True                       
+                                           metadata=Metadata(model_name='nov…  
+                                           model_provider='Deepgram')          
+                                {"room": "voice_assistant_room_3784"}
+    23:49:58.251 WARNI… livekit.…ns.silero inference is slower than realtime  
+                                           {"delay": 6.838034700003071, "room":
+"voice_assistant_room_3784"}
+    23:49:58.569 DEBUG… livekit.agents     sent text to tts  
+                                         {"text": "UPI, or Unified Payments 
+Interface, is a system that lets you instantly transfer money between bank 
+accounts using your mobile phone.", "remaining_audio": 0.0, "room": 
+"voice_assistant_room_3784"}
+    23:49:58.699 WARNI… livekit.…ns.silero inference is slower than realtime  
+                                           {"delay": 7.127839100005364, "room":
+"voice_assistant_room_3784"}
+    23:49:58.942 INFO … livekit.…gins.murf [Murf TTS] Stream started -         
+                                           context_id=7591bb02b6af,            
+                                           voice=Anisha, style=Conversation,   
+                                           locale=None, min_buffer_size=3,     
+                                           max_buffer_delay_in_ms=0,           
+                                           endpoint=https://global.api.murf.…  
+                                           {"room": 
+"voice_assistant_room_3784"}
+    23:49:59.620 WARNI… livekit.…ns.silero inference is slower than realtime  
+                                           {"delay": 7.842621000006588, "room":
+"voice_assistant_room_3784"}
+    23:50:00.277 INFO … livekit.…gins.murf [Murf TTS] Murf TTFB (first         
+                                           sentence to first audio): 1336.98   
+                                           ms                                  
+                                           {"room": 
+"voice_assistant_room_3784"}
+    23:50:00.780 WARNI… livekit.…ns.silero inference is slower than realtime  
+                                           {"delay": 8.5203606000056, "room": 
+"voice_assistant_room_3784"}
+    23:50:01.242 WARNI… livekit.…ns.silero inference is slower than realtime  
+                                           {"delay": 8.80055250000607, "room": 
+"voice_assistant_room_3784"}
+    23:50:01.433 INFO … agent              [DEBUG-LLM]                         
+                                           metrics=type='llm_metrics'          
+                                           label='livekit.plugins.google.llm…  
+                                           request_id='73ac4ed23dd2'           
+                                           timestamp=1786731601.4312801        
+                                           duration=11.905241399999795         
+                                           ttft=6.428193600000668              
+                                           cancelled=False                     
+                                           completion_tokens=62                
+                                           prompt_tokens=3040                  
+                                           prompt_cached_tokens=0              
+                                           total_tokens=3102                   
+                                           tokens_per_second=5.2077902427078…  
+                                           speech_id='speech_615a53afde09'     
+                                           metadata=Metadata(model_name='gem…  
+                                           model_provider='Gemini')            
+                                {"room": "voice_assistant_room_3784"}
+    23:50:02.301 DEBUG… livekit.agents     aec warmup active, disabling        
+                                           interruptions for 3.00s             
+                                         {"room": "voice_assistant_room_3784"}
+    23:50:02.698 WARNI… livekit.…ns.silero inference is slower than realtime  
+                                           {"delay": 10.03852490000735, "room":
+"voice_assistant_room_3784"}
+    23:50:03.367 INFO … agent              [DEBUG-STT]                         
+                                           metrics=type='stt_metrics'          
+                                           label='livekit.plugins.deepgram.s…  
+                                           request_id='01a00180-59e6-72a2-8b…  
+                                           timestamp=1786731603.3659406        
+                                           duration=0.0                        
+                                           audio_duration=3.5499999999999954   
+                                           streamed=True                       
+                                           metadata=Metadata(model_name='nov…  
+                                           model_provider='Deepgram')          
+                                {"room": "voice_assistant_room_3784"}
+    23:50:03.656 WARNI… livekit.…ns.silero inference is slower than realtime  
+                                           {"delay": 10.694271000007717, 
+"room": "voice_assistant_room_3784"}
+    23:50:04.546 WARNI… livekit.…ns.silero inference is slower than realtime  
+                                           {"delay": 11.360632500004456, 
+"room": "voice_assistant_room_3784"}
+    23:50:05.264 WARNI… livekit.…ns.silero inference is slower than realtime  
+                                           {"delay": 11.875310500002492, 
+"room": "voice_assistant_room_3784"}
+    23:50:05.389 DEBUG… livekit.agents     aec warmup expired, re-enabling     
+                                           interruptions                       
+                                         {"room": "voice_assistant_room_3784"}
+    23:50:05.697 WARNI… livekit.…ns.silero inference is slower than realtime  
+                                           {"delay": 12.160383900003882, 
+"room": "voice_assistant_room_3784"}
+    23:50:06.043 WARNI… livekit.…ns.silero inference is slower than realtime  
+                                           {"delay": 12.405306000005567, 
+"room": "voice_assistant_room_3784"}
+    23:50:06.170 DEBUG… livekit.agents     sent text to tts  
+                                         {"text": "You don't need to share your
+bank account number or IFSC code; you can just use a simple UPI ID or QR code. 
+Would you like to know how to set it up?", "remaining_audio": 
+4.522693395614624, "room": "voice_assistant_room_3784"}
+    23:50:06.529 WARNI… livekit.…ns.silero inference is slower than realtime  
+                                           {"delay": 12.734102200007936, 
+"room": "voice_assistant_room_3784"}
+    23:50:06.938 WARNI… livekit.…ns.silero inference is slower than realtime  
+                                           {"delay": 13.024704400006009, 
+"room": "voice_assistant_room_3784"}
+    23:50:07.308 WARNI… livekit.…ns.silero inference is slower than realtime  
+                                           {"delay": 13.28734060000625, "room":
+"voice_assistant_room_3784"}
+    23:50:07.600 WARNI… livekit.…ns.silero inference is slower than realtime  
+                                           {"delay": 13.462302500005691, 
+"room": "voice_assistant_room_3784"}
+    23:50:08.000 WARNI… livekit.…ns.silero inference is slower than realtime  
+                                           {"delay": 13.741545200007149, 
+"room": "voice_assistant_room_3784"}
+    23:50:08.537 WARNI… livekit.…ns.silero inference is slower than realtime  
+                                           {"delay": 14.154175800006222, 
+"room": "voice_assistant_room_3784"}
+    23:50:08.706 INFO … agent              [DEBUG-STT]                         
+                                           metrics=type='stt_metrics'          
+                                           label='livekit.plugins.deepgram.s…  
+                                           request_id='01a00180-59e6-72a2-8b…  
+                                           timestamp=1786731608.7054336        
+                                           duration=0.0 audio_duration=2.3     
+                                           streamed=True                       
+                                           metadata=Metadata(model_name='nov…  
+                                           model_provider='Deepgram')          
+                                {"room": "voice_assistant_room_3784"}
+    23:50:09.135 WARNI… livekit.agents     job executor is unresponsive  
+                                         {"delay": 750, "tid": 16736, "job_id":
+"AJ_qo4ZzZwvRrjZ", "room_id": "RM_R7eu7gFxs2W6"}
+    23:50:09.667 WARNI… livekit.…ns.silero inference is slower than realtime  
+                                           {"delay": 15.102296500004446, 
+"room": "voice_assistant_room_3784"}
+    23:50:10.082 WARNI… livekit.…ns.silero inference is slower than realtime  
+                                           {"delay": 15.346249600001869, 
+"room": "voice_assistant_room_3784"}
+    23:50:10.669 WARNI… livekit.…ns.silero inference is slower than realtime  
+                                           {"delay": 15.77498910000396, "room":
+"voice_assistant_room_3784"}
+    23:50:11.417 WARNI… livekit.…ns.silero inference is slower than realtime  
+                                           {"delay": 16.277760900001503, 
+"room": "voice_assistant_room_3784"}
+    23:50:12.419 WARNI… livekit.…ns.silero inference is slower than realtime  
+                                           {"delay": 17.10655580000413, "room":
+"voice_assistant_room_3784"}
+    23:50:13.120 WARNI… livekit.…ns.silero inference is slower than realtime  
+                                           {"delay": 17.509742000000053, 
+"room": "voice_assistant_room_3784"}
+    23:50:13.488 WARNI… livekit.…ns.silero inference is slower than realtime  
+                                           {"delay": 17.761294500001004, 
+"room": "voice_assistant_room_3784"}
+    23:50:13.753 INFO … agent              [DEBUG-STT]                         
+                                           metrics=type='stt_metrics'          
+                                           label='livekit.plugins.deepgram.s…  
+                                           request_id='01a00180-59e6-72a2-8b…  
+                                           timestamp=1786731613.7517962        
+                                           duration=0.0                        
+                                           audio_duration=2.7499999999999982   
+                                           streamed=True                       
+                                           metadata=Metadata(model_name='nov…  
+                                           model_provider='Deepgram')          
+                                {"room": "voice_assistant_room_3784"}
+    23:50:14.459 WARNI… livekit.…ns.silero inference is slower than realtime  
+                                           {"delay": 18.56755330000247, "room":
+"voice_assistant_room_3784"}
+    23:50:14.935 WARNI… livekit.…ns.silero inference is slower than realtime  
+                                           {"delay": 18.906435300004606, 
+"room": "voice_assistant_room_3784"}
+    23:50:15.302 WARNI… livekit.…ns.silero inference is slower than realtime  
+                                           {"delay": 19.15624580000518, "room":
+"voice_assistant_room_3784"}
+    23:50:16.240 WARNI… livekit.…ns.silero inference is slower than realtime  
+                                           {"delay": 19.842456300004294, 
+"room": "voice_assistant_room_3784"}
+    23:50:16.556 WARNI… livekit.…ns.silero inference is slower than realtime  
+                                           {"delay": 20.060680100005843, 
+"room": "voice_assistant_room_3784"}
+    23:50:17.083 WARNI… livekit.…ns.silero inference is slower than realtime  
+                                           {"delay": 20.437254300003925, 
+"room": "voice_assistant_room_3784"}
+    23:50:17.534 WARNI… livekit.…ns.silero inference is slower than realtime  
+                                           {"delay": 20.759813400003356, 
+"room": "voice_assistant_room_3784"}
+    23:50:18.008 WARNI… livekit.…ns.silero inference is slower than realtime  
+                                           {"delay": 21.119273000002863, 
+"room": "voice_assistant_room_3784"}
+    23:50:18.307 WARNI… livekit.…ns.silero inference is slower than realtime  
+                                           {"delay": 21.291796900002776, 
+"room": "voice_assistant_room_3784"}
+    23:50:18.675 WARNI… livekit.…ns.silero inference is slower than realtime  
+                                           {"delay": 21.531999399998657, 
+"room": "voice_assistant_room_3784"}
+    23:50:18.936 WARNI… livekit.…ns.silero inference is slower than realtime  
+                                           {"delay": 21.701464299996175, 
+"room": "voice_assistant_room_3784"}
+    23:50:18.992 INFO … agent              [DEBUG-STT]                         
+                                           metrics=type='stt_metrics'          
+                                           label='livekit.plugins.deepgram.s…  
+                                           request_id='01a00180-59e6-72a2-8b…  
+                                           timestamp=1786731618.9911695        
+                                           duration=0.0                        
+                                           audio_duration=5.699999999999988    
+                                           streamed=True                       
+                                           metadata=Metadata(model_name='nov…  
+                                           model_provider='Deepgram')          
+                                {"room": "voice_assistant_room_3784"}
+    23:50:19.490 WARNI… livekit.…ns.silero inference is slower than realtime  
+                                           {"delay": 22.170364899996198, 
+"room": "voice_assistant_room_3784"}
+    23:50:20.217 WARNI… livekit.…ns.silero inference is slower than realtime  
+                                           {"delay": 22.693038799995872, 
+"room": "voice_assistant_room_3784"}
+    23:50:20.582 WARNI… livekit.…ns.silero inference is slower than realtime  
+                                           {"delay": 22.933737599998242, 
+"room": "voice_assistant_room_3784"}
+    23:50:21.271 WARNI… livekit.…ns.silero inference is slower than realtime  
+                                           {"delay": 23.446557299997245, 
+"room": "voice_assistant_room_3784"}
+    23:50:22.167 WARNI… livekit.…ns.silero inference is slower than realtime  
+                                           {"delay": 24.08566509999861, "room":
+"voice_assistant_room_3784"}
+    23:50:22.755 WARNI… livekit.…ns.silero inference is slower than realtime  
+                                           {"delay": 24.504354399998405, 
+"room": "voice_assistant_room_3784"}
+    23:50:23.107 WARNI… livekit.…ns.silero inference is slower than realtime  
+                                           {"delay": 24.746512499999337, 
+"room": "voice_assistant_room_3784"}
+    23:50:23.718 WARNI… livekit.…ns.silero inference is slower than realtime  
+                                           {"delay": 25.06588349999999, "room":
+"voice_assistant_room_3784"}
+    23:50:24.132 INFO … agent              [DEBUG-STT]                         
+                                           metrics=type='stt_metrics'          
+                                           label='livekit.plugins.deepgram.s…  
+                                           request_id='01a00180-59e6-72a2-8b…  
+                                           timestamp=1786731624.130807         
+                                           duration=0.0                        
+                                           audio_duration=5.399999999999989    
+                                           streamed=True                       
+                                           metadata=Metadata(model_name='nov…  
+                                           model_provider='Deepgram')          
+                                {"room": "voice_assistant_room_3784"}
+    23:50:24.618 WARNI… livekit.…ns.silero inference is slower than realtime  
+                                           {"delay": 25.816869499998337, 
+"room": "voice_assistant_room_3784"}
+    23:50:25.472 WARNI… livekit.…ns.silero inference is slower than realtime  
+                                           {"delay": 26.55350369999988, "room":
+"voice_assistant_room_3784"}
+    23:50:25.605 INFO … agent              [DEBUG-TTS]                         
+                                           metrics=type='tts_metrics'          
+                                           label='livekit.plugins.murf.tts.T…  
+                                           request_id='187bd1500d08'           
+                                           timestamp=1786731625.601104         
+                                           ttfb=2.3070594999990135             
+                                           duration=26.66688140000042          
+                                           audio_duration=17.15999999999997    
+                                           cancelled=False                     
+                                           characters_count=282 streamed=True  
+                                           segment_id='7591bb02b6af'           
+                                           speech_id='speech_615a53afde09'     
+                                           metadata=Metadata(model_name='FAL…  
+                                           model_provider='Murf')              
+                                {"room": "voice_assistant_room_3784"}
+    23:50:26.282 WARNI… livekit.…ns.silero inference is slower than realtime  
+                                           {"delay": 27.2206104000016, "room": 
+"voice_assistant_room_3784"}
+    23:50:27.366 INFO … livekit.agents     closing agent session due to        
+                                           participant disconnect (disable     
+                                           via                                 
+                                           `RoomInputOptions.close_on_discon…  
+                                         {"room": "voice_assistant_room_3784", 
+"participant": "anon_b2073701-049c-4e19-a724-dbef35f4e6f3", "reason": 
+"CLIENT_INITIATED"}
+    23:50:27.844 WARNI… livekit.…ns.silero inference is slower than realtime  
+                                           {"delay": 27.9289681999986, "room": 
+"voice_assistant_room_3784"}
+    23:50:27.951 DEBUG… livekit.agents     stream closed  
+                                         {"participant": 
+"anon_b2073701-049c-4e19-a724-dbef35f4e6f3", "source": "SOURCE_MICROPHONE", 
+"room": "voice_assistant_room_3784"}
+    23:50:28.396 INFO … agent              [DEBUG-LLM] assistant text          
+                                           committed after playout='UPI, or    
+                                           Unified Payments Interface, is a    
+                                           system that lets you instantly      
+                                           transfer money between bank         
+                                           accounts using your mobile phone.'  
+                                {"room": "voice_assistant_room_3784"}
+    23:50:28.677 WARNI… livekit.…ns.silero inference is slower than realtime  
+                                           {"delay": 28.511950599997764, 
+"room": "voice_assistant_room_3784"}
+    23:50:28.835 DEBUG… livekit.agents     input stream detached  
+                                         {"participant": 
+"anon_b2073701-049c-4e19-a724-dbef35f4e6f3", "source": "SOURCE_UNKNOWN", 
+"accepted_sources": ["SOURCE_MICROPHONE"], "room": "voice_assistant_room_3784"}
+    23:50:31.233 DEBUG… livekit.agents     session closed  
+                                         {"reason": "participant_disconnected",
+"error": null, "room": "voice_assistant_room_3784"}
+    23:50:51.822 DEBUG… livekit.agents     shutting down job task  
+                                         {"reason": "", "user_initiated": 
+false, "room": "voice_assistant_room_3784"}
+    23:50:51.850 DEBUG… livekit.agents     job exiting  
+                                         {"reason": "", "tid": 16736, "job_id":
+"AJ_qo4ZzZwvRrjZ", "room_id": "RM_R7eu7gFxs2W6"}
+    23:50:51.869 DEBUG… livekit.agents     http_session(): closing the         
+                                           httpclient ctx                      
+    23:51:29.661 INFO … livekit.agents     received job request  
+                                         {"job_id": "AJ_mzpLDZFMjroU", 
+"dispatch_id": "AD_jY6LQsqnoXpL", "room": "voice_assistant_room_4992", 
+"room_id": "RM_LpHExPVJuBGT", "agent_name": "my-agent", "resuming": false, 
+"enable_recording": false}
+    23:51:29.754 DEBUG… livekit.agents     received assignment  
+                                         {"agent_name": "my-agent", "room_id": 
+"RM_LpHExPVJuBGT", "room": "voice_assistant_room_4992", "job_id": 
+"AJ_mzpLDZFMjroU", "dispatch_id": "AD_jY6LQsqnoXpL", "enable_recording": false}
+    23:51:29.773 WARNI… livekit.agents     no warmed process available for     
+                                           job, waiting for one to be created  
+                                         {"job_id": "AJ_mzpLDZFMjroU"}
+    23:51:29.806 INFO … livekit.agents     initializing job runner  
+                                         {"tid": 9468}
+    23:51:30.180 INFO … livekit.agents     job runner initialized  
+                                         {"tid": 9468, "elapsed_time": 0.36}
+    23:51:30.183 DEBUG… asyncio            Using proactor: IocpProactor  
+    23:51:31.379 DEBUG… livekit.agents     input stream attached  
+                                         {"participant": null, "source": 
+"SOURCE_UNKNOWN", "accepted_sources": ["SOURCE_MICROPHONE"], "room": 
+"voice_assistant_room_4992"}
+    23:51:31.400 DEBUG… livekit.agents     http_session(): creating a new      
+                                           httpclient ctx                      
+                                         {"room": "voice_assistant_room_4992"}
+    23:51:31.426 DEBUG… livekit.agents     using audio io: `RoomIO` ->         
+                                           `AgentSession` ->                   
+                                           `TranscriptSynchronizer` ->         
+                                           `RoomIO`                            
+                                         {"room": "voice_assistant_room_4992"}
+    23:51:31.462 DEBUG… livekit.agents     using transcript io:                
+                                           `AgentSession` ->                   
+                                           `TranscriptSynchronizer` ->         
+                                           `RoomIO`                            
+                                         {"room": "voice_assistant_room_4992"}
+    23:51:31.877 DEBUG… livekit.agents     start reading stream  
+                                         {"participant": 
+"anon_b2073701-049c-4e19-a724-dbef35f4e6f3", "source": "SOURCE_MICROPHONE", 
+"room": "voice_assistant_room_4992"}
+    23:51:32.719 DEBUG… livekit.….deepgram Established new Deepgram STT        
+                                           WebSocket connection:               
+                                           {"headers": {"dg-project-id": 
+"35e7fd36-0ac6-46ae-9cc7-6e75546d7aff", "dg-request-id": 
+"01a00182-14db-7843-bbd2-002d2de27237", "Date": "Fri, 14 Aug 2026 18:21:37 
+GMT"}, "room": "voice_assistant_room_4992"}
+    23:51:35.102 INFO … agent              [DEBUG-STT] final                   
+                                           transcript='Hello.' language=en     
+                                {"room": "voice_assistant_room_4992"}
+    23:51:35.131 DEBUG… livekit.agents     received user transcript  
+                                         {"user_transcript": "Hello.", 
+"language": "en", "transcript_delay": 0.7725868225097656, "room": 
+"voice_assistant_room_4992"}
+    23:51:35.339 DEBUG… livekit.…_detector eou prediction  
+                                           {"eou_probability": 
+0.19565783441066742, "duration": 0.163, "input": "<|im_start|>user\nhello", 
+"room": "voice_assistant_room_4992"}
+    23:51:35.372 DEBUG… livekit.agents     using preemptive generation  
+                                         {"preemptive_lead_time": 
+0.22391533851623535, "room": "voice_assistant_room_4992"}
+    23:51:36.440 INFO … agent              [DEBUG-STT]                         
+                                           metrics=type='stt_metrics'          
+                                           label='livekit.plugins.deepgram.s…  
+                                           request_id='01a00182-14db-7843-bb…  
+                                           timestamp=1786731696.4400237        
+                                           duration=0.0                        
+                                           audio_duration=4.899999999999991    
+                                           streamed=True                       
+                                           metadata=Metadata(model_name='nov…  
+                                           model_provider='Deepgram')          
+                                {"room": "voice_assistant_room_4992"}
+    23:51:36.887 DEBUG… livekit.agents     executing tool  
+                                         {"function": "lookup_user", 
+"arguments": "{}", "speech_id": "speech_58643c0942f6", "room": 
+"voice_assistant_room_4992"}
+    23:51:36.915 INFO … agent              [DEBUG-LLM]                         
+                                           metrics=type='llm_metrics'          
+                                           label='livekit.plugins.google.llm…  
+                                           request_id='1c3b16e933d1'           
+                                           timestamp=1786731696.9148555        
+                                           duration=1.754601199998433          
+                                           ttft=1.7211785999970743             
+                                           cancelled=False                     
+                                           completion_tokens=10                
+                                           prompt_tokens=3034                  
+                                           prompt_cached_tokens=0              
+                                           total_tokens=3044                   
+                                           tokens_per_second=5.69930078698734  
+                                           speech_id='speech_58643c0942f6'     
+                                           metadata=Metadata(model_name='gem…  
+                                           model_provider='Gemini')            
+                                {"room": "voice_assistant_room_4992"}
+    23:51:37.009 DEBUG… livekit.agents     tools execution completed  
+                                         {"speech_id": "speech_58643c0942f6", 
+"room": "voice_assistant_room_4992"}
+    23:51:38.104 DEBUG… livekit.agents     sent text to tts  
+                                         {"text": "Namaste Zikra, welcome 
+back!", "remaining_audio": 0.0, "room": "voice_assistant_room_4992"}
+    23:51:38.116 INFO … livekit.…gins.murf [Murf TTS] Stream started -         
+                                           context_id=02bb2762689f,            
+                                           voice=Anisha, style=Conversation,   
+                                           locale=None, min_buffer_size=3,     
+                                           max_buffer_delay_in_ms=0,           
+                                           endpoint=https://global.api.murf.…  
+                                           {"room": 
+"voice_assistant_room_4992"}
+    23:51:38.156 INFO … agent              [DEBUG-LLM]                         
+                                           metrics=type='llm_metrics'          
+                                           label='livekit.plugins.google.llm…  
+                                           request_id='9c2f050c6ae7'           
+                                           timestamp=1786731698.1561913        
+                                           duration=1.0368662999972003         
+                                           ttft=0.9783019999995304             
+                                           cancelled=False                     
+                                           completion_tokens=35                
+                                           prompt_tokens=3119                  
+                                           prompt_cached_tokens=0              
+                                           total_tokens=3154                   
+                                           tokens_per_second=33.755557490965…  
+                                           speech_id='speech_58643c0942f6'     
+                                           metadata=Metadata(model_name='gem…  
+                                           model_provider='Gemini')            
+                                {"room": "voice_assistant_room_4992"}
+    23:51:38.253 INFO … livekit.…gins.murf [Murf TTS] Murf TTFB (first         
+                                           sentence to first audio): 137.08    
+                                           ms                                  
+                                           {"room": 
+"voice_assistant_room_4992"}
+    23:51:38.424 DEBUG… livekit.agents     aec warmup active, disabling        
+                                           interruptions for 3.00s             
+                                         {"room": "voice_assistant_room_4992"}
+    23:51:38.971 DEBUG… livekit.agents     sent text to tts  
+                                         {"text": "It's great to talk to you 
+again. How can I help you with your banking, UPI, or financial questions 
+today?", "remaining_audio": 1.384687900543213, "room": 
+"voice_assistant_room_4992"}
+    23:51:40.154 INFO … agent              [DEBUG-TTS]                         
+                                           metrics=type='tts_metrics'          
+                                           label='livekit.plugins.murf.tts.T…  
+                                           request_id='e38726026206'           
+                                           timestamp=1786731700.1537669        
+                                           ttfb=0.30740619999778573            
+                                           duration=2.038092399998277          
+                                           audio_duration=8.080000000000004    
+                                           cancelled=False                     
+                                           characters_count=134 streamed=True  
+                                           segment_id='02bb2762689f'           
+                                           speech_id='speech_58643c0942f6'     
+                                           metadata=Metadata(model_name='FAL…  
+                                           model_provider='Murf')              
+                                {"room": "voice_assistant_room_4992"}
+    23:51:41.429 DEBUG… livekit.agents     aec warmup expired, re-enabling     
+                                           interruptions                       
+                                         {"room": "voice_assistant_room_4992"}
+    23:51:41.456 INFO … agent              [DEBUG-STT]                         
+                                           metrics=type='stt_metrics'          
+                                           label='livekit.plugins.deepgram.s…  
+                                           request_id='01a00182-14db-7843-bb…  
+                                           timestamp=1786731701.4563787        
+                                           duration=0.0                        
+                                           audio_duration=2.000000000000001    
+                                           streamed=True                       
+                                           metadata=Metadata(model_name='nov…  
+                                           model_provider='Deepgram')          
+                                {"room": "voice_assistant_room_4992"}
+    23:51:46.496 INFO … agent              [DEBUG-STT]                         
+                                           metrics=type='stt_metrics'          
+                                           label='livekit.plugins.deepgram.s…  
+                                           request_id='01a00182-14db-7843-bb…  
+                                           timestamp=1786731706.4961612        
+                                           duration=0.0                        
+                                           audio_duration=5.04999999999999     
+                                           streamed=True                       
+                                           metadata=Metadata(model_name='nov…  
+                                           model_provider='Deepgram')          
+                                {"room": "voice_assistant_room_4992"}
+    23:51:46.580 INFO … agent              [DEBUG-LLM] assistant text          
+                                           committed after playout="Namaste    
+                                           Zikra, welcome back! It's great to  
+                                           talk to you again. How can I help   
+                                           you with your banking, UPI, or      
+                                           financial questions today?"         
+                                {"room": "voice_assistant_room_4992"}
+    23:51:50.758 INFO … agent              [DEBUG-STT] final transcript='Can   
+                                           you tell me what is UPI?'           
+                                           language=en                         
+                                {"room": "voice_assistant_room_4992"}
+    23:51:50.787 DEBUG… livekit.agents     received user transcript  
+                                         {"user_transcript": "Can you tell me 
+what is UPI?", "language": "en", "transcript_delay": 0.4913656711578369, 
+"room": "voice_assistant_room_4992"}
+    23:51:51.267 DEBUG… livekit.…_detector eou prediction  
+                                           {"eou_probability": 
+0.15098834037780762, "duration": 0.383, "input": 
+"<|im_start|>user\nhello<|im_end|>\n<|im_start|>assistant\nnamaste zikra 
+welcome back it's great to talk to you again how can i help you with your 
+banking upi or financial questions today<|im_end|>\n<|im_start|>user\ncan you 
+tell me what is upi", "room": "voice_assistant_room_4992"}
+    23:51:51.288 DEBUG… livekit.agents     using preemptive generation  
+                                         {"preemptive_lead_time": 
+0.47998523712158203, "room": "voice_assistant_room_4992"}
+    23:51:51.542 INFO … agent              [DEBUG-STT]                         
+                                           metrics=type='stt_metrics'          
+                                           label='livekit.plugins.deepgram.s…  
+                                           request_id='01a00182-14db-7843-bb…  
+                                           timestamp=1786731711.5418656        
+                                           duration=0.0                        
+                                           audio_duration=5.04999999999999     
+                                           streamed=True                       
+                                           metadata=Metadata(model_name='nov…  
+                                           model_provider='Deepgram')          
+                                {"room": "voice_assistant_room_4992"}
+    23:51:52.064 INFO … agent              [DEBUG-LLM]                         
+                                           metrics=type='llm_metrics'          
+                                           label='livekit.plugins.google.llm…  
+                                           request_id='a833e10ebe4e'           
+                                           timestamp=1786731712.0635862        
+                                           duration=1.2473094000015408         
+                                           ttft=0.9438928000017768             
+                                           cancelled=False                     
+                                           completion_tokens=101               
+                                           prompt_tokens=3164                  
+                                           prompt_cached_tokens=0              
+                                           total_tokens=3265                   
+                                           tokens_per_second=80.974295551589…  
+                                           speech_id='speech_a2b13a68387b'     
+                                           metadata=Metadata(model_name='gem…  
+                                           model_provider='Gemini')            
+                                {"room": "voice_assistant_room_4992"}
+    23:51:52.171 DEBUG… livekit.agents     sent text to tts  
+    23:52:18.468 INFO … livekit.agents     received job request  
+                                         {"job_id": "AJ_cNVVesEiJj3U", 
+"dispatch_id": "AD_9Z3aXHmtSrph", "room": "voice_assistant_room_4508", 
+"room_id": "RM_iMv8JfCwQpZF", "agent_name": "my-agent", "resuming": false, 
+"enable_recording": false}
+    23:52:18.576 DEBUG… livekit.agents     received assignment  
+                                         {"agent_name": "my-agent", "room_id": 
+"RM_iMv8JfCwQpZF", "room": "voice_assistant_room_4508", "job_id": 
+"AJ_cNVVesEiJj3U", "dispatch_id": "AD_9Z3aXHmtSrph", "enable_recording": false}
+    23:52:18.595 WARNI… livekit.agents     no warmed process available for     
+                                           job, waiting for one to be created  
+                                         {"job_id": "AJ_cNVVesEiJj3U"}
+    23:52:18.621 INFO … livekit.agents     initializing job runner  
+                                         {"tid": 24936}
+    23:52:18.973 INFO … livekit.agents     job runner initialized  
+                                         {"tid": 24936, "elapsed_time": 0.34}
+    23:52:18.977 DEBUG… asyncio            Using proactor: IocpProactor  
+    23:52:20.121 DEBUG… livekit.agents     input stream attached  
+                                         {"participant": null, "source": 
+"SOURCE_UNKNOWN", "accepted_sources": ["SOURCE_MICROPHONE"], "room": 
+"voice_assistant_room_4508"}
+    23:52:20.144 DEBUG… livekit.agents     http_session(): creating a new      
+                                           httpclient ctx                      
+                                         {"room": "voice_assistant_room_4508"}
+    23:52:20.174 DEBUG… livekit.agents     using audio io: `RoomIO` ->         
+                                           `AgentSession` ->                   
+                                           `TranscriptSynchronizer` ->         
+                                           `RoomIO`                            
+                                         {"room": "voice_assistant_room_4508"}
+    23:52:20.205 DEBUG… livekit.agents     using transcript io:                
+                                           `AgentSession` ->                   
+                                           `TranscriptSynchronizer` ->         
+                                           `RoomIO`                            
+                                         {"room": "voice_assistant_room_4508"}
+    23:52:20.597 DEBUG… livekit.agents     start reading stream  
+                                         {"participant": 
+"anon_b2073701-049c-4e19-a724-dbef35f4e6f3", "source": "SOURCE_MICROPHONE", 
+"room": "voice_assistant_room_4508"}
+    23:52:21.480 DEBUG… livekit.….deepgram Established new Deepgram STT        
+                                           WebSocket connection:               
+                                           {"headers": {"dg-project-id": 
+"35e7fd36-0ac6-46ae-9cc7-6e75546d7aff", "dg-request-id": 
+"01a00182-d352-7401-9917-6001df682dc1", "Date": "Fri, 14 Aug 2026 18:22:26 
+GMT"}, "room": "voice_assistant_room_4508"}
+    23:52:22.432 INFO … agent              [DEBUG-STT] final                   
+                                           transcript='Hello.' language=en     
+                                {"room": "voice_assistant_room_4508"}
+    23:52:22.449 DEBUG… livekit.agents     received user transcript  
+                                         {"user_transcript": "Hello.", 
+"language": "en", "transcript_delay": 1.2021069526672363, "room": 
+"voice_assistant_room_4508"}
+    23:52:22.597 DEBUG… livekit.…_detector eou prediction  
+                                           {"eou_probability": 
+0.19565783441066742, "duration": 0.094, "input": "<|im_start|>user\nhello", 
+"room": "voice_assistant_room_4508"}
+    23:52:22.621 DEBUG… livekit.agents     using preemptive generation  
+                                         {"preemptive_lead_time": 
+0.1478562355041504, "room": "voice_assistant_room_4508"}
+    23:52:23.980 DEBUG… livekit.agents     executing tool  
+                                         {"function": "lookup_user", 
+"arguments": "{}", "speech_id": "speech_aae0e1a1c0db", "room": 
+"voice_assistant_room_4508"}
+    23:52:24.005 INFO … agent              [DEBUG-LLM]                         
+                                           metrics=type='llm_metrics'          
+                                           label='livekit.plugins.google.llm…  
+                                           request_id='6b054fcfe043'           
+                                           timestamp=1786731744.004675         
+                                           duration=1.5201051000003645         
+                                           ttft=1.4946235999996134             
+                                           cancelled=False                     
+                                           completion_tokens=10                
+                                           prompt_tokens=3034                  
+                                           prompt_cached_tokens=0              
+                                           total_tokens=3044                   
+                                           tokens_per_second=6.5784925002867…  
+                                           speech_id='speech_aae0e1a1c0db'     
+                                           metadata=Metadata(model_name='gem…  
+                                           model_provider='Gemini')            
+                                {"room": "voice_assistant_room_4508"}
+    23:52:24.105 DEBUG… livekit.agents     tools execution completed  
+                                         {"speech_id": "speech_aae0e1a1c0db", 
+"room": "voice_assistant_room_4508"}
+    23:52:25.165 DEBUG… livekit.agents     sent text to tts  
+                                         {"text": "Namaste Zikra, welcome 
+back!", "remaining_audio": 0.0, "room": "voice_assistant_room_4508"}
+    23:52:25.181 INFO … livekit.…gins.murf [Murf TTS] Stream started -         
+                                           context_id=6d8f6c4e99a6,            
+                                           voice=Anisha, style=Conversation,   
+                                           locale=None, min_buffer_size=3,     
+                                           max_buffer_delay_in_ms=0,           
+                                           endpoint=https://global.api.murf.…  
+                                           {"room": 
+"voice_assistant_room_4508"}
+    23:52:25.225 INFO … agent              [DEBUG-STT]                         
+                                           metrics=type='stt_metrics'          
+                                           label='livekit.plugins.deepgram.s…  
+                                           request_id='01a00182-d352-7401-99…  
+                                           timestamp=1786731745.2253258        
+                                           duration=0.0                        
+                                           audio_duration=4.899999999999991    
+                                           streamed=True                       
+                                           metadata=Metadata(model_name='nov…  
+                                           model_provider='Deepgram')          
+                                {"room": "voice_assistant_room_4508"}
+    23:52:25.280 INFO … agent              [DEBUG-LLM]                         
+                                           metrics=type='llm_metrics'          
+                                           label='livekit.plugins.google.llm…  
+                                           request_id='157eca804aa4'           
+                                           timestamp=1786731745.279488         
+                                           duration=1.0799893000003067         
+                                           ttft=0.9651435000014317             
+                                           cancelled=False                     
+                                           completion_tokens=42                
+                                           prompt_tokens=3119                  
+                                           prompt_cached_tokens=0              
+                                           total_tokens=3161                   
+                                           tokens_per_second=38.889274180760…  
+                                           speech_id='speech_aae0e1a1c0db'     
+                                           metadata=Metadata(model_name='gem…  
+                                           model_provider='Gemini')            
+                                {"room": "voice_assistant_room_4508"}
+    23:52:25.368 INFO … livekit.…gins.murf [Murf TTS] Murf TTFB (first         
+                                           sentence to first audio): 187.23    
+                                           ms                                  
+                                           {"room": 
+"voice_assistant_room_4508"}
+    23:52:25.537 DEBUG… livekit.agents     aec warmup active, disabling        
+                                           interruptions for 3.00s             
+                                         {"room": "voice_assistant_room_4508"}
+    23:52:26.125 DEBUG… livekit.agents     sent text to tts  
+                                         {"text": "Last time we talked about 
+government savings schemes. Would you like to continue with that, or is there 
+something else about banking or UPI I can help you with today?", 
+"remaining_audio": 1.3960189819335938, "room": "voice_assistant_room_4508"}
+    23:52:26.912 DEBUG… livekit.agents     job exiting  
+                                         {"reason": "", "tid": 9468, "job_id": 
+"AJ_mzpLDZFMjroU", "room_id": "RM_LpHExPVJuBGT"}
+    23:52:27.601 INFO … agent              [DEBUG-TTS]                         
+                                           metrics=type='tts_metrics'          
+                                           label='livekit.plugins.murf.tts.T…  
+                                           request_id='5623e463c070'           
+                                           timestamp=1786731747.6003206        
+                                           ttfb=0.35524359999908484            
+                                           duration=2.419206899998244          
+                                           audio_duration=10.639999999999993   
+                                           cancelled=False                     
+                                           characters_count=195 streamed=True  
+                                           segment_id='6d8f6c4e99a6'           
+                                           speech_id='speech_aae0e1a1c0db'     
+                                           metadata=Metadata(model_name='FAL…  
+                                           model_provider='Murf')              
+                                {"room": "voice_assistant_room_4508"}
+    23:52:28.543 DEBUG… livekit.agents     aec warmup expired, re-enabling     
+                                           interruptions                       
+                                         {"room": "voice_assistant_room_4508"}
+    23:52:30.245 INFO … agent              [DEBUG-STT]                         
+                                           metrics=type='stt_metrics'          
+                                           label='livekit.plugins.deepgram.s…  
+                                           request_id='01a00182-d352-7401-99…  
+                                           timestamp=1786731750.2452507        
+                                           duration=0.0                        
+                                           audio_duration=2.0500000000000007   
+                                           streamed=True                       
+                                           metadata=Metadata(model_name='nov…  
+                                           model_provider='Deepgram')          
+                                {"room": "voice_assistant_room_4508"}
+    23:52:35.250 INFO … agent              [DEBUG-STT]                         
+                                           metrics=type='stt_metrics'          
+                                           label='livekit.plugins.deepgram.s…  
+                                           request_id='01a00182-d352-7401-99…  
+                                           timestamp=1786731755.2493763        
+                                           duration=0.0                        
+                                           audio_duration=4.99999999999999     
+                                           streamed=True                       
+                                           metadata=Metadata(model_name='nov…  
+                                           model_provider='Deepgram')          
+                                {"room": "voice_assistant_room_4508"}
+    23:52:36.182 INFO … agent              [DEBUG-LLM] assistant text          
+                                           committed after playout='Namaste    
+                                           Zikra, welcome back! Last time we   
+                                           talked about government savings     
+                                           schemes. Would you like to          
+                                           continue with that, or is there     
+                                           something else about banking or     
+                                           UPI I can help you with today?'     
+                                {"room": "voice_assistant_room_4508"}
+    23:52:40.253 INFO … agent              [DEBUG-STT]                         
+                                           metrics=type='stt_metrics'          
+                                           label='livekit.plugins.deepgram.s…  
+                                           request_id='01a00182-d352-7401-99…  
+                                           timestamp=1786731760.252925         
+                                           duration=0.0                        
+                                           audio_duration=4.99999999999999     
+                                           streamed=True                       
+                                           metadata=Metadata(model_name='nov…  
+                                           model_provider='Deepgram')          
+                                {"room": "voice_assistant_room_4508"}
+    23:52:41.221 INFO … agent              [DEBUG-STT] final transcript='My    
+                                           salary is thirty thousand rupees a  
+                                           month.' language=en                 
+                                {"room": "voice_assistant_room_4508"}
+    23:52:41.248 DEBUG… livekit.agents     received user transcript  
+                                         {"user_transcript": "My salary is 
+thirty thousand rupees a month.", "language": "en", "transcript_delay": 
+0.04959607124328613, "room": "voice_assistant_room_4508"}
+    23:52:42.644 INFO … agent              [DEBUG-LLM]                         
+                                           metrics=type='llm_metrics'          
+                                           label='livekit.plugins.google.llm…  
+                                           request_id='cbf367e67f39'           
+                                           timestamp=1786731762.6440296        
+                                           duration=1.368578500001604          
+                                           ttft=1.3683387999990373             
+                                           cancelled=False                     
+                                           completion_tokens=15                
+                                           prompt_tokens=3172                  
+                                           prompt_cached_tokens=0              
+                                           total_tokens=3187                   
+                                           tokens_per_second=10.960277397301…  
+                                           speech_id='speech_12b8ab99d5e0'     
+                                           metadata=Metadata(model_name='gem…  
+                                           model_provider='Gemini')            
+                                {"room": "voice_assistant_room_4508"}
+    23:52:43.799 INFO … agent              [DEBUG-STT] final transcript='I     
+                                           spend around twenty two thousand    
+                                           every month.' language=en           
+                                {"room": "voice_assistant_room_4508"}
+    23:52:43.830 DEBUG… livekit.agents     received user transcript  
+                                         {"user_transcript": "I spend around 
+twenty two thousand every month.", "language": "en", "transcript_delay": 
+0.38619089126586914, "room": "voice_assistant_room_4508"}
+    23:52:44.871 INFO … agent              [DEBUG-LLM]                         
+                                           metrics=type='llm_metrics'          
+                                           label='livekit.plugins.google.llm…  
+                                           request_id='5cbc4c2fe355'           
+                                           timestamp=1786731764.8706574        
+                                           duration=1.0077993999984756         
+                                           ttft=1.0064740999987407             
+                                           cancelled=False                     
+                                           completion_tokens=15                
+                                           prompt_tokens=3181                  
+                                           prompt_cached_tokens=0              
+                                           total_tokens=3196                   
+                                           tokens_per_second=14.883914398066…  
+                                           speech_id='speech_3f2e5bb3eb73'     
+                                           metadata=Metadata(model_name='gem…  
+                                           model_provider='Gemini')            
+                                {"room": "voice_assistant_room_4508"}
+    23:52:45.299 INFO … agent              [DEBUG-STT]                         
+                                           metrics=type='stt_metrics'          
+                                           label='livekit.plugins.deepgram.s…  
+                                           request_id='01a00182-d352-7401-99…  
+                                           timestamp=1786731765.2986758        
+                                           duration=0.0                        
+                                           audio_duration=5.04999999999999     
+                                           streamed=True                       
+                                           metadata=Metadata(model_name='nov…  
+                                           model_provider='Deepgram')          
+                                {"room": "voice_assistant_room_4508"}
+    23:52:45.502 INFO … agent              [DEBUG-STT] final transcript='But   
+                                           I want to save' language=en         
+                                {"room": "voice_assistant_room_4508"}
+    23:52:45.525 DEBUG… livekit.agents     received user transcript  
+                                         {"user_transcript": "But I want to 
+save", "language": "en", "transcript_delay": 0.027910709381103516, "room": 
+"voice_assistant_room_4508"}
+    23:52:46.477 INFO … agent              [DEBUG-LLM]                         
+                                           metrics=type='llm_metrics'          
+                                           label='livekit.plugins.google.llm…  
+                                           request_id='7e23120ec453'           
+                                           timestamp=1786731766.4761817        
+                                           duration=0.9207114999990154         
+                                           ttft=0.9088066999975126             
+                                           cancelled=False                     
+                                           completion_tokens=15                
+                                           prompt_tokens=3186                  
+                                           prompt_cached_tokens=0              
+                                           total_tokens=3201                   
+                                           tokens_per_second=16.291748283817…  
+                                           speech_id='speech_7e576d9b5db6'     
+                                           metadata=Metadata(model_name='gem…  
+                                           model_provider='Gemini')            
+                                {"room": "voice_assistant_room_4508"}
+    23:52:48.736 INFO … agent              [DEBUG-STT] final transcript='ten   
+                                           thousand rupees. Can you help me    
+                                           make a budget' language=en          
+                                {"room": "voice_assistant_room_4508"}
+    23:52:48.768 DEBUG… livekit.agents     received user transcript  
+                                         {"user_transcript": "ten thousand 
+rupees. Can you help me make a budget", "language": "en", "transcript_delay": 
+0.521486759185791, "room": "voice_assistant_room_4508"}
+    23:52:49.441 DEBUG… livekit.…_detector eou prediction  
+                                           {"eou_probability": 
+0.3715730607509613, "duration": 0.566, "input": 
+"<|im_start|>user\nhello<|im_end|>\n<|im_start|>assistant\nnamaste zikra 
+welcome back last time we talked about government savings schemes would you 
+like to continue with that or is there something else about banking or upi i 
+can help you with today<|im_end|>\n<|im_start|>user\nmy salary is thirty 
+thousand rupees a month i spend around twenty two thousand every month but i 
+want to save ten thousand rupees can you help me make a budget", "room": 
+"voice_assistant_room_4508"}
+    23:52:49.468 DEBUG… livekit.agents     using preemptive generation  
+                                         {"preemptive_lead_time": 
+0.6796083450317383, "room": "voice_assistant_room_4508"}
+    23:52:49.781 DEBUG… livekit.agents     executing tool  
+                                         {"function": 
+"handoff_to_personal_finance", "arguments": "{}", "speech_id": 
+"speech_8c8f0d6074d8", "room": "voice_assistant_room_4508"}
+    23:52:49.804 INFO … agent              [DEBUG-LLM]                         
+                                           metrics=type='llm_metrics'          
+                                           label='livekit.plugins.google.llm…  
+                                           request_id='808eb9e99c45'           
+                                           timestamp=1786731769.8038316        
+                                           duration=1.0069446999987122         
+                                           ttft=0.9836982000015269             
+                                           cancelled=False                     
+                                           completion_tokens=15                
+                                           prompt_tokens=3197                  
+                                           prompt_cached_tokens=0              
+                                           total_tokens=3212                   
+                                           tokens_per_second=14.896547943515…  
+                                           speech_id='speech_8c8f0d6074d8'     
+                                           metadata=Metadata(model_name='gem…  
+                                           model_provider='Gemini')            
+                                {"room": "voice_assistant_room_4508"}
+    23:52:49.994 DEBUG… livekit.agents     sent text to tts  
+                                         {"text": "I'll connect you with our 
+personal finance specialist who can help you build a practical budget.", 
+"remaining_audio": 0.0, "room": "voice_assistant_room_4508"}
+    23:52:50.021 INFO … livekit.…gins.murf [Murf TTS] Stream started -         
+                                           context_id=917aac204718,            
+                                           voice=Anisha, style=Conversation,   
+                                           locale=None, min_buffer_size=3,     
+                                           max_buffer_delay_in_ms=0,           
+                                           endpoint=https://global.api.murf.…  
+                                           {"room": 
+"voice_assistant_room_4508"}
+    23:52:50.185 INFO … livekit.…gins.murf [Murf TTS] Murf TTFB (first         
+                                           sentence to first audio): 163.86    
+                                           ms                                  
+                                           {"room": 
+"voice_assistant_room_4508"}
+    23:52:50.349 INFO … agent              [DEBUG-STT]                         
+                                           metrics=type='stt_metrics'          
+                                           label='livekit.plugins.deepgram.s…  
+                                           request_id='01a00182-d352-7401-99…  
+                                           timestamp=1786731770.3492444        
+                                           duration=0.0                        
+                                           audio_duration=5.04999999999999     
+                                           streamed=True                       
+                                           metadata=Metadata(model_name='nov…  
+                                           model_provider='Deepgram')          
+                                {"room": "voice_assistant_room_4508"}
+    23:52:50.713 INFO … agent              [DEBUG-TTS]                         
+                                           metrics=type='tts_metrics'          
+                                           label='livekit.plugins.murf.tts.T…  
+                                           request_id='ce2800b15d46'           
+                                           timestamp=1786731770.7134178        
+                                           ttfb=0.21076019999964046            
+                                           duration=0.6921578000001318         
+                                           audio_duration=4.7200000000000015   
+                                           cancelled=False                     
+                                           characters_count=96 streamed=True   
+                                           segment_id='917aac204718'           
+                                           speech_id='speech_5f6aa92501ad'     
+                                           metadata=Metadata(model_name='FAL…  
+                                           model_provider='Murf')              
+                                {"room": "voice_assistant_room_4508"}
+    23:52:54.954 INFO … agent              [DEBUG-LLM] assistant text          
+                                           committed after playout="I'll       
+                                           connect you with our personal       
+                                           finance specialist who can help     
+                                           you build a practical budget."      
+                                {"room": "voice_assistant_room_4508"}
+    23:52:54.998 DEBUG… livekit.agents     tools execution completed  
+                                         {"speech_id": "speech_8c8f0d6074d8", 
+"room": "voice_assistant_room_4508"}
+    23:52:55.804 DEBUG… livekit.agents     sent text to tts  
+                                         {"text": "Hello!", "remaining_audio": 
+0.0, "room": "voice_assistant_room_4508"}
+    23:52:55.820 INFO … livekit.…gins.murf [Murf TTS] Stream started -         
+                                           context_id=cf5a801f69a1,            
+                                           voice=Samar, style=Conversation,    
+                                           locale=None, min_buffer_size=3,     
+                                           max_buffer_delay_in_ms=0,           
+                                           endpoint=https://global.api.murf.…  
+                                           {"room": 
+"voice_assistant_room_4508"}
+    23:52:55.948 INFO … livekit.…gins.murf [Murf TTS] Murf TTFB (first         
+                                           sentence to first audio): 127.60    
+                                           ms                                  
+                                           {"room": 
+"voice_assistant_room_4508"}
+    23:52:55.979 DEBUG… livekit.….deepgram Established new Deepgram STT        
+                                           WebSocket connection:               
+                                           {"headers": {"dg-project-id": 
+"35e7fd36-0ac6-46ae-9cc7-6e75546d7aff", "dg-request-id": 
+"01a00183-59f7-7ad3-8d42-92bf10e19690", "Date": "Fri, 14 Aug 2026 18:23:00 
+GMT"}, "room": "voice_assistant_room_4508"}
+    23:52:56.246 INFO … agent              [DEBUG-LLM]                         
+                                           metrics=type='llm_metrics'          
+                                           label='livekit.plugins.google.llm…  
+                                           request_id='068935d9490b'           
+                                           timestamp=1786731776.2458627        
+                                           duration=1.0886430999998993         
+                                           ttft=0.6445122999975865             
+                                           cancelled=False                     
+                                           completion_tokens=180               
+                                           prompt_tokens=678                   
+                                           prompt_cached_tokens=0              
+                                           total_tokens=858                    
+                                           tokens_per_second=165.34344451364…  
+                                           speech_id='speech_31dac5446280'     
+                                           metadata=Metadata(model_name='gem…  
+                                           model_provider='Gemini')            
+                                {"room": "voice_assistant_room_4508"}
+    23:52:56.359 DEBUG… livekit.agents     sent text to tts  
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 
+    23:55:51.841 DEBUG… livekit.agents     job exiting  
+                                         {"reason": "room disconnected", "tid":
+24936, "job_id": "AJ_cNVVesEiJj3U", "room_id": "RM_iMv8JfCwQpZF"}
+                                         {"text": "I am your personal finance 
+specialist. I already have your context from our conversation, and I'd be glad 

@@ -1,0 +1,1910 @@
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\cli\cli.py", line 951, in emit
+    self.c.console.print(extra_line)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 1697, in print
+    with self:
+         ^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 870, in __exit__
+    self._exit_buffer()
+    ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 826, in _exit_buffer
+    self._check_buffer()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 2042, in _check_buffer
+    self._write_buffer()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 2078, in _write_buffer
+    legacy_windows_render(buffer, LegacyWindowsTerm(self.file))
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_windows_renderer.py", line 17, in legacy_windows_render
+    term.write_styled(text, style)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_win32_console.py", line 441, in write_styled
+    self.write_text(text)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_win32_console.py", line 402, in write_text
+    self.write(text)
+    ~~~~~~~~~~^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u20b9' in position 35: character maps to <undefined>
+Call stack:
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 1015, in _bootstrap
+    self._bootstrap_inner()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 1044, in _bootstrap_inner
+    self.run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 995, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\ipc\job_proc_lazy_main.py", line 418, in thread_main
+    client.run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\ipc\proc_client.py", line 70, in run
+    loop.run_until_complete(self._task)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 712, in run_until_complete
+    self.run_forever()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 683, in run_forever
+    self._run_once()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 2060, in _run_once
+    handle._run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\tts\stream_pacer.py", line 149, in _send_task
+    logger.debug(
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1508, in debug
+    self._log(DEBUG, msg, args, **kwargs)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1665, in _log
+    self.handle(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1681, in handle
+    self.callHandlers(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1737, in callHandlers
+    hdlr.handle(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1027, in handle
+    self.emit(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\cli\cli.py", line 957, in emit
+    self.handleError(record)
+Message: 'sent text to tts'
+Arguments: ()
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\cli\cli.py", line 944, in emit
+    self.c.console.print(output)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 1697, in print
+    with self:
+         ^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 870, in __exit__
+    self._exit_buffer()
+    ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 826, in _exit_buffer
+    self._check_buffer()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 2042, in _check_buffer
+    self._write_buffer()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 2078, in _write_buffer
+    legacy_windows_render(buffer, LegacyWindowsTerm(self.file))
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_windows_renderer.py", line 17, in legacy_windows_render
+    term.write_styled(text, style)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_win32_console.py", line 441, in write_styled
+    self.write_text(text)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_win32_console.py", line 402, in write_text
+    self.write(text)
+    ~~~~~~~~~~^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u20b9' in position 35: character maps to <undefined>
+Call stack:
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 1015, in _bootstrap
+    self._bootstrap_inner()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 1044, in _bootstrap_inner
+    self.run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 995, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\ipc\job_proc_lazy_main.py", line 418, in thread_main
+    client.run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\ipc\proc_client.py", line 70, in run
+    loop.run_until_complete(self._task)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 712, in run_until_complete
+    self.run_forever()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 683, in run_forever
+    self._run_once()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 2060, in _run_once
+    handle._run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\tts\stream_pacer.py", line 149, in _send_task
+    logger.debug(
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1508, in debug
+    self._log(DEBUG, msg, args, **kwargs)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1665, in _log
+    self.handle(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1681, in handle
+    self.callHandlers(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1737, in callHandlers
+    hdlr.handle(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1027, in handle
+    self.emit(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\cli\cli.py", line 957, in emit
+    self.handleError(record)
+Message: 'sent text to tts'
+Arguments: ()
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\cli\cli.py", line 944, in emit
+    self.c.console.print(output)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 1697, in print
+    with self:
+         ^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 870, in __exit__
+    self._exit_buffer()
+    ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 826, in _exit_buffer
+    self._check_buffer()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 2042, in _check_buffer
+    self._write_buffer()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 2078, in _write_buffer
+    legacy_windows_render(buffer, LegacyWindowsTerm(self.file))
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_windows_renderer.py", line 17, in legacy_windows_render
+    term.write_styled(text, style)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_win32_console.py", line 441, in write_styled
+    self.write_text(text)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_win32_console.py", line 402, in write_text
+    self.write(text)
+    ~~~~~~~~~~^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u20b9' in position 35: character maps to <undefined>
+Call stack:
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 1015, in _bootstrap
+    self._bootstrap_inner()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 1044, in _bootstrap_inner
+    self.run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 995, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\ipc\job_proc_lazy_main.py", line 418, in thread_main
+    client.run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\ipc\proc_client.py", line 70, in run
+    loop.run_until_complete(self._task)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 712, in run_until_complete
+    self.run_forever()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 683, in run_forever
+    self._run_once()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 2060, in _run_once
+    handle._run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\stt\stt.py", line 384, in _metrics_monitor_task
+    self._stt.emit("metrics_collected", stt_metrics)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\rtc\event_emitter.py", line 58, in emit
+    callback(*callback_args)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\voice\agent_activity.py", line 1162, in _on_metrics_collected
+    self._session.emit("metrics_collected", MetricsCollectedEvent(metrics=ev))
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\voice\agent_session.py", line 428, in emit
+    super().emit(event, arg)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\rtc\event_emitter.py", line 58, in emit
+    callback(*callback_args)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\src\agent.py", line 475, in on_metrics_collected
+    logger.info(
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1520, in info
+    self._log(INFO, msg, args, **kwargs)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1665, in _log
+    self.handle(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1681, in handle
+    self.callHandlers(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1737, in callHandlers
+    hdlr.handle(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1027, in handle
+    self.emit(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\cli\cli.py", line 957, in emit
+    self.handleError(record)
+Message: '[DEBUG-%s] metrics=%s'
+Arguments: ('STT', STTMetrics(type='stt_metrics', label='livekit.plugins.deepgram.stt.STT', request_id='01a0016c-e93b-7471-983b-1d94e1db73a6', timestamp=1786730309.4977212, duration=0.0, audio_duration=4.94999999999999, streamed=True, metadata=Metadata(model_name='nova-3', model_provider='Deepgram')))
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\cli\cli.py", line 944, in emit
+    self.c.console.print(output)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 1697, in print
+    with self:
+         ^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 870, in __exit__
+    self._exit_buffer()
+    ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 826, in _exit_buffer
+    self._check_buffer()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 2042, in _check_buffer
+    self._write_buffer()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 2078, in _write_buffer
+    legacy_windows_render(buffer, LegacyWindowsTerm(self.file))
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_windows_renderer.py", line 17, in legacy_windows_render
+    term.write_styled(text, style)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_win32_console.py", line 441, in write_styled
+    self.write_text(text)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_win32_console.py", line 402, in write_text
+    self.write(text)
+    ~~~~~~~~~~^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u20b9' in position 35: character maps to <undefined>
+Call stack:
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 1015, in _bootstrap
+    self._bootstrap_inner()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 1044, in _bootstrap_inner
+    self.run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 995, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\ipc\job_proc_lazy_main.py", line 418, in thread_main
+    client.run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\ipc\proc_client.py", line 70, in run
+    loop.run_until_complete(self._task)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 712, in run_until_complete
+    self.run_forever()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 683, in run_forever
+    self._run_once()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 2060, in _run_once
+    handle._run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\voice\agent_activity.py", line 2847, in _on_false_interruption
+    logger.debug("resumed false interrupted speech", extra={"timeout": timeout})
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1508, in debug
+    self._log(DEBUG, msg, args, **kwargs)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1665, in _log
+    self.handle(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1681, in handle
+    self.callHandlers(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1737, in callHandlers
+    hdlr.handle(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1027, in handle
+    self.emit(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\cli\cli.py", line 957, in emit
+    self.handleError(record)
+Message: 'resumed false interrupted speech'
+Arguments: ()
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\cli\cli.py", line 944, in emit
+    self.c.console.print(output)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 1697, in print
+    with self:
+         ^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 870, in __exit__
+    self._exit_buffer()
+    ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 826, in _exit_buffer
+    self._check_buffer()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 2042, in _check_buffer
+    self._write_buffer()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 2078, in _write_buffer
+    legacy_windows_render(buffer, LegacyWindowsTerm(self.file))
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_windows_renderer.py", line 17, in legacy_windows_render
+    term.write_styled(text, style)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_win32_console.py", line 441, in write_styled
+    self.write_text(text)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_win32_console.py", line 402, in write_text
+    self.write(text)
+    ~~~~~~~~~~^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u20b9' in position 35: character maps to <undefined>
+Call stack:
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 1015, in _bootstrap
+    self._bootstrap_inner()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 1044, in _bootstrap_inner
+    self.run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 995, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\ipc\job_proc_lazy_main.py", line 418, in thread_main
+    client.run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\ipc\proc_client.py", line 70, in run
+    loop.run_until_complete(self._task)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 712, in run_until_complete
+    self.run_forever()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 683, in run_forever
+    self._run_once()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 2060, in _run_once
+    handle._run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\tts\tts.py", line 570, in _metrics_monitor_task
+    _emit_metrics()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\tts\tts.py", line 554, in _emit_metrics
+    self._tts.emit("metrics_collected", metrics)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\rtc\event_emitter.py", line 58, in emit
+    callback(*callback_args)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\voice\agent_activity.py", line 1162, in _on_metrics_collected
+    self._session.emit("metrics_collected", MetricsCollectedEvent(metrics=ev))
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\voice\agent_session.py", line 428, in emit
+    super().emit(event, arg)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\rtc\event_emitter.py", line 58, in emit
+    callback(*callback_args)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\src\agent.py", line 475, in on_metrics_collected
+    logger.info(
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1520, in info
+    self._log(INFO, msg, args, **kwargs)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1665, in _log
+    self.handle(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1681, in handle
+    self.callHandlers(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1737, in callHandlers
+    hdlr.handle(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1027, in handle
+    self.emit(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\cli\cli.py", line 957, in emit
+    self.handleError(record)
+Message: '[DEBUG-%s] metrics=%s'
+Arguments: ('TTS', TTSMetrics(type='tts_metrics', label='livekit.plugins.murf.tts.TTS', request_id='882ec723a770', timestamp=1786730311.1834533, ttfb=0.3299212999991141, duration=5.244362299999921, audio_duration=48.200000000000145, cancelled=False, characters_count=669, streamed=True, segment_id='edbea384dc75', speech_id='speech_2a395d3a730f', metadata=Metadata(model_name='FALCON', model_provider='Murf')))
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\cli\cli.py", line 944, in emit
+    self.c.console.print(output)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 1697, in print
+    with self:
+         ^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 870, in __exit__
+    self._exit_buffer()
+    ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 826, in _exit_buffer
+    self._check_buffer()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 2042, in _check_buffer
+    self._write_buffer()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 2078, in _write_buffer
+    legacy_windows_render(buffer, LegacyWindowsTerm(self.file))
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_windows_renderer.py", line 17, in legacy_windows_render
+    term.write_styled(text, style)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_win32_console.py", line 441, in write_styled
+    self.write_text(text)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_win32_console.py", line 402, in write_text
+    self.write(text)
+    ~~~~~~~~~~^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u20b9' in position 35: character maps to <undefined>
+Call stack:
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 1015, in _bootstrap
+    self._bootstrap_inner()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 1044, in _bootstrap_inner
+    self.run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 995, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\ipc\job_proc_lazy_main.py", line 418, in thread_main
+    client.run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\ipc\proc_client.py", line 70, in run
+    loop.run_until_complete(self._task)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 712, in run_until_complete
+    self.run_forever()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 683, in run_forever
+    self._run_once()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 2060, in _run_once
+    handle._run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\utils\log.py", line 17, in async_fn_logs
+    return await fn(*args, **kwargs)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\voice\audio_recognition.py", line 713, in _stt_task
+    await self._on_stt_event(ev)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\voice\audio_recognition.py", line 382, in _on_stt_event
+    self._hooks.on_final_transcript(
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\voice\agent_activity.py", line 1387, in on_final_transcript
+    self._session._user_input_transcribed(
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\voice\agent_session.py", line 1405, in _user_input_transcribed
+    self.emit("user_input_transcribed", ev)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\voice\agent_session.py", line 428, in emit
+    super().emit(event, arg)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\rtc\event_emitter.py", line 58, in emit
+    callback(*callback_args)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\src\agent.py", line 457, in on_user_input_transcribed
+    logger.info(
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1520, in info
+    self._log(INFO, msg, args, **kwargs)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1665, in _log
+    self.handle(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1681, in handle
+    self.callHandlers(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1737, in callHandlers
+    hdlr.handle(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1027, in handle
+    self.emit(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\cli\cli.py", line 957, in emit
+    self.handleError(record)
+Message: '[DEBUG-STT] final transcript=%r language=%s'
+Arguments: ('Hola.', 'es')
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\cli\cli.py", line 944, in emit
+    self.c.console.print(output)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 1697, in print
+    with self:
+         ^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 870, in __exit__
+    self._exit_buffer()
+    ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 826, in _exit_buffer
+    self._check_buffer()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 2042, in _check_buffer
+    self._write_buffer()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 2078, in _write_buffer
+    legacy_windows_render(buffer, LegacyWindowsTerm(self.file))
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_windows_renderer.py", line 17, in legacy_windows_render
+    term.write_styled(text, style)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_win32_console.py", line 441, in write_styled
+    self.write_text(text)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_win32_console.py", line 402, in write_text
+    self.write(text)
+    ~~~~~~~~~~^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u20b9' in position 35: character maps to <undefined>
+Call stack:
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 1015, in _bootstrap
+    self._bootstrap_inner()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 1044, in _bootstrap_inner
+    self.run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 995, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\ipc\job_proc_lazy_main.py", line 418, in thread_main
+    client.run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\ipc\proc_client.py", line 70, in run
+    loop.run_until_complete(self._task)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 712, in run_until_complete
+    self.run_forever()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 683, in run_forever
+    self._run_once()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 2060, in _run_once
+    handle._run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\utils\log.py", line 17, in async_fn_logs
+    return await fn(*args, **kwargs)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\voice\audio_recognition.py", line 713, in _stt_task
+    await self._on_stt_event(ev)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\voice\audio_recognition.py", line 391, in _on_stt_event
+    logger.debug("received user transcript", extra=extra)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1508, in debug
+    self._log(DEBUG, msg, args, **kwargs)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1665, in _log
+    self.handle(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1681, in handle
+    self.callHandlers(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1737, in callHandlers
+    hdlr.handle(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1027, in handle
+    self.emit(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\cli\cli.py", line 957, in emit
+    self.handleError(record)
+Message: 'received user transcript'
+Arguments: ()
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\cli\cli.py", line 944, in emit
+    self.c.console.print(output)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 1697, in print
+    with self:
+         ^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 870, in __exit__
+    self._exit_buffer()
+    ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 826, in _exit_buffer
+    self._check_buffer()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 2042, in _check_buffer
+    self._write_buffer()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 2078, in _write_buffer
+    legacy_windows_render(buffer, LegacyWindowsTerm(self.file))
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_windows_renderer.py", line 17, in legacy_windows_render
+    term.write_styled(text, style)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_win32_console.py", line 441, in write_styled
+    self.write_text(text)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_win32_console.py", line 402, in write_text
+    self.write(text)
+    ~~~~~~~~~~^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u20b9' in position 35: character maps to <undefined>
+Call stack:
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 1015, in _bootstrap
+    self._bootstrap_inner()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 1044, in _bootstrap_inner
+    self.run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 995, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\ipc\job_proc_lazy_main.py", line 418, in thread_main
+    client.run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\ipc\proc_client.py", line 70, in run
+    loop.run_until_complete(self._task)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 712, in run_until_complete
+    self.run_forever()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 683, in run_forever
+    self._run_once()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 2060, in _run_once
+    handle._run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\voice\agent_activity.py", line 434, in _context_aware_coro
+    return await coro
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\utils\log.py", line 17, in async_fn_logs
+    return await fn(*args, **kwargs)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\voice\agent_activity.py", line 1913, in _pipeline_reply_task
+    await self._pipeline_reply_task_impl(
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\voice\agent_activity.py", line 2195, in _pipeline_reply_task_impl
+    self._session._conversation_item_added(msg)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\voice\agent_session.py", line 1409, in _conversation_item_added
+    self.emit("conversation_item_added", ConversationItemAddedEvent(item=message))
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\voice\agent_session.py", line 428, in emit
+    super().emit(event, arg)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\rtc\event_emitter.py", line 58, in emit
+    callback(*callback_args)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\src\agent.py", line 466, in on_conversation_item_added
+    logger.info(
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1520, in info
+    self._log(INFO, msg, args, **kwargs)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1665, in _log
+    self.handle(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1681, in handle
+    self.callHandlers(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1737, in callHandlers
+    hdlr.handle(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1027, in handle
+    self.emit(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\cli\cli.py", line 957, in emit
+    self.handleError(record)
+Message: '[DEBUG-LLM] assistant text committed after playout=%r'
+Arguments: ('Namaste! I am your Bharat',)
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\cli\cli.py", line 944, in emit
+    self.c.console.print(output)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 1697, in print
+    with self:
+         ^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 870, in __exit__
+    self._exit_buffer()
+    ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 826, in _exit_buffer
+    self._check_buffer()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 2042, in _check_buffer
+    self._write_buffer()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 2078, in _write_buffer
+    legacy_windows_render(buffer, LegacyWindowsTerm(self.file))
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_windows_renderer.py", line 17, in legacy_windows_render
+    term.write_styled(text, style)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_win32_console.py", line 441, in write_styled
+    self.write_text(text)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_win32_console.py", line 402, in write_text
+    self.write(text)
+    ~~~~~~~~~~^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u20b9' in position 35: character maps to <undefined>
+Call stack:
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 1015, in _bootstrap
+    self._bootstrap_inner()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 1044, in _bootstrap_inner
+    self.run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 995, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\ipc\job_proc_lazy_main.py", line 418, in thread_main
+    client.run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\ipc\proc_client.py", line 70, in run
+    loop.run_until_complete(self._task)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 712, in run_until_complete
+    self.run_forever()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 683, in run_forever
+    self._run_once()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 2060, in _run_once
+    handle._run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\stt\stt.py", line 384, in _metrics_monitor_task
+    self._stt.emit("metrics_collected", stt_metrics)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\rtc\event_emitter.py", line 58, in emit
+    callback(*callback_args)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\voice\agent_activity.py", line 1162, in _on_metrics_collected
+    self._session.emit("metrics_collected", MetricsCollectedEvent(metrics=ev))
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\voice\agent_session.py", line 428, in emit
+    super().emit(event, arg)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\rtc\event_emitter.py", line 58, in emit
+    callback(*callback_args)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\src\agent.py", line 475, in on_metrics_collected
+    logger.info(
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1520, in info
+    self._log(INFO, msg, args, **kwargs)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1665, in _log
+    self.handle(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1681, in handle
+    self.callHandlers(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1737, in callHandlers
+    hdlr.handle(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1027, in handle
+    self.emit(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\cli\cli.py", line 957, in emit
+    self.handleError(record)
+Message: '[DEBUG-%s] metrics=%s'
+Arguments: ('STT', STTMetrics(type='stt_metrics', label='livekit.plugins.deepgram.stt.STT', request_id='01a0016c-e93b-7471-983b-1d94e1db73a6', timestamp=1786730314.5021214, duration=0.0, audio_duration=5.04999999999999, streamed=True, metadata=Metadata(model_name='nova-3', model_provider='Deepgram')))
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\cli\cli.py", line 944, in emit
+    self.c.console.print(output)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 1697, in print
+    with self:
+         ^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 870, in __exit__
+    self._exit_buffer()
+    ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 826, in _exit_buffer
+    self._check_buffer()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 2042, in _check_buffer
+    self._write_buffer()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 2078, in _write_buffer
+    legacy_windows_render(buffer, LegacyWindowsTerm(self.file))
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_windows_renderer.py", line 17, in legacy_windows_render
+    term.write_styled(text, style)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_win32_console.py", line 441, in write_styled
+    self.write_text(text)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_win32_console.py", line 402, in write_text
+    self.write(text)
+    ~~~~~~~~~~^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u20b9' in position 35: character maps to <undefined>
+Call stack:
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 1015, in _bootstrap
+    self._bootstrap_inner()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 1044, in _bootstrap_inner
+    self.run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 995, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\ipc\job_proc_lazy_main.py", line 418, in thread_main
+    client.run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\ipc\proc_client.py", line 70, in run
+    loop.run_until_complete(self._task)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 712, in run_until_complete
+    self.run_forever()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 683, in run_forever
+    self._run_once()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 2060, in _run_once
+    handle._run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\utils\log.py", line 17, in async_fn_logs
+    return await fn(*args, **kwargs)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\voice\audio_recognition.py", line 574, in _bounce_eou_task
+    end_of_turn_probability = await turn_detector.predict_end_of_turn(
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\plugins\turn_detector\multilingual.py", line 71, in predict_end_of_turn
+    return await super().predict_end_of_turn(chat_ctx, timeout=timeout)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\plugins\turn_detector\base.py", line 289, in predict_end_of_turn
+    logger.debug("eou prediction", extra=result_json)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1508, in debug
+    self._log(DEBUG, msg, args, **kwargs)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1665, in _log
+    self.handle(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1681, in handle
+    self.callHandlers(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1737, in callHandlers
+    hdlr.handle(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1027, in handle
+    self.emit(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\cli\cli.py", line 957, in emit
+    self.handleError(record)
+Message: 'eou prediction'
+Arguments: ()
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\cli\cli.py", line 944, in emit
+    self.c.console.print(output)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 1697, in print
+    with self:
+         ^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 870, in __exit__
+    self._exit_buffer()
+    ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 826, in _exit_buffer
+    self._check_buffer()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 2042, in _check_buffer
+    self._write_buffer()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 2078, in _write_buffer
+    legacy_windows_render(buffer, LegacyWindowsTerm(self.file))
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_windows_renderer.py", line 17, in legacy_windows_render
+    term.write_styled(text, style)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_win32_console.py", line 441, in write_styled
+    self.write_text(text)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_win32_console.py", line 402, in write_text
+    self.write(text)
+    ~~~~~~~~~~^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u20b9' in position 35: character maps to <undefined>
+Call stack:
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 1015, in _bootstrap
+    self._bootstrap_inner()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 1044, in _bootstrap_inner
+    self.run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 995, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\ipc\job_proc_lazy_main.py", line 418, in thread_main
+    client.run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\ipc\proc_client.py", line 70, in run
+    loop.run_until_complete(self._task)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 712, in run_until_complete
+    self.run_forever()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 683, in run_forever
+    self._run_once()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 2060, in _run_once
+    handle._run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\tts\stream_pacer.py", line 149, in _send_task
+    logger.debug(
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1508, in debug
+    self._log(DEBUG, msg, args, **kwargs)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1665, in _log
+    self.handle(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1681, in handle
+    self.callHandlers(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1737, in callHandlers
+    hdlr.handle(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1027, in handle
+    self.emit(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\cli\cli.py", line 957, in emit
+    self.handleError(record)
+Message: 'sent text to tts'
+Arguments: ()
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\cli\cli.py", line 944, in emit
+    self.c.console.print(output)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 1697, in print
+    with self:
+         ^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 870, in __exit__
+    self._exit_buffer()
+    ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 826, in _exit_buffer
+    self._check_buffer()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 2042, in _check_buffer
+    self._write_buffer()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 2078, in _write_buffer
+    legacy_windows_render(buffer, LegacyWindowsTerm(self.file))
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_windows_renderer.py", line 17, in legacy_windows_render
+    term.write_styled(text, style)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_win32_console.py", line 441, in write_styled
+    self.write_text(text)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_win32_console.py", line 402, in write_text
+    self.write(text)
+    ~~~~~~~~~~^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u20b9' in position 35: character maps to <undefined>
+Call stack:
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 1015, in _bootstrap
+    self._bootstrap_inner()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 1044, in _bootstrap_inner
+    self.run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 995, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\ipc\job_proc_lazy_main.py", line 418, in thread_main
+    client.run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\ipc\proc_client.py", line 70, in run
+    loop.run_until_complete(self._task)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 712, in run_until_complete
+    self.run_forever()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 683, in run_forever
+    self._run_once()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 2060, in _run_once
+    handle._run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\plugins\murf\tts.py", line 351, in _sentence_stream_task
+    logger.info(
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1520, in info
+    self._log(INFO, msg, args, **kwargs)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1665, in _log
+    self.handle(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1681, in handle
+    self.callHandlers(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1737, in callHandlers
+    hdlr.handle(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1027, in handle
+    self.emit(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\cli\cli.py", line 957, in emit
+    self.handleError(record)
+Message: '[Murf TTS] Stream started - context_id=%s, voice=%s, style=%s, locale=%s, min_buffer_size=%d, max_buffer_delay_in_ms=%d, endpoint=%s'
+Arguments: ('759d6cd650ba', 'Samar', 'Conversation', None, 3, 0, 'https://global.api.murf.ai')
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\cli\cli.py", line 944, in emit
+    self.c.console.print(output)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 1697, in print
+    with self:
+         ^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 870, in __exit__
+    self._exit_buffer()
+    ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 826, in _exit_buffer
+    self._check_buffer()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 2042, in _check_buffer
+    self._write_buffer()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 2078, in _write_buffer
+    legacy_windows_render(buffer, LegacyWindowsTerm(self.file))
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_windows_renderer.py", line 17, in legacy_windows_render
+    term.write_styled(text, style)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_win32_console.py", line 441, in write_styled
+    self.write_text(text)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_win32_console.py", line 402, in write_text
+    self.write(text)
+    ~~~~~~~~~~^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u20b9' in position 35: character maps to <undefined>
+Call stack:
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 1015, in _bootstrap
+    self._bootstrap_inner()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 1044, in _bootstrap_inner
+    self.run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 995, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\ipc\job_proc_lazy_main.py", line 418, in thread_main
+    client.run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\ipc\proc_client.py", line 70, in run
+    loop.run_until_complete(self._task)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 712, in run_until_complete
+    self.run_forever()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 683, in run_forever
+    self._run_once()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 2060, in _run_once
+    handle._run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\utils\log.py", line 17, in async_fn_logs
+    return await fn(*args, **kwargs)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\llm\llm.py", line 348, in _metrics_monitor_task
+    self._llm.emit("metrics_collected", metrics)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\rtc\event_emitter.py", line 58, in emit
+    callback(*callback_args)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\voice\agent_activity.py", line 1162, in _on_metrics_collected
+    self._session.emit("metrics_collected", MetricsCollectedEvent(metrics=ev))
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\voice\agent_session.py", line 428, in emit
+    super().emit(event, arg)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\rtc\event_emitter.py", line 58, in emit
+    callback(*callback_args)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\src\agent.py", line 475, in on_metrics_collected
+    logger.info(
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1520, in info
+    self._log(INFO, msg, args, **kwargs)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1665, in _log
+    self.handle(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1681, in handle
+    self.callHandlers(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1737, in callHandlers
+    hdlr.handle(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1027, in handle
+    self.emit(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\cli\cli.py", line 957, in emit
+    self.handleError(record)
+Message: '[DEBUG-%s] metrics=%s'
+Arguments: ('LLM', LLMMetrics(type='llm_metrics', label='livekit.plugins.google.llm.LLM', request_id='87e037867aca', timestamp=1786730316.939617, duration=1.3215775999997277, ttft=1.2546837999980198, cancelled=False, completion_tokens=18, prompt_tokens=512, prompt_cached_tokens=0, total_tokens=530, tokens_per_second=13.620085570460418, speech_id='speech_b3c890760e36', metadata=Metadata(model_name='gemini-3.5-flash-lite', model_provider='Gemini')))
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\cli\cli.py", line 944, in emit
+    self.c.console.print(output)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 1697, in print
+    with self:
+         ^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 870, in __exit__
+    self._exit_buffer()
+    ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 826, in _exit_buffer
+    self._check_buffer()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 2042, in _check_buffer
+    self._write_buffer()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 2078, in _write_buffer
+    legacy_windows_render(buffer, LegacyWindowsTerm(self.file))
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_windows_renderer.py", line 17, in legacy_windows_render
+    term.write_styled(text, style)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_win32_console.py", line 441, in write_styled
+    self.write_text(text)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_win32_console.py", line 402, in write_text
+    self.write(text)
+    ~~~~~~~~~~^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u20b9' in position 35: character maps to <undefined>
+Call stack:
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 1015, in _bootstrap
+    self._bootstrap_inner()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 1044, in _bootstrap_inner
+    self.run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 995, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\ipc\job_proc_lazy_main.py", line 418, in thread_main
+    client.run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\ipc\proc_client.py", line 70, in run
+    loop.run_until_complete(self._task)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 712, in run_until_complete
+    self.run_forever()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 683, in run_forever
+    self._run_once()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 2060, in _run_once
+    handle._run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\plugins\murf\tts.py", line 412, in _recv_task
+    logger.info("[Murf TTS] Murf TTFB (first sentence to first audio): %.2f ms", ttfb_ms)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1520, in info
+    self._log(INFO, msg, args, **kwargs)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1665, in _log
+    self.handle(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1681, in handle
+    self.callHandlers(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1737, in callHandlers
+    hdlr.handle(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1027, in handle
+    self.emit(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\cli\cli.py", line 957, in emit
+    self.handleError(record)
+Message: '[Murf TTS] Murf TTFB (first sentence to first audio): %.2f ms'
+Arguments: (118.02289999832283,)
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\cli\cli.py", line 944, in emit
+    self.c.console.print(output)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 1697, in print
+    with self:
+         ^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 870, in __exit__
+    self._exit_buffer()
+    ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 826, in _exit_buffer
+    self._check_buffer()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 2042, in _check_buffer
+    self._write_buffer()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 2078, in _write_buffer
+    legacy_windows_render(buffer, LegacyWindowsTerm(self.file))
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_windows_renderer.py", line 17, in legacy_windows_render
+    term.write_styled(text, style)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_win32_console.py", line 441, in write_styled
+    self.write_text(text)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_win32_console.py", line 402, in write_text
+    self.write(text)
+    ~~~~~~~~~~^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u20b9' in position 35: character maps to <undefined>
+Call stack:
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 1015, in _bootstrap
+    self._bootstrap_inner()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 1044, in _bootstrap_inner
+    self.run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 995, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\ipc\job_proc_lazy_main.py", line 418, in thread_main
+    client.run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\ipc\proc_client.py", line 70, in run
+    loop.run_until_complete(self._task)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 712, in run_until_complete
+    self.run_forever()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 683, in run_forever
+    self._run_once()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 2060, in _run_once
+    handle._run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\tts\stream_pacer.py", line 149, in _send_task
+    logger.debug(
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1508, in debug
+    self._log(DEBUG, msg, args, **kwargs)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1665, in _log
+    self.handle(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1681, in handle
+    self.callHandlers(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1737, in callHandlers
+    hdlr.handle(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1027, in handle
+    self.emit(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\cli\cli.py", line 957, in emit
+    self.handleError(record)
+Message: 'sent text to tts'
+Arguments: ()
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\cli\cli.py", line 944, in emit
+    self.c.console.print(output)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 1697, in print
+    with self:
+         ^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 870, in __exit__
+    self._exit_buffer()
+    ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 826, in _exit_buffer
+    self._check_buffer()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 2042, in _check_buffer
+    self._write_buffer()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 2078, in _write_buffer
+    legacy_windows_render(buffer, LegacyWindowsTerm(self.file))
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_windows_renderer.py", line 17, in legacy_windows_render
+    term.write_styled(text, style)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_win32_console.py", line 441, in write_styled
+    self.write_text(text)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_win32_console.py", line 402, in write_text
+    self.write(text)
+    ~~~~~~~~~~^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u20b9' in position 35: character maps to <undefined>
+Call stack:
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 1015, in _bootstrap
+    self._bootstrap_inner()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 1044, in _bootstrap_inner
+    self.run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 995, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\ipc\job_proc_lazy_main.py", line 418, in thread_main
+    client.run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\ipc\proc_client.py", line 70, in run
+    loop.run_until_complete(self._task)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 712, in run_until_complete
+    self.run_forever()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 683, in run_forever
+    self._run_once()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 2060, in _run_once
+    handle._run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\tts\tts.py", line 859, in _flush
+    logger.debug("flush audio emitter due to slow audio generation")
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1508, in debug
+    self._log(DEBUG, msg, args, **kwargs)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1665, in _log
+    self.handle(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1681, in handle
+    self.callHandlers(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1737, in callHandlers
+    hdlr.handle(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1027, in handle
+    self.emit(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\cli\cli.py", line 957, in emit
+    self.handleError(record)
+Message: 'flush audio emitter due to slow audio generation'
+Arguments: ()
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\cli\cli.py", line 944, in emit
+    self.c.console.print(output)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 1697, in print
+    with self:
+         ^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 870, in __exit__
+    self._exit_buffer()
+    ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 826, in _exit_buffer
+    self._check_buffer()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 2042, in _check_buffer
+    self._write_buffer()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 2078, in _write_buffer
+    legacy_windows_render(buffer, LegacyWindowsTerm(self.file))
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_windows_renderer.py", line 17, in legacy_windows_render
+    term.write_styled(text, style)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_win32_console.py", line 441, in write_styled
+    self.write_text(text)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_win32_console.py", line 402, in write_text
+    self.write(text)
+    ~~~~~~~~~~^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u20b9' in position 35: character maps to <undefined>
+Call stack:
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 1015, in _bootstrap
+    self._bootstrap_inner()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 1044, in _bootstrap_inner
+    self.run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 995, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\ipc\job_proc_lazy_main.py", line 418, in thread_main
+    client.run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\ipc\proc_client.py", line 70, in run
+    loop.run_until_complete(self._task)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 712, in run_until_complete
+    self.run_forever()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 683, in run_forever
+    self._run_once()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 2060, in _run_once
+    handle._run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\tts\tts.py", line 859, in _flush
+    logger.debug("flush audio emitter due to slow audio generation")
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1508, in debug
+    self._log(DEBUG, msg, args, **kwargs)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1665, in _log
+    self.handle(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1681, in handle
+    self.callHandlers(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1737, in callHandlers
+    hdlr.handle(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1027, in handle
+    self.emit(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\cli\cli.py", line 957, in emit
+    self.handleError(record)
+Message: 'flush audio emitter due to slow audio generation'
+Arguments: ()
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\cli\cli.py", line 944, in emit
+    self.c.console.print(output)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 1697, in print
+    with self:
+         ^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 870, in __exit__
+    self._exit_buffer()
+    ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 826, in _exit_buffer
+    self._check_buffer()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 2042, in _check_buffer
+    self._write_buffer()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 2078, in _write_buffer
+    legacy_windows_render(buffer, LegacyWindowsTerm(self.file))
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_windows_renderer.py", line 17, in legacy_windows_render
+    term.write_styled(text, style)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_win32_console.py", line 441, in write_styled
+    self.write_text(text)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_win32_console.py", line 402, in write_text
+    self.write(text)
+    ~~~~~~~~~~^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u20b9' in position 35: character maps to <undefined>
+Call stack:
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 1015, in _bootstrap
+    self._bootstrap_inner()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 1044, in _bootstrap_inner
+    self.run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 995, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\ipc\job_proc_lazy_main.py", line 418, in thread_main
+    client.run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\ipc\proc_client.py", line 70, in run
+    loop.run_until_complete(self._task)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 712, in run_until_complete
+    self.run_forever()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 683, in run_forever
+    self._run_once()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 2060, in _run_once
+    handle._run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\tts\tts.py", line 570, in _metrics_monitor_task
+    _emit_metrics()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\tts\tts.py", line 554, in _emit_metrics
+    self._tts.emit("metrics_collected", metrics)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\rtc\event_emitter.py", line 58, in emit
+    callback(*callback_args)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\voice\agent_activity.py", line 1162, in _on_metrics_collected
+    self._session.emit("metrics_collected", MetricsCollectedEvent(metrics=ev))
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\voice\agent_session.py", line 428, in emit
+    super().emit(event, arg)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\rtc\event_emitter.py", line 58, in emit
+    callback(*callback_args)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\src\agent.py", line 475, in on_metrics_collected
+    logger.info(
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1520, in info
+    self._log(INFO, msg, args, **kwargs)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1665, in _log
+    self.handle(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1681, in handle
+    self.callHandlers(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1737, in callHandlers
+    hdlr.handle(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1027, in handle
+    self.emit(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\cli\cli.py", line 957, in emit
+    self.handleError(record)
+Message: '[DEBUG-%s] metrics=%s'
+Arguments: ('TTS', TTSMetrics(type='tts_metrics', label='livekit.plugins.murf.tts.TTS', request_id='459396c27e5d', timestamp=1786730318.654324, ttfb=0.20018569999956526, duration=1.7482932999992045, audio_duration=6.120000000000003, cancelled=False, characters_count=90, streamed=True, segment_id='759d6cd650ba', speech_id='speech_b3c890760e36', metadata=Metadata(model_name='FALCON', model_provider='Murf')))
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\cli\cli.py", line 944, in emit
+    self.c.console.print(output)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 1697, in print
+    with self:
+         ^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 870, in __exit__
+    self._exit_buffer()
+    ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 826, in _exit_buffer
+    self._check_buffer()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 2042, in _check_buffer
+    self._write_buffer()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 2078, in _write_buffer
+    legacy_windows_render(buffer, LegacyWindowsTerm(self.file))
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_windows_renderer.py", line 17, in legacy_windows_render
+    term.write_styled(text, style)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_win32_console.py", line 441, in write_styled
+    self.write_text(text)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_win32_console.py", line 402, in write_text
+    self.write(text)
+    ~~~~~~~~~~^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u20b9' in position 35: character maps to <undefined>
+Call stack:
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 1015, in _bootstrap
+    self._bootstrap_inner()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 1044, in _bootstrap_inner
+    self.run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 995, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\ipc\job_proc_lazy_main.py", line 418, in thread_main
+    client.run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\ipc\proc_client.py", line 70, in run
+    loop.run_until_complete(self._task)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 712, in run_until_complete
+    self.run_forever()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 683, in run_forever
+    self._run_once()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 2060, in _run_once
+    handle._run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\stt\stt.py", line 384, in _metrics_monitor_task
+    self._stt.emit("metrics_collected", stt_metrics)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\rtc\event_emitter.py", line 58, in emit
+    callback(*callback_args)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\voice\agent_activity.py", line 1162, in _on_metrics_collected
+    self._session.emit("metrics_collected", MetricsCollectedEvent(metrics=ev))
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\voice\agent_session.py", line 428, in emit
+    super().emit(event, arg)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\rtc\event_emitter.py", line 58, in emit
+    callback(*callback_args)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\src\agent.py", line 475, in on_metrics_collected
+    logger.info(
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1520, in info
+    self._log(INFO, msg, args, **kwargs)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1665, in _log
+    self.handle(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1681, in handle
+    self.callHandlers(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1737, in callHandlers
+    hdlr.handle(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1027, in handle
+    self.emit(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\cli\cli.py", line 957, in emit
+    self.handleError(record)
+Message: '[DEBUG-%s] metrics=%s'
+Arguments: ('STT', STTMetrics(type='stt_metrics', label='livekit.plugins.deepgram.stt.STT', request_id='01a0016c-e93b-7471-983b-1d94e1db73a6', timestamp=1786730319.5502102, duration=0.0, audio_duration=5.04999999999999, streamed=True, metadata=Metadata(model_name='nova-3', model_provider='Deepgram')))
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\cli\cli.py", line 944, in emit
+    self.c.console.print(output)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 1697, in print
+    with self:
+         ^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 870, in __exit__
+    self._exit_buffer()
+    ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 826, in _exit_buffer
+    self._check_buffer()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 2042, in _check_buffer
+    self._write_buffer()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 2078, in _write_buffer
+    legacy_windows_render(buffer, LegacyWindowsTerm(self.file))
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_windows_renderer.py", line 17, in legacy_windows_render
+    term.write_styled(text, style)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_win32_console.py", line 441, in write_styled
+    self.write_text(text)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_win32_console.py", line 402, in write_text
+    self.write(text)
+    ~~~~~~~~~~^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u20b9' in position 35: character maps to <undefined>
+Call stack:
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 1015, in _bootstrap
+    self._bootstrap_inner()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 1044, in _bootstrap_inner
+    self.run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 995, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\ipc\job_proc_lazy_main.py", line 418, in thread_main
+    client.run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\ipc\proc_client.py", line 70, in run
+    loop.run_until_complete(self._task)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 712, in run_until_complete
+    self.run_forever()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 683, in run_forever
+    self._run_once()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 2060, in _run_once
+    handle._run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\rtc\room.py", line 615, in _listen_task
+    self._on_room_event(event.room_event)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\rtc\room.py", line 659, in _on_room_event
+    self.emit("participant_disconnected", rparticipant)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\rtc\event_emitter.py", line 58, in emit
+    callback(*callback_args)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\voice\room_io\room_io.py", line 388, in _on_participant_disconnected
+    logger.info(
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1520, in info
+    self._log(INFO, msg, args, **kwargs)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1665, in _log
+    self.handle(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1681, in handle
+    self.callHandlers(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1737, in callHandlers
+    hdlr.handle(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1027, in handle
+    self.emit(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\cli\cli.py", line 957, in emit
+    self.handleError(record)
+Message: 'closing agent session due to participant disconnect (disable via `RoomInputOptions.close_on_disconnect=False`)'
+Arguments: ()
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\cli\cli.py", line 944, in emit
+    self.c.console.print(output)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 1697, in print
+    with self:
+         ^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 870, in __exit__
+    self._exit_buffer()
+    ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 826, in _exit_buffer
+    self._check_buffer()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 2042, in _check_buffer
+    self._write_buffer()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 2078, in _write_buffer
+    legacy_windows_render(buffer, LegacyWindowsTerm(self.file))
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_windows_renderer.py", line 17, in legacy_windows_render
+    term.write_styled(text, style)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_win32_console.py", line 441, in write_styled
+    self.write_text(text)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_win32_console.py", line 402, in write_text
+    self.write(text)
+    ~~~~~~~~~~^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u20b9' in position 35: character maps to <undefined>
+Call stack:
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 1015, in _bootstrap
+    self._bootstrap_inner()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 1044, in _bootstrap_inner
+    self.run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 995, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\ipc\job_proc_lazy_main.py", line 418, in thread_main
+    client.run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\ipc\proc_client.py", line 70, in run
+    loop.run_until_complete(self._task)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 712, in run_until_complete
+    self.run_forever()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 683, in run_forever
+    self._run_once()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 2060, in _run_once
+    handle._run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\voice\room_io\_input.py", line 326, in _forward_task
+    await super()._forward_task(old_task, stream, publication, participant)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\utils\log.py", line 17, in async_fn_logs
+    return await fn(*args, **kwargs)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\voice\room_io\_input.py", line 154, in _forward_task
+    logger.debug("stream closed", extra=extra)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1508, in debug
+    self._log(DEBUG, msg, args, **kwargs)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1665, in _log
+    self.handle(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1681, in handle
+    self.callHandlers(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1737, in callHandlers
+    hdlr.handle(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1027, in handle
+    self.emit(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\cli\cli.py", line 957, in emit
+    self.handleError(record)
+Message: 'stream closed'
+Arguments: ()
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\cli\cli.py", line 944, in emit
+    self.c.console.print(output)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 1697, in print
+    with self:
+         ^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 870, in __exit__
+    self._exit_buffer()
+    ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 826, in _exit_buffer
+    self._check_buffer()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 2042, in _check_buffer
+    self._write_buffer()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 2078, in _write_buffer
+    legacy_windows_render(buffer, LegacyWindowsTerm(self.file))
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_windows_renderer.py", line 17, in legacy_windows_render
+    term.write_styled(text, style)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_win32_console.py", line 441, in write_styled
+    self.write_text(text)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_win32_console.py", line 402, in write_text
+    self.write(text)
+    ~~~~~~~~~~^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u20b9' in position 35: character maps to <undefined>
+Call stack:
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 1015, in _bootstrap
+    self._bootstrap_inner()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 1044, in _bootstrap_inner
+    self.run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 995, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\ipc\job_proc_lazy_main.py", line 418, in thread_main
+    client.run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\ipc\proc_client.py", line 70, in run
+    loop.run_until_complete(self._task)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 712, in run_until_complete
+    self.run_forever()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 683, in run_forever
+    self._run_once()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 2060, in _run_once
+    handle._run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\voice\agent_activity.py", line 434, in _context_aware_coro
+    return await coro
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\utils\log.py", line 17, in async_fn_logs
+    return await fn(*args, **kwargs)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\voice\agent_activity.py", line 1913, in _pipeline_reply_task
+    await self._pipeline_reply_task_impl(
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\voice\agent_activity.py", line 2195, in _pipeline_reply_task_impl
+    self._session._conversation_item_added(msg)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\voice\agent_session.py", line 1409, in _conversation_item_added
+    self.emit("conversation_item_added", ConversationItemAddedEvent(item=message))
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\voice\agent_session.py", line 428, in emit
+    super().emit(event, arg)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\rtc\event_emitter.py", line 58, in emit
+    callback(*callback_args)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\src\agent.py", line 466, in on_conversation_item_added
+    logger.info(
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1520, in info
+    self._log(INFO, msg, args, **kwargs)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1665, in _log
+    self.handle(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1681, in handle
+    self.callHandlers(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1737, in callHandlers
+    hdlr.handle(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1027, in handle
+    self.emit(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\cli\cli.py", line 957, in emit
+    self.handleError(record)
+Message: '[DEBUG-LLM] assistant text committed after playout=%r'
+Arguments: ('¡Hola! ¿En qué te puedo ayudar con tu presupuesto y planificación financiera personal hoy?',)
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\cli\cli.py", line 944, in emit
+    self.c.console.print(output)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 1697, in print
+    with self:
+         ^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 870, in __exit__
+    self._exit_buffer()
+    ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 826, in _exit_buffer
+    self._check_buffer()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 2042, in _check_buffer
+    self._write_buffer()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 2078, in _write_buffer
+    legacy_windows_render(buffer, LegacyWindowsTerm(self.file))
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_windows_renderer.py", line 17, in legacy_windows_render
+    term.write_styled(text, style)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_win32_console.py", line 441, in write_styled
+    self.write_text(text)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_win32_console.py", line 402, in write_text
+    self.write(text)
+    ~~~~~~~~~~^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u20b9' in position 35: character maps to <undefined>
+Call stack:
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 1015, in _bootstrap
+    self._bootstrap_inner()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 1044, in _bootstrap_inner
+    self.run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 995, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\ipc\job_proc_lazy_main.py", line 418, in thread_main
+    client.run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\ipc\proc_client.py", line 70, in run
+    loop.run_until_complete(self._task)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 712, in run_until_complete
+    self.run_forever()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 683, in run_forever
+    self._run_once()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 2060, in _run_once
+    handle._run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\utils\log.py", line 17, in async_fn_logs
+    return await fn(*args, **kwargs)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\voice\agent_session.py", line 879, in _aclose_impl
+    self.input.audio = None
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\voice\io.py", line 429, in audio
+    self._audio_stream.on_detached()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\voice\room_io\_input.py", line 83, in on_detached
+    logger.debug(
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1508, in debug
+    self._log(DEBUG, msg, args, **kwargs)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1665, in _log
+    self.handle(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1681, in handle
+    self.callHandlers(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1737, in callHandlers
+    hdlr.handle(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1027, in handle
+    self.emit(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\cli\cli.py", line 957, in emit
+    self.handleError(record)
+Message: 'input stream detached'
+Arguments: ()
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\cli\cli.py", line 944, in emit
+    self.c.console.print(output)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 1697, in print
+    with self:
+         ^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 870, in __exit__
+    self._exit_buffer()
+    ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 826, in _exit_buffer
+    self._check_buffer()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 2042, in _check_buffer
+    self._write_buffer()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 2078, in _write_buffer
+    legacy_windows_render(buffer, LegacyWindowsTerm(self.file))
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_windows_renderer.py", line 17, in legacy_windows_render
+    term.write_styled(text, style)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_win32_console.py", line 441, in write_styled
+    self.write_text(text)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_win32_console.py", line 402, in write_text
+    self.write(text)
+    ~~~~~~~~~~^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u20b9' in position 35: character maps to <undefined>
+Call stack:
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 1015, in _bootstrap
+    self._bootstrap_inner()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 1044, in _bootstrap_inner
+    self.run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 995, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\ipc\job_proc_lazy_main.py", line 418, in thread_main
+    client.run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\ipc\proc_client.py", line 70, in run
+    loop.run_until_complete(self._task)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 712, in run_until_complete
+    self.run_forever()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 683, in run_forever
+    self._run_once()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 2060, in _run_once
+    handle._run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\utils\log.py", line 17, in async_fn_logs
+    return await fn(*args, **kwargs)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\voice\agent_session.py", line 936, in _aclose_impl
+    logger.debug("session closed", extra={"reason": reason.value, "error": error})
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1508, in debug
+    self._log(DEBUG, msg, args, **kwargs)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1665, in _log
+    self.handle(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1681, in handle
+    self.callHandlers(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1737, in callHandlers
+    hdlr.handle(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1027, in handle
+    self.emit(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\cli\cli.py", line 957, in emit
+    self.handleError(record)
+Message: 'session closed'
+Arguments: ()
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\cli\cli.py", line 944, in emit
+    self.c.console.print(output)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 1697, in print
+    with self:
+         ^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 870, in __exit__
+    self._exit_buffer()
+    ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 826, in _exit_buffer
+    self._check_buffer()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 2042, in _check_buffer
+    self._write_buffer()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 2078, in _write_buffer
+    legacy_windows_render(buffer, LegacyWindowsTerm(self.file))
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_windows_renderer.py", line 17, in legacy_windows_render
+    term.write_styled(text, style)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_win32_console.py", line 441, in write_styled
+    self.write_text(text)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_win32_console.py", line 402, in write_text
+    self.write(text)
+    ~~~~~~~~~~^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u20b9' in position 35: character maps to <undefined>
+Call stack:
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 1015, in _bootstrap
+    self._bootstrap_inner()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 1044, in _bootstrap_inner
+    self.run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 995, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\ipc\job_proc_lazy_main.py", line 418, in thread_main
+    client.run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\ipc\proc_client.py", line 70, in run
+    loop.run_until_complete(self._task)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 712, in run_until_complete
+    self.run_forever()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 683, in run_forever
+    self._run_once()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 2060, in _run_once
+    handle._run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\utils\log.py", line 17, in async_fn_logs
+    return await fn(*args, **kwargs)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\ipc\job_proc_lazy_main.py", line 363, in _run_job_task
+    logger.debug(
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1508, in debug
+    self._log(DEBUG, msg, args, **kwargs)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1665, in _log
+    self.handle(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1681, in handle
+    self.callHandlers(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1737, in callHandlers
+    hdlr.handle(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1027, in handle
+    self.emit(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\cli\cli.py", line 957, in emit
+    self.handleError(record)
+Message: 'shutting down job task'
+Arguments: ()
+--- Logging error ---
+Traceback (most recent call last):
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\cli\cli.py", line 944, in emit
+    self.c.console.print(output)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 1697, in print
+    with self:
+         ^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 870, in __exit__
+    self._exit_buffer()
+    ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 826, in _exit_buffer
+    self._check_buffer()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 2042, in _check_buffer
+    self._write_buffer()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\console.py", line 2078, in _write_buffer
+    legacy_windows_render(buffer, LegacyWindowsTerm(self.file))
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_windows_renderer.py", line 17, in legacy_windows_render
+    term.write_styled(text, style)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_win32_console.py", line 441, in write_styled
+    self.write_text(text)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\rich\_win32_console.py", line 402, in write_text
+    self.write(text)
+    ~~~~~~~~~~^^^^^^
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u20b9' in position 35: character maps to <undefined>
+Call stack:
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 1015, in _bootstrap
+    self._bootstrap_inner()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 1044, in _bootstrap_inner
+    self.run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\threading.py", line 995, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\ipc\job_proc_lazy_main.py", line 418, in thread_main
+    client.run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\ipc\proc_client.py", line 70, in run
+    loop.run_until_complete(self._task)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 712, in run_until_complete
+    self.run_forever()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 683, in run_forever
+    self._run_once()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\base_events.py", line 2060, in _run_once
+    handle._run()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\utils\log.py", line 17, in async_fn_logs
+    return await fn(*args, **kwargs)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\ipc\job_proc_lazy_main.py", line 387, in _run_job_task
+    await http_context._close_http_ctx()
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\utils\http_context.py", line 57, in _close_http_ctx
+    logger.debug("http_session(): closing the httpclient ctx")
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1508, in debug
+    self._log(DEBUG, msg, args, **kwargs)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1665, in _log
+    self.handle(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1681, in handle
+    self.callHandlers(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1737, in callHandlers
+    hdlr.handle(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none\Lib\logging\__init__.py", line 1027, in handle
+    self.emit(record)
+  File "C:\Users\AYESHA RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\cli\cli.py", line 957, in emit
+    self.handleError(record)
+Message: 'http_session(): closing the httpclient ctx'
+Arguments: ()

@@ -1,5 +1,6 @@
 import logging
 import re
+from collections.abc import Awaitable, Callable
 from dataclasses import dataclass
 from typing import Any
 
@@ -9,6 +10,7 @@ from livekit.agents import (
     Agent,
     AgentServer,
     AgentSession,
+    ChatContext,
     JobContext,
     JobProcess,
     RunContext,
@@ -239,6 +241,83 @@ HUMAN HELP ESCALATION
 - Once the caller gives permission, call create_escalation with a concise, factual summary. Never include passwords, OTPs, PINs, account numbers, card numbers, or other credentials.
 - After a successful tool result, give the caller its reference ID and say the request is recorded for human review. Do not promise an immediate response or a particular turnaround time.
 
+PERSONAL-FINANCE HANDOFF
+- Continue to handle general financial questions yourself. Use handoff_to_personal_finance only when the caller needs focused, practical personal-finance planning: a personal budget, savings plan, income-versus-expense plan, emergency-fund plan, spending plan, or basic debt/EMI plan.
+- Do not hand off government-scheme discovery or eligibility, UPI questions, banking explanations, simple definitions, investment or insurance basics, ordinary financial-literacy questions, or human-escalation cases.
+- Before calling handoff_to_personal_finance, clearly tell the caller that you are connecting them with the personal finance specialist who can build a practical plan. Keep that announcement in the caller's current language.
+
+TAX AND GST HANDOFF
+- Use handoff_to_tax_gst only for focused ITR/tax filing or GST guidance, including Form 16, AIS/TIS, GST registration, GST returns, GSTR-1, and GSTR-3B.
+- Do not hand off government-scheme discovery or eligibility, UPI, banking, ordinary financial questions, or personal budgeting, savings, expenses, and EMI/debt planning. Keep those on the main assistant or the personal finance specialist.
+- Before calling handoff_to_tax_gst, clearly tell the caller that you are connecting them with the tax and GST specialist who can guide them. Keep that announcement in the caller's current language.
+- For either specialist request, call the matching handoff tool. Never merely say that you are connecting the caller or provide both language variants yourself. The tool makes the one required announcement and performs the handoff.
+
+"""
+
+PERSONAL_FINANCE_SPECIALIST_PROMPT = """
+You are the Bharat Finance Assistant Personal Finance Specialist.
+
+Your only responsibility is practical, educational personal-finance planning. Help callers
+with monthly budgets, income and expense breakdowns, savings goals, emergency funds,
+spending categories, reducing unnecessary spending, basic debt or EMI planning, simple
+calculations, and practical monthly money plans.
+
+You already have the caller's prior conversation context. Continue directly from it and
+never ask the caller to repeat their original problem. Ask only the minimum useful missing
+information, such as approximate monthly income, major monthly expenses, a savings target,
+or existing EMI/debt when relevant.
+
+Keep responses short, clear, conversational, and practical. Give educational guidance,
+not investment decisions. Never invent financial information the caller has not provided.
+
+Never ask for or accept OTPs, PINs, passwords, CVVs, debit or credit card numbers, bank
+account numbers, Aadhaar/PAN numbers, or other credentials. Never claim to be a bank
+employee, approve loans, claim a loan is approved, perform bank transactions, promise
+investment returns, or give personalized stock buy/sell instructions.
+
+Do not handle government-scheme discovery or scheme eligibility. Do not take over human
+escalation cases.
+
+If the caller changes to a government-scheme, UPI, banking, general-finance, tax, ITR,
+Form 16, AIS/TIS, GST, GST return, GSTR-1, GSTR-3B, or any other non-personal-finance
+topic, you MUST call return_to_main_agent. Do not answer the new topic yourself. Do not
+merely say that you will connect the caller back: the tool call performs the actual
+handoff and announcement in the caller's current language.
+
+Always answer in the language of the caller's latest message. English input requires an
+English response. Treat Hindi and Romanized Hindi as Hindi and respond in Devanagari.
+Switch immediately when the caller switches language. Do not create a separate Hinglish
+response category.
+"""
+
+TAX_GST_SPECIALIST_PROMPT = """
+You are the Bharat Finance Assistant Tax and GST Specialist.
+
+Your only responsibility is educational, voice-friendly guidance about ITR/tax basics and
+GST basics. Help with ITR filing processes, generally required documents, Form 16, AIS/TIS,
+tax terminology, GST registration, GSTIN, GST returns, GSTR-1, GSTR-3B, and general filing
+workflows.
+
+You already have the caller's prior conversation context. Continue directly from it and
+never ask the caller to repeat their original problem. Keep answers short, clear, practical,
+and conversational.
+
+Do not claim to be a CA, tax officer, GST officer, bank employee, or government employee.
+Do not actually file or submit an ITR or GST return. Never ask for or accept OTPs,
+passwords, PINs, CVVs, bank credentials, card numbers, or other credentials. Do not invent
+current tax/GST rates, deadlines, thresholds, exemptions, or legal requirements. When
+current details are needed, direct the caller to verify them on the official government
+portal or with a qualified professional.
+
+If the caller changes to government schemes, UPI, banking, general finance, personal
+budgeting/savings/expenses/EMI planning, or another non-tax/GST topic, use
+return_to_main_agent after briefly saying that you will connect them back to the main
+assistant in the caller's current language.
+
+Always answer in the language of the caller's latest message. English input requires an
+English response. Treat Hindi and Romanized Hindi as Hindi and respond in Devanagari.
+Switch immediately when the caller switches language. Do not create a separate Hinglish
+response category.
 """
 
 SENSITIVE_MEMORY_PATTERN = re.compile(
@@ -262,6 +341,13 @@ NEGATIVE_CONSENT_PATTERN = re.compile(
     r"\b(?:no|nope|do not|don't|dont|refuse|decline|not agree|stop)\b|नहीं|मत",
     re.IGNORECASE,
 )
+DEVANAGARI_PATTERN = re.compile(r"[\u0900-\u097f]")
+ROMANIZED_HINDI_PATTERN = re.compile(
+    r"\b(?:aap|aapko|aur|batao|ban[aou]|hai|hain|kaise|karna|kya|mai|"
+    r"mera|meri|mujhe|paise|yeh)\b",
+    re.IGNORECASE,
+)
+ActiveAgentNotifier = Callable[[str], Awaitable[None]]
 
 
 @dataclass(frozen=True)
@@ -304,6 +390,67 @@ def _user_messages(context: RunContext | None) -> list[str]:
     ]
 
 
+def _safe_handoff_context(chat_ctx: ChatContext) -> ChatContext:
+    """Copy conversational context while excluding credentials and tool internals."""
+    safe_context = ChatContext.empty()
+    for message in chat_ctx.messages():
+        text = (message.text_content or "").strip()
+        if not text:
+            continue
+        if (
+            SENSITIVE_MEMORY_PATTERN.search(text)
+            or DIAGNOSTIC_NUMBER_PATTERN.search(text)
+            or ESCALATION_LONG_NUMBER_PATTERN.search(text)
+        ):
+            text = "[Sensitive details omitted from specialist handoff.]"
+        safe_context.add_message(role=message.role, content=text)
+    return safe_context
+
+
+def _latest_user_message(context: RunContext, chat_ctx: ChatContext) -> str:
+    messages = _user_messages(context)
+    if messages:
+        return messages[-1]
+    return next(
+        (
+            message.text_content.strip()
+            for message in reversed(chat_ctx.messages())
+            if message.role == "user"
+            and message.text_content
+            and message.text_content.strip()
+        ),
+        "",
+    )
+
+
+def _is_hindi_message(message: str) -> bool:
+    return bool(
+        DEVANAGARI_PATTERN.search(message) or ROMANIZED_HINDI_PATTERN.search(message)
+    )
+
+
+def _handoff_announcement(target: str, user_message: str) -> str:
+    hindi = _is_hindi_message(user_message)
+    announcements = {
+        "personal_finance": (
+            "I'll connect you with our personal finance specialist who can help you build "
+            "a practical budget.",
+            "मैं आपको हमारे personal finance specialist से connect करती हूँ, जो आपका "
+            "practical budget बनाने में मदद करेंगे।",
+        ),
+        "tax_gst": (
+            "I'll connect you with our tax and GST specialist who can guide you through this.",
+            "मैं आपको हमारे tax और GST specialist से connect करती हूँ, जो इसमें आपकी मदद करेंगे।",
+        ),
+        "main": (
+            "I'll connect you back to the main assistant for that.",
+            "मैं आपको इसके लिए वापस main assistant से connect करती हूँ।",
+        ),
+    }
+    english, hindi_text = announcements[target]
+    return hindi_text if hindi else english
+
+
 def _install_pipeline_diagnostics(session: AgentSession) -> None:
     """TEMPORARY_MULTILINGUAL_DIAGNOSTICS for one reproduction call."""
 
@@ -344,13 +491,131 @@ def _install_pipeline_diagnostics(session: AgentSession) -> None:
     session.on("error", on_error)
 
 
+class PersonalFinanceSpecialist(Agent):
+    """Focused in-session agent for practical personal-finance planning."""
+
+    def __init__(
+        self,
+        chat_ctx: ChatContext,
+        user_id: str | None = None,
+        set_active_agent: ActiveAgentNotifier | None = None,
+    ) -> None:
+        super().__init__(
+            instructions=PERSONAL_FINANCE_SPECIALIST_PROMPT,
+            chat_ctx=chat_ctx,
+            tts=murf.TTS(
+                voice="Samar",
+                style="Conversation",
+                tokenizer=tokenize.basic.SentenceTokenizer(min_sentence_len=2),
+                text_pacing=True,
+            ),
+        )
+        self.user_id = user_id
+        self._set_active_agent = set_active_agent
+
+    async def on_enter(self) -> None:
+        if self._set_active_agent:
+            await self._set_active_agent("personal_finance")
+        await self.session.generate_reply(
+            instructions=(
+                "Briefly introduce yourself as the personal finance specialist. Say that "
+                "you already have the caller's context, then continue directly with a "
+                "practical response to their request. Do not ask them to explain it again."
+            )
+        )
+
+    @function_tool
+    async def return_to_main_agent(self, context: RunContext) -> Agent:
+        """Return to the main assistant for non-personal-finance topics.
+
+        Use immediately when the caller changes to government schemes, UPI, banking,
+        general finance, tax, ITR, Form 16, AIS/TIS, GST, GST returns, GSTR-1, GSTR-3B,
+        or another topic outside practical personal-finance planning. This tool performs
+        the announcement and actual handback; never merely tell the caller you will return
+        them to the main assistant without calling it.
+        """
+        if self._set_active_agent:
+            await self._set_active_agent("connecting_main")
+        await context.session.say(
+            _handoff_announcement("main", _latest_user_message(context, self.chat_ctx))
+        )
+        return Assistant(
+            user_id=self.user_id,
+            chat_ctx=_safe_handoff_context(self.chat_ctx),
+            set_active_agent=self._set_active_agent,
+        )
+
+
+class TaxGSTSpecialist(Agent):
+    """Focused in-session agent for educational tax and GST guidance."""
+
+    def __init__(
+        self,
+        chat_ctx: ChatContext,
+        user_id: str | None = None,
+        set_active_agent: ActiveAgentNotifier | None = None,
+    ) -> None:
+        super().__init__(
+            instructions=TAX_GST_SPECIALIST_PROMPT,
+            chat_ctx=chat_ctx,
+            tts=murf.TTS(
+                voice="Pooja",
+                style="Conversation",
+                tokenizer=tokenize.basic.SentenceTokenizer(min_sentence_len=2),
+                text_pacing=True,
+            ),
+        )
+        self.user_id = user_id
+        self._set_active_agent = set_active_agent
+
+    async def on_enter(self) -> None:
+        if self._set_active_agent:
+            await self._set_active_agent("tax_gst")
+        await self.session.generate_reply(
+            instructions=(
+                "Briefly introduce yourself as the tax and GST specialist. Say that you "
+                "already have the caller's context, then continue directly with their "
+                "tax/GST request. Do not ask them to explain it again."
+            )
+        )
+
+    @function_tool
+    async def return_to_main_agent(self, context: RunContext) -> Agent:
+        """Return to the main assistant for non-tax/GST topics.
+
+        Use when the caller changes to government schemes, UPI, banking, general finance,
+        personal-finance planning, or any other topic outside tax/GST guidance. Briefly
+        announce the return in the caller's current language before calling this tool.
+        """
+        if self._set_active_agent:
+            await self._set_active_agent("connecting_main")
+        await context.session.say(
+            _handoff_announcement("main", _latest_user_message(context, self.chat_ctx))
+        )
+        return Assistant(
+            user_id=self.user_id,
+            chat_ctx=_safe_handoff_context(self.chat_ctx),
+            set_active_agent=self._set_active_agent,
+        )
+
+
 class Assistant(Agent):
-    def __init__(self, user_id: str | None = None) -> None:
-        super().__init__(instructions=SYSTEM_PROMPT)
+    def __init__(
+        self,
+        user_id: str | None = None,
+        chat_ctx: ChatContext | None = None,
+        set_active_agent: ActiveAgentNotifier | None = None,
+    ) -> None:
+        super().__init__(instructions=SYSTEM_PROMPT, chat_ctx=chat_ctx)
         self.user_id = user_id
         self._last_scheme_candidates: list[dict[str, str]] = []
         self._pending_escalation: PendingEscalation | None = None
         self.call_successful = False
+        self._set_active_agent = set_active_agent
+
+    async def on_enter(self) -> None:
+        if self._set_active_agent:
+            await self._set_active_agent("main")
 
     def _require_user_id(self) -> str:
         if not self.user_id:
@@ -560,9 +825,7 @@ class Assistant(Agent):
         return result
 
     @function_tool
-    async def mark_scheme_enquiry_complete(
-        self, context: RunContext
-    ) -> dict[str, str]:
+    async def mark_scheme_enquiry_complete(self, context: RunContext) -> dict[str, str]:
         """Mark the call successful only after relevant scheme information was provided.
 
         Use this once the scheme enquiry is complete. Do not use it for an
@@ -570,6 +833,67 @@ class Assistant(Agent):
         """
         self.call_successful = True
         return {"call_successful": "true"}
+
+    @function_tool
+    async def handoff_to_personal_finance(self, context: RunContext) -> Agent:
+        """Hand off only for focused personal-finance planning.
+
+        Use when the caller wants a personal budget, savings plan, income-and-expense
+        organization, emergency-fund plan, practical spending plan, basic debt/EMI plan,
+        or another detailed personal-finance plan. Before calling, clearly announce the
+        transfer in the caller's current language. Do not use for government schemes or
+        eligibility, UPI, banking explanations, simple financial definitions, investment
+        or insurance basics, ordinary financial-literacy questions, or human escalation.
+        """
+        specialist = PersonalFinanceSpecialist(
+            chat_ctx=_safe_handoff_context(self.chat_ctx),
+            user_id=self.user_id,
+            set_active_agent=self._set_active_agent,
+        )
+        if self._set_active_agent:
+            await self._set_active_agent("connecting_personal_finance")
+        await context.session.say(
+            _handoff_announcement(
+                "personal_finance", _latest_user_message(context, self.chat_ctx)
+            )
+        )
+        return specialist
+
+    @function_tool
+    async def handoff_to_tax_gst(self, context: RunContext) -> Agent | dict[str, str]:
+        """Hand off only for focused tax, ITR, or GST guidance.
+
+        Use for ITR/tax filing, Form 16, AIS/TIS, GST registration, GST returns, GSTR-1,
+        GSTR-3B, or related tax/GST filing guidance. Before calling, clearly announce the
+        transfer in the caller's current language. Do not use for government schemes,
+        eligibility, UPI, banking, ordinary financial questions, or personal budgeting,
+        savings, expenses, and EMI/debt planning.
+        """
+        try:
+            specialist = TaxGSTSpecialist(
+                chat_ctx=_safe_handoff_context(self.chat_ctx),
+                user_id=self.user_id,
+                set_active_agent=self._set_active_agent,
+            )
+        except Exception:
+            logger.exception("[TAX-GST-HANDOFF] specialist initialization failed")
+            return {
+                "handoff": "failed",
+                "next_step": (
+                    "Stay as the main assistant. Tell the caller in their current language: "
+                    "I couldn't connect you to the tax and GST specialist right now, but I "
+                    "can still help with the general information I have. Do not mention "
+                    "technical errors."
+                ),
+            }
+        if self._set_active_agent:
+            await self._set_active_agent("connecting_tax_gst")
+        await context.session.say(
+            _handoff_announcement(
+                "tax_gst", _latest_user_message(context, self.chat_ctx)
+            )
+        )
+        return specialist
 
     # To add tools, use the @function_tool decorator.
     # Here's an example that adds a simple weather tool.
@@ -644,7 +968,13 @@ async def my_agent(ctx: JobContext):
         preemptive_generation=True,
     )
     _install_pipeline_diagnostics(session)
-    assistant = Assistant(caller_identity(ctx))
+
+    async def set_active_agent(agent_id: str) -> None:
+        await ctx.room.local_participant.set_attributes(
+            {"bharat_finance.active_agent": agent_id}
+        )
+
+    assistant = Assistant(caller_identity(ctx), set_active_agent=set_active_agent)
     call_id = ctx.room.name
     recorded = False
 

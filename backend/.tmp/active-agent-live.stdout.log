@@ -1,0 +1,417 @@
+    22:59:01.179 DEBUG… asyncio            Using proactor: IocpProactor  
+    22:59:01.254 DEV  … livekit.agents     Watching C:\Users\AYESHA            
+                                           RAHMAN\murf-livekit-starter\backe…  
+    22:59:19.680 DEBUG… asyncio            Using proactor: IocpProactor  
+    22:59:19.767 INFO … livekit.agents     starting worker  
+                                         {"version": "1.4.5", "rtc-version": 
+"1.1.2"}
+    22:59:19.823 INFO … livekit.agents     starting inference executor  
+    22:59:19.916 INFO … livekit.agents     initializing process  
+                                         {"pid": 17428, "inference": true}
+    23:00:04.431 INFO … livekit.agents     process initialized  
+                                         {"pid": 17428, "inference": true, 
+"elapsed_time": 44.46}
+    23:00:04.457 INFO … livekit.agents     HTTP server listening on :8271  
+    23:00:04.852 INFO … livekit.agents     registered worker  
+                                         {"agent_name": "my-agent", "id": 
+"AW_ZFGBPb8rgerr", "url": "wss://voice-of-bharat-u0puq6jm.livekit.cloud", 
+"region": "India South", "protocol": 17}
+    23:00:19.716 INFO … livekit.agents     received job request  
+                                         {"job_id": "AJ_bVootPh4Nxzu", 
+"dispatch_id": "AD_kTPEWfNdDcxF", "room": "voice_assistant_room_2687", 
+"room_id": "RM_U7motcdCZY7H", "agent_name": "my-agent", "resuming": false, 
+"enable_recording": false}
+    23:00:20.279 DEBUG… livekit.agents     received assignment  
+                                         {"agent_name": "my-agent", "room_id": 
+"RM_U7motcdCZY7H", "room": "voice_assistant_room_2687", "job_id": 
+"AJ_bVootPh4Nxzu", "dispatch_id": "AD_kTPEWfNdDcxF", "enable_recording": false}
+    23:00:20.296 WARNI… livekit.agents     no warmed process available for     
+                                           job, waiting for one to be created  
+                                         {"job_id": "AJ_bVootPh4Nxzu"}
+    23:00:20.320 INFO … livekit.agents     initializing job runner  
+                                         {"tid": 1676}
+    23:00:20.978 DEBUG… asyncio            Using proactor: IocpProactor  
+    23:00:20.984 INFO … livekit.agents     job runner initialized  
+                                         {"tid": 1676, "elapsed_time": 0.65}
+    23:00:23.502 DEBUG… livekit.agents     input stream attached  
+                                         {"participant": null, "source": 
+"SOURCE_UNKNOWN", "accepted_sources": ["SOURCE_MICROPHONE"], "room": 
+"voice_assistant_room_2687"}
+    23:00:23.545 DEBUG… livekit.agents     http_session(): creating a new      
+                                           httpclient ctx                      
+                                         {"room": "voice_assistant_room_2687"}
+    23:00:23.595 DEBUG… livekit.agents     using audio io: `RoomIO` ->         
+                                           `AgentSession` ->                   
+                                           `TranscriptSynchronizer` ->         
+                                           `RoomIO`                            
+                                         {"room": "voice_assistant_room_2687"}
+    23:00:23.661 DEBUG… livekit.agents     using transcript io:                
+                                           `AgentSession` ->                   
+                                           `TranscriptSynchronizer` ->         
+                                           `RoomIO`                            
+                                         {"room": "voice_assistant_room_2687"}
+    23:00:24.760 DEBUG… livekit.….deepgram Established new Deepgram STT        
+                                           WebSocket connection:               
+                                           {"headers": {"dg-project-id": 
+"35e7fd36-0ac6-46ae-9cc7-6e75546d7aff", "dg-request-id": 
+"01a00153-4457-7c63-b4f2-16e7122e5f17", "Date": "Fri, 14 Aug 2026 17:30:29 
+GMT"}, "room": "voice_assistant_room_2687"}
+    23:01:08.033 DEBUG… livekit.agents     input stream detached  
+                                         {"participant": 
+"anon_89a85e63-3c88-4edd-b259-beddfdc06156", "source": "SOURCE_UNKNOWN", 
+"accepted_sources": ["SOURCE_MICROPHONE"], "room": "voice_assistant_room_2687"}
+    23:01:10.067 DEBUG… livekit.agents     session closed  
+                                         {"reason": "user_initiated", "error": 
+null, "room": "voice_assistant_room_2687"}
+    23:01:10.074 DEBUG… livekit.agents     shutting down job task  
+                                         {"reason": "", "user_initiated": 
+false, "room": "voice_assistant_room_2687"}
+    23:01:10.079 DEBUG… livekit.agents     job exiting  
+                                         {"reason": "", "tid": 1676, "job_id": 
+"AJ_bVootPh4Nxzu", "room_id": "RM_U7motcdCZY7H"}
+    23:01:10.081 DEBUG… livekit.agents     http_session(): closing the         
+                                           httpclient ctx                      
+    23:09:54.870 WARNI… livekit.agents     failed to connect to livekit,       
+                                           retrying in 0s                      
+Traceback (most recent call last):
+  File "C:\Users\AYESHA 
+RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\work
+er.py", line 1011, in _connection_task
+    await self._run_ws(ws)
+  File "C:\Users\AYESHA 
+RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\work
+er.py", line 1093, in _run_ws
+    await asyncio.gather(*tasks)
+  File "C:\Users\AYESHA 
+RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\work
+er.py", line 1065, in _recv_task
+    raise Exception("worker connection closed unexpectedly")
+Exception: worker connection closed unexpectedly
+
+    23:09:55.000 WARNI… livekit.agents     failed to connect to livekit,       
+                                           retrying in 2s                      
+Traceback (most recent call last):
+  File "C:\Users\AYESHA 
+RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\aiohttp\connector.p
+y", line 1562, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\AYESHA 
+RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\aiohttp\connector.p
+y", line 1178, in _resolve_host
+    return await asyncio.shield(resolved_host_task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\AYESHA 
+RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\aiohttp\connector.p
+y", line 1209, in _resolve_host_with_throttle
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\AYESHA 
+RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\aiohttp\resolver.py
+", line 40, in resolve
+    infos = await self._loop.getaddrinfo(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+    )
+    ^
+  File "C:\Users\AYESHA 
+RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none
+\Lib\asyncio\base_events.py", line 939, in getaddrinfo
+    return await self.run_in_executor(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        None, getaddr_func, host, port, family, type, proto, flags)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\AYESHA 
+RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none
+\Lib\concurrent\futures\thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\AYESHA 
+RAHMAN\murf-livekit-starter\backend\.uv-python\cpython-3.13-windows-x86_64-none
+\Lib\socket.py", line 981, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 11004] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\AYESHA 
+RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\livekit\agents\work
+er.py", line 968, in _connection_task
+    ws = await self._http_session.ws_connect(
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "C:\Users\AYESHA 
+RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\aiohttp\client.py",
+line 1076, in _ws_connect
+    resp = await self.request(
+           ^^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+    )
+    ^
+  File "C:\Users\AYESHA 
+RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\aiohttp\client.py",
+line 779, in _request
+    resp = await handler(req)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\AYESHA 
+RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\aiohttp\client.py",
+line 734, in _connect_and_send_request
+    conn = await self._connector.connect(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        req, traces=traces, timeout=real_timeout
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\AYESHA 
+RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\aiohttp\connector.p
+y", line 672, in connect
+    proto = await self._create_connection(req, traces, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\AYESHA 
+RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\aiohttp\connector.p
+y", line 1239, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\AYESHA 
+RAHMAN\murf-livekit-starter\backend\.venv\Lib\site-packages\aiohttp\connector.p
+y", line 1568, in _create_direct_connection
+    raise ClientConnectorDNSError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host 
+voice-of-bharat-u0puq6jm.livekit.cloud:443 ssl:default [getaddrinfo failed]
+
+    23:09:57.548 INFO … livekit.agents     registered worker  
+                                         {"agent_name": "my-agent", "id": 
+"AW_FRM2bGkmNrnP", "url": "wss://voice-of-bharat-u0puq6jm.livekit.cloud", 
+"region": "India West", "protocol": 17}
+    23:28:10.521 INFO … livekit.agents     received job request  
+                                         {"job_id": "AJ_Dyuc54TxgBhB", 
+"dispatch_id": "AD_Bsm2UF76gDHc", "room": "voice_assistant_room_9479", 
+"room_id": "RM_iHB6cvRqdTM5", "agent_name": "my-agent", "resuming": false, 
+"enable_recording": false}
+    23:28:10.761 DEBUG… livekit.agents     received assignment  
+                                         {"agent_name": "my-agent", "room_id": 
+"RM_iHB6cvRqdTM5", "room": "voice_assistant_room_9479", "job_id": 
+"AJ_Dyuc54TxgBhB", "dispatch_id": "AD_Bsm2UF76gDHc", "enable_recording": false}
+    23:28:10.815 WARNI… livekit.agents     no warmed process available for     
+                                           job, waiting for one to be created  
+                                         {"job_id": "AJ_Dyuc54TxgBhB"}
+    23:28:10.942 INFO … livekit.agents     initializing job runner  
+                                         {"tid": 5184}
+    23:28:12.057 INFO … livekit.agents     job runner initialized  
+                                         {"tid": 5184, "elapsed_time": 1.1}
+    23:28:12.106 DEBUG… asyncio            Using proactor: IocpProactor  
+    23:28:14.047 DEBUG… livekit.agents     input stream attached  
+                                         {"participant": null, "source": 
+"SOURCE_UNKNOWN", "accepted_sources": ["SOURCE_MICROPHONE"], "room": 
+"voice_assistant_room_9479"}
+    23:28:14.104 DEBUG… livekit.agents     http_session(): creating a new      
+                                           httpclient ctx                      
+                                         {"room": "voice_assistant_room_9479"}
+    23:28:15.150 DEBUG… livekit.agents     start reading stream  
+                                         {"participant": 
+"anon_b2073701-049c-4e19-a724-dbef35f4e6f3", "source": "SOURCE_MICROPHONE", 
+"room": "voice_assistant_room_9479"}
+    23:28:15.172 DEBUG… livekit.agents     using audio io: `RoomIO` ->         
+                                           `AgentSession` ->                   
+                                           `TranscriptSynchronizer` ->         
+                                           `RoomIO`                            
+                                         {"room": "voice_assistant_room_9479"}
+    23:28:15.204 DEBUG… livekit.agents     using transcript io:                
+                                           `AgentSession` ->                   
+                                           `TranscriptSynchronizer` ->         
+                                           `RoomIO`                            
+                                         {"room": "voice_assistant_room_9479"}
+    23:28:16.263 DEBUG… livekit.….deepgram Established new Deepgram STT        
+                                           WebSocket connection:               
+                                           {"headers": {"dg-project-id": 
+"35e7fd36-0ac6-46ae-9cc7-6e75546d7aff", "dg-request-id": 
+"01a0016c-c5bb-7c00-aa22-e7331c4eadff", "Date": "Fri, 14 Aug 2026 17:58:20 
+GMT"}, "room": "voice_assistant_room_9479"}
+    23:28:19.053 DEBUG… livekit.agents     executing tool  
+                                         {"function": 
+"handoff_to_personal_finance", "arguments": "{}", "speech_id": 
+"speech_f019707b372b", "room": "voice_assistant_room_9479"}
+    23:28:19.078 INFO … agent              [DEBUG-LLM]                         
+                                           metrics=type='llm_metrics'          
+                                           label='livekit.plugins.google.llm…  
+                                           request_id='7cf0b0b81921'           
+                                           timestamp=1786730299.0744662        
+                                           duration=1.6714449000028253         
+                                           ttft=1.641409100000601              
+                                           cancelled=False                     
+                                           completion_tokens=15                
+                                           prompt_tokens=3076                  
+                                           prompt_cached_tokens=0              
+                                           total_tokens=3091                   
+                                           tokens_per_second=8.9742713026164…  
+                                           speech_id='speech_f019707b372b'     
+                                           metadata=Metadata(model_name='gem…  
+                                           model_provider='Gemini')            
+                                {"room": "voice_assistant_room_9479"}
+    23:28:19.175 INFO … agent              [DEBUG-STT]                         
+                                           metrics=type='stt_metrics'          
+                                           label='livekit.plugins.deepgram.s…  
+                                           request_id='01a0016c-c5bb-7c00-aa…  
+                                           timestamp=1786730299.175076         
+                                           duration=0.0                        
+                                           audio_duration=4.849999999999991    
+                                           streamed=True                       
+                                           metadata=Metadata(model_name='nov…  
+                                           model_provider='Deepgram')          
+                                {"room": "voice_assistant_room_9479"}
+    23:28:19.352 DEBUG… livekit.agents     sent text to tts  
+                                         {"text": "I'll connect you with our 
+personal finance specialist who can help you build a practical budget.", 
+"remaining_audio": 0.0, "room": "voice_assistant_room_9479"}
+    23:28:19.367 INFO … livekit.…gins.murf [Murf TTS] Stream started -         
+                                           context_id=f19044159378,            
+                                           voice=Anisha, style=Conversation,   
+                                           locale=None, min_buffer_size=3,     
+                                           max_buffer_delay_in_ms=0,           
+                                           endpoint=https://global.api.murf.…  
+                                           {"room": 
+"voice_assistant_room_9479"}
+    23:28:19.490 INFO … livekit.…gins.murf [Murf TTS] Murf TTFB (first         
+                                           sentence to first audio): 122.44    
+                                           ms                                  
+                                           {"room": 
+"voice_assistant_room_9479"}
+    23:28:19.862 DEBUG… livekit.agents     aec warmup active, disabling        
+                                           interruptions for 3.00s             
+                                         {"room": "voice_assistant_room_9479"}
+    23:28:20.234 INFO … agent              [DEBUG-TTS]                         
+                                           metrics=type='tts_metrics'          
+                                           label='livekit.plugins.murf.tts.T…  
+                                           request_id='7976f5839668'           
+                                           timestamp=1786730300.2324355        
+                                           ttfb=0.3735523999966972             
+                                           duration=0.8654779999997118         
+                                           audio_duration=4.560000000000001    
+                                           cancelled=False                     
+                                           characters_count=96 streamed=True   
+                                           segment_id='f19044159378'           
+                                           speech_id='speech_61748dfd9440'     
+                                           metadata=Metadata(model_name='FAL…  
+                                           model_provider='Murf')              
+                                {"room": "voice_assistant_room_9479"}
+    23:28:22.863 DEBUG… livekit.agents     aec warmup expired, re-enabling     
+                                           interruptions                       
+                                         {"room": "voice_assistant_room_9479"}
+    23:28:24.203 INFO … agent              [DEBUG-STT]                         
+                                           metrics=type='stt_metrics'          
+                                           label='livekit.plugins.deepgram.s…  
+                                           request_id='01a0016c-c5bb-7c00-aa…  
+                                           timestamp=1786730304.20288          
+                                           duration=0.0                        
+                                           audio_duration=2.000000000000001    
+                                           streamed=True                       
+                                           metadata=Metadata(model_name='nov…  
+                                           model_provider='Deepgram')          
+                                {"room": "voice_assistant_room_9479"}
+    23:28:24.401 INFO … agent              [DEBUG-LLM] assistant text          
+                                           committed after playout="I'll       
+                                           connect you with our personal       
+                                           finance specialist who can help     
+                                           you build a practical budget."      
+                                {"room": "voice_assistant_room_9479"}
+    23:28:24.441 DEBUG… livekit.agents     tools execution completed  
+                                         {"speech_id": "speech_f019707b372b", 
+"room": "voice_assistant_room_9479"}
+    23:28:25.338 DEBUG… livekit.….deepgram Established new Deepgram STT        
+                                           WebSocket connection:               
+                                           {"headers": {"dg-project-id": 
+"35e7fd36-0ac6-46ae-9cc7-6e75546d7aff", "dg-request-id": 
+"01a0016c-e93b-7471-983b-1d94e1db73a6", "Date": "Fri, 14 Aug 2026 17:58:29 
+GMT"}, "room": "voice_assistant_room_9479"}
+    23:28:25.923 DEBUG… livekit.agents     sent text to tts  
+                                         {"text": "Namaste!", 
+"remaining_audio": 0.0, "room": "voice_assistant_room_9479"}
+    23:28:25.939 INFO … livekit.…gins.murf [Murf TTS] Stream started -         
+                                           context_id=edbea384dc75,            
+                                           voice=Samar, style=Conversation,    
+                                           locale=None, min_buffer_size=3,     
+                                           max_buffer_delay_in_ms=0,           
+                                           endpoint=https://global.api.murf.…  
+                                           {"room": 
+"voice_assistant_room_9479"}
+    23:28:26.067 INFO … livekit.…gins.murf [Murf TTS] Murf TTFB (first         
+                                           sentence to first audio): 127.56    
+                                           ms                                  
+                                           {"room": 
+"voice_assistant_room_9479"}
+    23:28:26.459 INFO … agent              [DEBUG-LLM]                         
+                                           metrics=type='llm_metrics'          
+                                           label='livekit.plugins.google.llm…  
+                                           request_id='5d1ded1c2cd2'           
+                                           timestamp=1786730306.4588437        
+                                           duration=1.8874003000019002         
+                                           ttft=1.3446115000006102             
+                                           cancelled=False                     
+                                           completion_tokens=205               
+                                           prompt_tokens=542                   
+                                           prompt_cached_tokens=0              
+                                           total_tokens=747                    
+                                           tokens_per_second=108.61500869730…  
+                                           speech_id='speech_2a395d3a730f'     
+                                           metadata=Metadata(model_name='gem…  
+                                           model_provider='Gemini')            
+                                {"room": "voice_assistant_room_9479"}
+    23:28:26.543 DEBUG… livekit.agents     sent text to tts  
+                                         {"text": "I am your Bharat Finance 
+Personal Finance Specialist. I already have your context, so let's jump right 
+                                         {"text": "I am your Bharat Finance 
+Personal Finance Specialist. I already have your context, so let's jump right 
+                                         {"text": "I am your Bharat Finance 
+Personal Finance Specialist. I already have your context, so let's jump right 
+                                         {"text": "I am your Bharat Finance 
+Personal Finance Specialist. I already have your context, so let's jump right 
+                                         {"text": "I am your Bharat Finance 
+Personal Finance Specialist. I already have your context, so let's jump right 
+                                         {"text": "I am your Bharat Finance 
+Personal Finance Specialist. I already have your context, so let's jump right 
+                                         {"text": "I am your Bharat Finance 
+Personal Finance Specialist. I already have your context, so let's jump right 
+                                         {"text": "I am your Bharat Finance 
+Personal Finance Specialist. I already have your context, so let's jump right 
+                                         {"text": "I am your Bharat Finance 
+Personal Finance Specialist. I already have your context, so let's jump right 
+                                         {"text": "I am your Bharat Finance 
+Personal Finance Specialist. I already have your context, so let's jump right 
+                                         {"text": "I am your Bharat Finance 
+Personal Finance Specialist. I already have your context, so let's jump right 
+                                         {"text": "I am your Bharat Finance 
+Personal Finance Specialist. I already have your context, so let's jump right 
+                                         {"text": "I am your Bharat Finance 
+Personal Finance Specialist. I already have your context, so let's jump right 
+                                         {"text": "I am your Bharat Finance 
+Personal Finance Specialist. I already have your context, so let's jump right 
+                                         {"text": "I am your Bharat Finance 
+Personal Finance Specialist. I already have your context, so let's jump right 
+                                         {"text": "I am your Bharat Finance 
+Personal Finance Specialist. I already have your context, so let's jump right 
+                                         {"text": "I am your Bharat Finance 
+Personal Finance Specialist. I already have your context, so let's jump right 
+                                         {"text": "I am your Bharat Finance 
+Personal Finance Specialist. I already have your context, so let's jump right 
+                                         {"text": "I am your Bharat Finance 
+Personal Finance Specialist. I already have your context, so let's jump right 
+                                         {"text": "I am your Bharat Finance 
+Personal Finance Specialist. I already have your context, so let's jump right 
+                                         {"text": "I am your Bharat Finance 
+Personal Finance Specialist. I already have your context, so let's jump right 
+                                         {"text": "I am your Bharat Finance 
+Personal Finance Specialist. I already have your context, so let's jump right 
+                                         {"text": "I am your Bharat Finance 
+Personal Finance Specialist. I already have your context, so let's jump right 
+                                         {"text": "I am your Bharat Finance 
+Personal Finance Specialist. I already have your context, so let's jump right 
+                                         {"text": "I am your Bharat Finance 
+Personal Finance Specialist. I already have your context, so let's jump right 
+    23:29:05.377 DEBUG… livekit.agents     job exiting  
+                                         {"reason": "", "tid": 5184, "job_id": 
+"AJ_Dyuc54TxgBhB", "room_id": "RM_iHB6cvRqdTM5"}
+                                         {"text": "I am your Bharat Finance 
+Personal Finance Specialist. I already have your context, so let's jump right 
