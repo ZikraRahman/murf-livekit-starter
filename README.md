@@ -63,22 +63,38 @@ It helps users interact naturally through voice for financial guidance and gover
 
 ```mermaid
 flowchart LR
-    A[🎙️ User speaks] -->|audio| B[Deepgram STT]
+    A[User speaks] -->|audio| B[Deepgram STT]
     B -->|text| C[LLM]
     C -->|response text| D[Murf Falcon TTS]
     D -->|audio| E[LiveKit]
-    E -->|stream| F[🔊 User hears]
+    E -->|stream| F[User hears]
 
-    C --> G[🧠 Memory]
-    C --> H[🛠️ Tools]
-    C --> I[🛡️ Guardrails]
+    C --> G[Memory]
+    C --> H[Tools]
+    C --> I[Guardrails]
+    C --> J[Outbound Calls]
+    C --> K[Human Escalation]
+    C --> L[Specialist Handoff]
+    C --> M[Call Analytics]
 
-    C --> J[📞 Outbound Calls]
-    C --> K[👤 Human Escalation]
-    C --> L[🤝 Specialist Handoff]
-    C --> M[📊 Call Analytics]
+    style A fill:#444441,stroke:#888780,color:#fff
+    style B fill:#185FA5,stroke:#85B7EB,color:#fff
+    style C fill:#534AB7,stroke:#AFA9EC,color:#fff
+    style D fill:#0F6E56,stroke:#5DCAA5,color:#fff
+    style E fill:#D85A30,stroke:#F0997B,color:#fff
+    style F fill:#444441,stroke:#888780,color:#fff
 
-The agent also supports:
+    style G fill:#FFF3CD,stroke:#E6B800,color:#222
+    style H fill:#D9F0F2,stroke:#2A9DAB,color:#222
+    style I fill:#FDE2E2,stroke:#D64545,color:#222
+    style J fill:#DCEBFF,stroke:#4A90E2,color:#222
+    style K fill:#E8DDF5,stroke:#8E5CC2,color:#222
+    style L fill:#DDF2DD,stroke:#4B9B4B,color:#222
+    style M fill:#F8D9E8,stroke:#C23B7A,color:#222
+```
+
+
+## The agent also supports:
 
 ```text
 Voice Agent
